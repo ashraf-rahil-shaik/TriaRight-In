@@ -16,7 +16,7 @@ const CreateCourse = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setCourseData({ ...courseData, [name]: value });
+    setCourseData({...courseData, [name]: value });
   };
 
   const handleSubmit = (event) => {

@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
 
 const CreateStream = () => {
-  const [streamLocation, setStreamLocation] = useState('');
-  const [streamName, setStreamName] = useState('');
-  const [formDataArray, setFormDataArray] = useState([]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-  
-    const formData = {
-      streamLocation,
-      streamName,
-    };
-
-  
-    setFormDataArray({...formDataArray, formData});
-
-   
-    console.log(formDataArray);
+  const [streamData, setStreamData] = useState({
+    streamLocation: "",
+    streamName: "",
+  });
+  const [submittedData, setSubmittedData] = useState({});
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setStreamData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSubmittedData(streamData);
+    console.log(submittedData);
+  };
+
   return (
     <div className="form-container">
-    <h1>Stream Form</h1>
-    <form onSubmit={handleSubmit}  className="form">
-    <div className="form-group">
+      <h1>Stream Form</h1>
+      <form onSubmit={handleSubmit} className="form">
+        <div className="form-group">
           <label htmlFor="streamLocation">Stream Location:</label>
           <select
             id="streamLocation"
-            value={streamLocation}
-            onChange={(e) => setStreamLocation(e.target.value)}
+            name="streamLocation"
+            value={streamData.streamLocation}
+            onChange={handleChange}
             required
             className="input-field"
           >
@@ -41,24 +42,24 @@ const CreateStream = () => {
             <option value="placement-assistance">Placement Assistance</option>
           </select>
         </div>
-      <div className="form-group">
-        <label htmlFor="streamName">Stream Name:</label>
-        <input
-          type="text"
-          id="streamName"
-          value={streamName}
-          onChange={(e) => setStreamName(e.target.value)}
-          required
-          className="input-field"
-        />
-      </div>
-      <button type="submit" className="submit-button">
-        Create
-      </button>
-    </form>
-  </div>
-);
+        <div className="form-group">
+          <label htmlFor="streamName">Stream Name:</label>
+          <input
+            type="text"
+            id="streamName"
+            name="streamName"
+            value={streamData.streamName}
+            onChange={handleChange}
+            required
+            className="input-field"
+          />
+        </div>
+        <button type="submit" className="submit-button">
+          Create
+        </button>
+      </form>
+    </div>
+  );
 };
-
 
 export default CreateStream;
