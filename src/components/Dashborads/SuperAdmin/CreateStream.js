@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
 
-
-
-
-
-
 const CreateStream = () => {
   const [streamLocation, setStreamLocation] = useState('');
   const [streamName, setStreamName] = useState('');
+  const [formDataArray, setFormDataArray] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+  
+    const formData = {
+      streamLocation,
+      streamName,
+    };
+
+  
+    setFormDataArray({...formDataArray, formData});
+
+   
+    console.log(formDataArray);
+  };
   return (
     <div className="form-container">
     <h1>Stream Form</h1>
-    <form  className="form">
+    <form onSubmit={handleSubmit}  className="form">
     <div className="form-group">
           <label htmlFor="streamLocation">Stream Location:</label>
           <select
@@ -50,9 +62,3 @@ const CreateStream = () => {
 
 
 export default CreateStream;
-
-
-
-
- 
-
