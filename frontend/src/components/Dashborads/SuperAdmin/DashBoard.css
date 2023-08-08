@@ -130,7 +130,7 @@ height:fit-content;
     background-color: #004499;
   }
   
-  .create-course-container {
+  .create-course-container,.create-trainer-container,.create-college-container{
     width: 500px;
     margin: 0 auto;
     padding: 20px;
