@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 const CreateStream = () => {
   const [streamData, setStreamData] = useState({
     streamLocation: "",
     streamName: "",
   });
-  const [submittedData, setSubmittedData] = useState({});
+  
+const Navigate = useNavigate();     
+  //const [submittedData, setSubmittedData] = useState({});
   const handleChange = (event) => {
     const { name, value } = event.target;
     setStreamData((prevData) => ({
@@ -16,9 +19,13 @@ const CreateStream = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmittedData(streamData);
-    console.log(submittedData);
-  };
+    axios.post('http://localhost/TriarightWeb/createStream.php/user/create', streamData).then(function(response){
+            console.log(response.data);
+           Navigate('/manage-stream');
+   // setSubmittedData(streamData);
+    //console.log(submittedData);
+  });
+}
 
   return (
     <div className="form-container">

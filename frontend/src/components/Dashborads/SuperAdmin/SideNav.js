@@ -7,6 +7,7 @@ const SideNav = () => {
   const [isTrainerDropdownOpen, setTrainerDropdownOpen] = useState(false);
   const [isCourseDropdownOpen, setCourseDropdownOpen] = useState(false);
   const [isCollegeDropdownOpen, setCollegeDropdownOpen] = useState(false);
+  const [isBatchDropdownOpen, setBatchDropdownOpen] = useState(false);
   const handleStreamClick = () => {
     setStreamDropdownOpen(!isStreamDropdownOpen);
   };
@@ -20,6 +21,10 @@ const SideNav = () => {
   const handleCollegeClick = () => {
     setCollegeDropdownOpen(!isCollegeDropdownOpen);
   };
+  const handleBatchClick = () => {
+    setBatchDropdownOpen(!isBatchDropdownOpen);
+  };
+
 
   return (
     <div className="side-nav">
@@ -47,7 +52,7 @@ const SideNav = () => {
             <Link to="/create-course" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-stream" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="/manage-course" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -78,6 +83,21 @@ const SideNav = () => {
               <li className="dropdown-item">Create</li>
             </Link>
             <Link to="/manage-college" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Manage</li>
+            </Link>
+          </>
+        )}
+      </ul>
+      <ul className={`slide-menu ${isBatchDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleBatchClick}>
+         Batch
+        </li>
+        {isBatchDropdownOpen && (
+          <>
+            <Link to="/create-batch" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Create</li>
+            </Link>
+            <Link to="/manage-batch" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>

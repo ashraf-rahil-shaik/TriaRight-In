@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const CreateCourse = () => {
   const [courseData, setCourseData] = useState({
+    image:"",
     stream: "IT",
-    course:"",
     duration: "",
     provider: "",
     type: "online",
@@ -14,6 +15,7 @@ const CreateCourse = () => {
     benefits: "",
     price: "",
   });
+  const Navigate = useNavigate();   
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,8 +24,13 @@ const CreateCourse = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(courseData); // You can perform your submit logic here
-  };
+    
+    axios.post('http://localhost/TriarightWeb/createCourse.php/user/submit', courseData).then(function(response){
+            console.log(response.data);
+           Navigate('/manage-course');
+    //console.log(courseData); // You can perform your submit logic here
+  });
+}
 
   return (
     <div className="create-course-container">
@@ -37,6 +44,7 @@ const CreateCourse = () => {
             id="image"
             onChange={handleChange}
             accept="image/*"
+            //value={courseData.image}
           />
         </div>
         <div className="form-group">
@@ -55,17 +63,7 @@ const CreateCourse = () => {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="course">Course Name:</label>
-          <input
-            type="text"
-            name="course"
-            id="course"
-            value={courseData.course}
-            onChange={handleChange}
-          />
-          </div>
-        <div className="form-group">
-          <label htmlFor="duration">Duration (in days):</label>
+          <label htmlFor="duration">Duration (in months):</label>
           <input
             type="number"
             name="duration"
@@ -127,7 +125,7 @@ const CreateCourse = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="benefits">Benefits of Course:</label>
+          <label htmlFor="benefits">Benefits:</label>
           <textarea
             name="benefits"
             id="benefits"
@@ -137,7 +135,7 @@ const CreateCourse = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="price">Price(optional):</label>
+          <label htmlFor="price">Price (optional):</label>
           <input
             type="number"
             name="price"
