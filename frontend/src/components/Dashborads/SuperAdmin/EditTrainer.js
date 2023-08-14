@@ -43,9 +43,11 @@ const CreateTrainer = () => {
     // Handle checkbox values separately
     if (type === "checkbox") {
       setTrainerData({ ...trainerData, [name]: event.target.checked });
-    }  if (type === "file") {
-       setTrainerData({ ...trainerData, [name]: event.target.files[0] });
-    } else {
+    } 
+    //  if (type === "file") {
+    //    setTrainerData({ ...trainerData, [name]: event.target.files[0] });
+    // } 
+    else {
       setTrainerData({ ...trainerData, [name]: value });
     }
   };
@@ -54,7 +56,7 @@ const CreateTrainer = () => {
     event.preventDefault();
     //console.log(trainerData); 
     // You can perform your submit logic here
-    axios.put(`http://localhost/TriarightWeb/createTrainer.php/user/create/${trainerId}`, trainerData).then(function(response){
+    axios.put(`http://localhost/TriarightWeb/createTrainer.php/user/create/${trainerId}/edit`, trainerData).then(function(response){
       console.log(response.data);
            Navigate('/manage-trainer');
 
@@ -73,7 +75,6 @@ const CreateTrainer = () => {
             id="trainerName"
             value={trainerData.trainerName}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -85,7 +86,6 @@ const CreateTrainer = () => {
             id="personalEmail"
             value={trainerData.personalEmail}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -97,7 +97,6 @@ const CreateTrainer = () => {
             id="personalPhone"
             value={trainerData.phNumber}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -108,7 +107,6 @@ const CreateTrainer = () => {
             id="gender"
             value={trainerData.Gender}
             onChange={handleChange}
-            required
           >
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -124,7 +122,6 @@ const CreateTrainer = () => {
             id="dob"
             value={trainerData.DateOfBirth}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -137,7 +134,6 @@ const CreateTrainer = () => {
             value={trainerData.aadharNumber}
             onChange={handleChange}
             style={{minLength:"12"}}
-            required
           />
         </div>
        
@@ -150,7 +146,6 @@ const CreateTrainer = () => {
             id="panNumber"
             value={trainerData.panNumber}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -163,7 +158,6 @@ const CreateTrainer = () => {
             onChange={handleChange}
            // value={trainerData.aadharImage}
             accept="image/*"
-            required
           />
         </div>
         
@@ -176,7 +170,6 @@ const CreateTrainer = () => {
             onChange={handleChange}
             //value={trainerData.panImage}
             accept="image/*"
-            required
           />
         </div>
 
@@ -188,7 +181,6 @@ const CreateTrainer = () => {
             id="doj"
             value={trainerData.DateOfJoining}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -200,7 +192,6 @@ const CreateTrainer = () => {
             id="qualification"
             value={trainerData.qualification}
             onChange={handleChange}
-            required
           />
         </div>
         {/* Checkbox for Experience */}
@@ -215,7 +206,7 @@ const CreateTrainer = () => {
           />
         </div>
 
-        {trainerData.hasExperience && (
+        {trainerData.experience && (
           <div>
             {/* Form groups for experience-related fields */}
             <div className="form-group">
@@ -255,7 +246,7 @@ const CreateTrainer = () => {
         )}
 
         <div className="form-group">
-          <button type="submit">Submit</button>
+          <button type="submit">Update</button>
         </div>
       </form>
     </div>

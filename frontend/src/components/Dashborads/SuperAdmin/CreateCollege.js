@@ -109,23 +109,23 @@ const CreateCollege = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="collegephone">college phone number:</label>
+          <label htmlFor="collegePhone">college phone number:</label>
           <input
             type="number"
-            name="collegephone"
-            id="collegephone"
-            value={collegeData.collegephone}
+            name="collegePhone"
+            id="collegePhone"
+            value={collegeData.collegePhone}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="collegemail">college mail id:</label>
+          <label htmlFor="collegeMail">college mail id:</label>
           <input
             type="email"
-            name="collegemail"
-            id="collegemail"
-            value={collegeData.collegemail}
+            name="collegeMail"
+            id="collegeMail"
+            value={collegeData.collegeMail}
             onChange={handleChange}
             required
           />

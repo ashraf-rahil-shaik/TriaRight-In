@@ -14,7 +14,14 @@ import CreateCollege from "./CreateCollege";
 import ManageCollege from "./ManageCollege";
 import EditCollege from "./EditCollege";
 import CreateBatch from "./CreateBatch";
-
+import ManageBatch from "./ManageBatch";
+import EditBatch from "./EditBatch";
+import CreateCompany from "./CreateCompany";
+import ManageCompany from "./ManageCompany";
+import EditCompany from "./EditCompany";
+import CreateTriarightLogin from "./CreateTriarightLogin";
+import ManageTriarightLogin from "./ManageTriarightLogin";
+import EditTriarightLogin from "./EditTriarightLogin";
 const SuperAdmin=()=>{
 return(
 <div className="super">
@@ -39,20 +46,31 @@ return(
         <Route path="/create-stream" element={<CreateStream />}></Route>
         <Route path="/manage-stream" element={<ManageStream />}></Route> 
         <Route path="/:streamId/edit1" element={<EditStream />}></Route>
+
         <Route path="/create-course" element={<CreateCourse />}></Route>
         <Route path="/manage-course" element={<ManageCourse />}></Route> 
         <Route path="/:courseId/edit2" element={<EditCourse />}></Route>
+
         <Route path="/create-trainer" element={<CreateTrainer />}></Route>
         <Route path="/manage-trainer" element={<ManageTrainer />}></Route>
         <Route path="/:trainerId/edit3" element={<EditTrainer />}></Route>
+
         <Route path="/create-college" element={<CreateCollege />}></Route>
         <Route path="/manage-college" element={<ManageCollege />}></Route>
         <Route path="/:collegeId/edit4" element={<EditCollege />}></Route>
-        <Route path="/create-batch" element={<CreateBatch />}></Route>
 
-        </Routes>
-    
-    
+        <Route path="/create-batch" element={<CreateBatch />}></Route>
+        <Route path="/manage-batch" element={<ManageBatch />}></Route>
+        <Route path="/:batchId/edit5" element={<EditBatch />}></Route>
+
+        <Route path="/create-company" element={<CreateCompany />}></Route>
+        <Route path="/manage-company" element={<ManageCompany />}></Route>
+        <Route path="/:companyId/edit6" element={<EditCompany />}></Route>
+
+         <Route path="/create-triarightlogin" element={<CreateTriarightLogin/>}></Route>
+        <Route path="/manage-triarightlogin" element={<ManageTriarightLogin />}></Route>
+        <Route path="/:triarightLoginId/edit7" element={<EditTriarightLogin />}></Route>
+    </Routes>
  
     </BrowserRouter>
    

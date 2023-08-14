@@ -1,40 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function CreateBatch(){
+function EditBatch(){
 
-  const Navigate = useNavigate();
 
-  //const[input, setInputs]=useState({})
-  const [batchData, setBatchData] = useState({
-    batchName: "",
-    classDuration: "",
-    courseId: "",
-    courseName: "",
-    trainerId: "",
-    trainerName: "",
-    batchStartingDate: "",
-    batchEndingDate: "",
-    sessionSlot:""
-});
+   const Navigate = useNavigate();        
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setBatchData({...batchData, [name]: value });
-  };
+    const [batchData, setInputs] = useState([]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios.post('http://localhost/TriarightWeb/createBatch.php/user/Submit', batchData).then(function(response){
-    console.log(batchData); // You can perform your submit logic here
-    Navigate('/manage-batch');
-  });
-  }
-  return (
-    <div className="create-Batch-container">
-      <h2>Batch Creation</h2>
-      <form onSubmit={handleSubmit}>      
+    const {batchId} = useParams();
+    useEffect(() => {
+        getUser();  
+    },[]);
+
+    function getUser() {
+        axios.get(`http://localhost/TriarightWeb/createBatch.php/user/${batchId}`).then(function(response) {
+            console.log(response.data);
+            setInputs(response.data);
+        });
+    }
+
+    const handleChange = (event) =>{
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}));
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.put(`http://localhost/TriarightWeb/createBatch.php/user/${batchId}/edit`, batchData).then(function(response){
+            console.log(response.data);
+          
+          
+          Navigate('/manage-batch');
+        });
+        
+    }
+    return (
+        <div>
+        <h1>Edit Batch</h1>
+        <form onSubmit={handleSubmit}>
+        {/* <div className="form-group">
+          <label htmlFor="batchId">Batch Id:</label>
+           <input
+            type="text"
+            name="batchId"
+            id="batchId"
+            value={batchData.batchId}
+            onChange={handleChange}
+          />
+        </div> */}
         <div className="form-group">
           <label htmlFor="batchName">Batch Name:</label>
           <input
@@ -78,7 +93,7 @@ function CreateBatch(){
         <div className="form-group">
           <label htmlFor="trainerId">TrainerId:</label>
           <input 
-            type="text"
+            type="number"
             name="trainerId"
             id="trainerId"
             value={batchData.trainerId}
@@ -118,7 +133,7 @@ function CreateBatch(){
           />
         </div>
         <div className="form-group">
-          <label htmlFor="sessionSlot">Session Solt:</label>
+          <label htmlFor="sessionSlot">Session Slot:</label>
           <input
             type="text"
             name="sessionSlot"
@@ -128,10 +143,10 @@ function CreateBatch(){
           />
         </div>
                
-        <button type="submit">Submit</button>
+        <button type="submit">Update</button>
       </form>
     </div>
-  );
-};
+   )
+}
 
-export default CreateBatch;
+export default EditBatch;

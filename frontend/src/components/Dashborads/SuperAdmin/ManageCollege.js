@@ -15,6 +15,14 @@ export default function ManageCollege(){
         setUsers(response.data);
     });
 }
+
+const deleteCollege = (collegeId) => {
+  axios.delete(`http://localhost/TriarightWeb/createCollege.php/user/${collegeId}/delete`).then(function(response) {
+       console.log(response.data);
+       getUsers();
+  });
+}
+
     return (
         <div>
             <h1>Manage College</h1>
@@ -56,14 +64,14 @@ export default function ManageCollege(){
       <td>{user.colleRepresPhNo}</td>
       <td>{user.colleeRepresMail}</td>
       <td>{user.collegeStreams}</td>
-      <td>{user.affiliatedUniverse}</td>
+      <td>{user.affiliatedUniversity}</td>
       <td>{user.collegeWebsite}</td>
 
       <td>
         <Link to={`/${user.collegeId}/edit4`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button>Delete</button>
+        <button onClick={() => deleteCollege(user.collegeId)}>Delete</button>
       </td>
     </tr>
   ))

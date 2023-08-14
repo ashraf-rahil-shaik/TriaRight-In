@@ -16,7 +16,7 @@ export default function ManageCourse(){
     });
 }
 
-const deleteStream = (courseId) => {
+const deleteCourse = (courseId) => {
   axios.delete(`http://localhost/TriarightWeb/createCourse.php/user/${courseId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
@@ -47,7 +47,7 @@ const deleteStream = (courseId) => {
   users.map((user, key) => (
     <tr key={key}>
       <td>{user.courseId}</td>
-      <td><img src={`${user.Images}`}/></td>
+      <td>{user.Images}</td>
       <td>{user.Stream}</td>
       <td>{user.Duration}</td>
       <td>{user.Providers}</td>
@@ -62,7 +62,7 @@ const deleteStream = (courseId) => {
         <Link to={`/${user.courseId}/edit2`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button onClick={() => deleteStream(user.courseId)}>Delete</button>
+        <button onClick={() => deleteCourse(user.courseId)}>Delete</button>
       </td>
     </tr>
   ))

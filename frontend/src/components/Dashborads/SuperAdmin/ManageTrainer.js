@@ -24,6 +24,15 @@ export default function ManageTrainer(){
         setUsers(response.data);
     });
 }
+
+const deleteTrainer = (trainerId) => {
+  axios.delete(`http://localhost/TriarightWeb/createTrainer.php/user/${trainerId}/delete`).then(function(response) {
+       console.log(response.data);
+       getUsers();
+  });
+}
+
+
     return (
         <div>
             <h1>Manage Trainer</h1>
@@ -55,7 +64,7 @@ export default function ManageTrainer(){
     <tr key={key}>
         <td>{user.trainerId}</td>
       <td>{user.trainerName}</td>
-      <td>{user.Email}</td>
+      <td>{user.personalEmail}</td>
       <td>{user.phNumber}</td>
       <td>{user.Gender}</td>
       <td>{user.DateOfBirth}</td>
@@ -73,7 +82,7 @@ export default function ManageTrainer(){
         <Link to={`/${user.trainerId}/edit3`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button>Delete</button>
+        <button onClick={() => deleteTrainer(user.trainerId)}>Delete</button>
       </td>
     </tr>
   ))
