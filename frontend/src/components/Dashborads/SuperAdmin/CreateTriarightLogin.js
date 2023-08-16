@@ -29,7 +29,7 @@ function CreateTriarightLogin(){
     }
     
     axios.post('http://localhost/TriarightWeb/createTriarightLoginform.php/user/Submit', triarightEssentialsData).then(function(response){
-    console.log(triarightEssentialsData); // You can perform your submit logic here
+    console.log(response.data); // You can perform your submit logic here
     Navigate('/manage-triarightlogin');
   });
 

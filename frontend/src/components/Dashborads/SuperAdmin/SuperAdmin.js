@@ -22,6 +22,8 @@ import EditCompany from "./EditCompany";
 import CreateTriarightLogin from "./CreateTriarightLogin";
 import ManageTriarightLogin from "./ManageTriarightLogin";
 import EditTriarightLogin from "./EditTriarightLogin";
+import CreateStudentPersonalForm from "./CreateStudentPersonalForm";
+
 const SuperAdmin=()=>{
 return(
 <div className="super">
@@ -67,9 +69,11 @@ return(
         <Route path="/manage-company" element={<ManageCompany />}></Route>
         <Route path="/:companyId/edit6" element={<EditCompany />}></Route>
 
-         <Route path="/create-triarightlogin" element={<CreateTriarightLogin/>}></Route>
+        <Route path="/create-triarightlogin" element={<CreateTriarightLogin/>}></Route>
         <Route path="/manage-triarightlogin" element={<ManageTriarightLogin />}></Route>
         <Route path="/:triarightLoginId/edit7" element={<EditTriarightLogin />}></Route>
+
+        <Route path="/create-studentpersonalform" element={<CreateStudentPersonalForm/>}></Route>
     </Routes>
  
     </BrowserRouter>

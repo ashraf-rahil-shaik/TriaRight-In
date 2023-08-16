@@ -74,10 +74,25 @@ const deleteTrainer = (trainerId) => {
       <td>{user.panImage}</td>
       <td>{user.DateOfJoining}</td>
       <td>{user.qualification}</td>
-      <td>{user.experience}</td>
+      {  (user.experience == 1)?
+      
+        <>
+      <td>Yes</td>
       <td>{user.previousOrganization}</td>
       <td>{user.designation}</td>
       <td>{user.trainerDocuments}</td>
+      </>
+      :
+      
+      
+        <>
+        <td>No</td>
+        <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      </>
+      
+    } 
       <td>
         <Link to={`/${user.trainerId}/edit3`} style={{ marginRight: "10px" }}>
           Edit
