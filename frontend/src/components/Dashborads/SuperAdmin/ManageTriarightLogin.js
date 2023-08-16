@@ -17,12 +17,24 @@ function ManageTriarightLogin(){
         });
     }
     
-    const deleteTriarightEssentitals = (triarightLoginId) => {
+    const deleteRecord=(triarightLoginId)=>{
+      const result = window.confirm("Are you sure you want to permanently delete this record?");
+      if(result){
         axios.delete(`http://localhost/TriarightWeb/createTriarightLoginform.php/user/${triarightLoginId}/delete`).then(function(response){
             console.log(response.data);
             getUsers();
-        });
+        
+      });
     }
+    }
+
+    // const deleteTriarightEssentitals = (triarightLoginId) => {
+    //     axios.delete(`http://localhost/TriarightWeb/createTriarightLoginform.php/user/${triarightLoginId}/delete`).then(function(response){
+    //         console.log(response.data);
+    //         getUsers();
+    //     });
+    // }
+
     return (
         <div>
             <h1>List TriarightEssentials</h1>
@@ -49,7 +61,7 @@ function ManageTriarightLogin(){
         <Link to={`/${user.triarightLoginId}/edit7`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button onClick={() => deleteTriarightEssentitals(user.triarightLoginId)}>Delete</button>
+        <button onClick={() => deleteRecord(user.triarightLoginId)}>Delete</button>
       </td>
     </tr>
   ))

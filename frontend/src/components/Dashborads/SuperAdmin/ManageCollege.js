@@ -16,12 +16,24 @@ export default function ManageCollege(){
     });
 }
 
-const deleteCollege = (collegeId) => {
-  axios.delete(`http://localhost/TriarightWeb/createCollege.php/user/${collegeId}/delete`).then(function(response) {
+const deleteRecord=(collegeId)=>{
+  const result = window.confirm("Are you sure you want to permanently delete this record?");
+  if(result){
+    
+    axios.delete(`http://localhost/TriarightWeb/createCollege.php/user/${collegeId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
+    
   });
 }
+}
+
+// const deleteCollege = (collegeId) => {
+//   axios.delete(`http://localhost/TriarightWeb/createCollege.php/user/${collegeId}/delete`).then(function(response) {
+//        console.log(response.data);
+//        getUsers();
+//   });
+// }
 
     return (
         <div>
@@ -71,7 +83,7 @@ const deleteCollege = (collegeId) => {
         <Link to={`/${user.collegeId}/edit4`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button onClick={() => deleteCollege(user.collegeId)}>Delete</button>
+        <button onClick={() => deleteRecord(user.collegeId)}>Delete</button>
       </td>
     </tr>
   ))

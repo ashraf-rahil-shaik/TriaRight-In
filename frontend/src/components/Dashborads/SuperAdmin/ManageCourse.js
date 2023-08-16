@@ -16,12 +16,24 @@ export default function ManageCourse(){
     });
 }
 
-const deleteCourse = (courseId) => {
-  axios.delete(`http://localhost/TriarightWeb/createCourse.php/user/${courseId}/delete`).then(function(response) {
+const deleteRecord=(courseId)=>{
+  const result = window.confirm("Are you sure you want to permanently delete this record?");
+  if(result){
+    
+    axios.delete(`http://localhost/TriarightWeb/createCourse.php/user/${courseId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
+    
   });
 }
+}
+
+// const deleteCourse = (courseId) => {
+//   axios.delete(`http://localhost/TriarightWeb/createCourse.php/user/${courseId}/delete`).then(function(response) {
+//        console.log(response.data);
+//        getUsers();
+//   });
+// }
 
     return (
         <div>
@@ -62,7 +74,7 @@ const deleteCourse = (courseId) => {
         <Link to={`/${user.courseId}/edit2`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button onClick={() => deleteCourse(user.courseId)}>Delete</button>
+        <button onClick={() => deleteRecord(user.courseId)}>Delete</button>
       </td>
     </tr>
   ))

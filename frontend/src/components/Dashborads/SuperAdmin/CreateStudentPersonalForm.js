@@ -7,6 +7,7 @@ const CreateStudentPersonalForm = () => {
     emailId : "",
     phoneNo : "",
     gender: "",
+    alternatePhoneNo: "",
     dateOfBirth: "",
     address: "",
     city: "",
@@ -59,7 +60,17 @@ const CreateStudentPersonalForm = () => {
             type="number"
             name="phoneNo"
             id="phoneNo"
-            value={studentData.phoneNumber}
+            value={studentData.phoneNo}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="alternatePhoneNo">Alternate Phone No:</label>
+           <input
+            type="number"
+            name="alternatePhoneNo"
+            id="alternatePhoneNo"
+            value={studentData.alternatePhoneNo}
             onChange={handleChange}
           />
         </div>
@@ -74,11 +85,12 @@ const CreateStudentPersonalForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="dateofbirth">Date Of Birth:</label>
+          <label htmlFor="dateOfBirth">Date Of Birth:</label>
           <input
-            name="dateofbirth"
-            id="dateofbirth"
-            value={studentData.dateofbirth}
+            type="date"
+            name="dateOfBirth"
+            id="dateOfBirth"
+            value={studentData.dateOfBirth}
             onChange={handleChange}
             
           />
@@ -86,6 +98,7 @@ const CreateStudentPersonalForm = () => {
         <div className="form-group">
           <label htmlFor="address">Address:</label>
           <input
+          type="text"
             name="address"
             id="address"
             value={studentData.address}
@@ -96,6 +109,7 @@ const CreateStudentPersonalForm = () => {
         <div className="form-group">
           <label htmlFor="city">City:</label>
           <input
+          type="text"
             name="city"
             id="city"
             value={studentData.city}
@@ -117,8 +131,8 @@ const CreateStudentPersonalForm = () => {
           <label htmlFor="state">State:</label>
           <input
             type="text"
-            name="text"
-            id="text"
+            name="state"
+            id="state"
             value={studentData.state}
             onChange={handleChange}
           />
@@ -138,11 +152,11 @@ const CreateStudentPersonalForm = () => {
           <select
             name="registrationType"
             id="registrationType"
-            value={studentData.RegistrationType}
+            value={studentData.registrationType}
             onChange={handleChange}
           > <option value="">Select</option>
             <option value="course">Course</option>
-            <option value="course with internship">Course With Intership</option>
+            <option value="course with internship">Course With Internship</option>
             <option value="internship">Internship</option>
             <option value="course with internship & placement">Course with Internship & Placement Assistances</option>
             <option value="placement assistances">Placement Assistances</option>

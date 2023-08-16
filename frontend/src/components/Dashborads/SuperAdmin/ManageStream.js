@@ -25,12 +25,27 @@ export default function ManageStream(){
     });
 }
 
-const deleteStream = (streamId) => {
-  axios.delete(`http://localhost/TriarightWeb/createStream.php/user/${streamId}/delete`).then(function(response) {
-       console.log(response.data);
-       getUsers();
-  });
+
+const deleteRecord=(streamId)=>{
+  const result = window.confirm("Are you sure you want to permanently delete this record?");
+  if(result){
+    
+      axios.delete(`http://localhost/TriarightWeb/createStream.php/user/${streamId}/delete`).then(function(response) {
+           console.log(response.data);
+           getUsers();
+      });
+    
+  }
 }
+
+
+// const deleteStream = () => {
+//   axios.delete(`http://localhost/TriarightWeb/createStream.php/user/${streamId}/delete`).then(function(response) {
+//        console.log(response.data);
+//        getUsers();
+//   });
+// }
+ 
 
     return (
         <div>
@@ -55,7 +70,8 @@ const deleteStream = (streamId) => {
         <Link to={`/${user.streamId}/edit1`} style={{marginRight: "10px" }}>
           Edit
         </Link>
-        <button onClick={() => deleteStream(user.streamId)}>Delete</button>
+        <button onClick={() => deleteRecord(user.streamId)}>Delete</button>
+         {/* <button onClick={() => deleteStream(user.streamId)}>Delete</button> */}
       </td>
     </tr>
   ))

@@ -25,12 +25,23 @@ export default function ManageTrainer(){
     });
 }
 
-const deleteTrainer = (trainerId) => {
-  axios.delete(`http://localhost/TriarightWeb/createTrainer.php/user/${trainerId}/delete`).then(function(response) {
+const deleteRecord=(trainerId)=>{
+  const result = window.confirm("Are you sure you want to permanently delete this record?");
+  if(result){
+    axios.delete(`http://localhost/TriarightWeb/createTrainer.php/user/${trainerId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
+    
   });
 }
+}
+
+// const deleteTrainer = (trainerId) => {
+//   axios.delete(`http://localhost/TriarightWeb/createTrainer.php/user/${trainerId}/delete`).then(function(response) {
+//        console.log(response.data);
+//        getUsers();
+//   });
+// }
 
 
     return (
@@ -97,7 +108,7 @@ const deleteTrainer = (trainerId) => {
         <Link to={`/${user.trainerId}/edit3`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button onClick={() => deleteTrainer(user.trainerId)}>Delete</button>
+        <button onClick={() => deleteRecord(user.trainerId)}>Delete</button>
       </td>
     </tr>
   ))

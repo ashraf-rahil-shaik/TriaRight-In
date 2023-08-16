@@ -16,12 +16,24 @@ export default function ManageBatch(){
     });
 }
 
-const deleteBatch = (batchId) => {
+const deleteRecord=(batchId)=>{
+  const result = window.confirm("Are you sure you want to permanently delete this record?");
+  if(result){
+    
     axios.delete(`http://localhost/TriarightWeb/createBatch.php/user/${batchId}/delete`).then(function(response){
-        console.log(response.data);
-        getUsers();
-    });
+      console.log(response.data);
+      getUsers();
+      });
+    
+  }
 }
+
+// const deleteBatch = (batchId) => {
+//     axios.delete(`http://localhost/TriarightWeb/createBatch.php/user/${batchId}/delete`).then(function(response){
+//         console.log(response.data);
+//         getUsers();
+//     });
+// }
     return (
         <div>
             <h1>List Batch</h1>
@@ -59,7 +71,7 @@ const deleteBatch = (batchId) => {
         <Link to={`/${user.batchId}/edit5`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button onClick={() => deleteBatch(user.batchId)}>Delete</button>
+        <button onClick={() => deleteRecord(user.batchId)}>Delete</button>
       </td>
     </tr>
   ))

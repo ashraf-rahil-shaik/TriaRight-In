@@ -16,12 +16,24 @@ export default function ManageCompany(){
     });
 }
 
-const deleteCompany = (companyId) => {
-  axios.delete(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}/delete`).then(function(response) {
+const deleteRecord=(companyId)=>{
+  const result = window.confirm("Are you sure you want to permanently delete this record?");
+  if(result){
+    
+    axios.delete(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
+    
   });
 }
+}
+
+// const deleteCompany = (companyId) => {
+//   axios.delete(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}/delete`).then(function(response) {
+//        console.log(response.data);
+//        getUsers();
+//   });
+// }
 
     return (
         <div>
@@ -80,7 +92,7 @@ const deleteCompany = (companyId) => {
         <Link to={`/${user.companyId}/edit6`} style={{ marginRight: "10px" }}>
           Edit
         </Link>
-        <button onClick={() => deleteCompany(user.companyId)}>Delete</button>
+        <button onClick={() => deleteRecord(user.companyId)}>Delete</button>
       </td>
     </tr>
   ))
