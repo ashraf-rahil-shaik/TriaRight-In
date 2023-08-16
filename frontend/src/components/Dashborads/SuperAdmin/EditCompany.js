@@ -49,10 +49,20 @@ function CreateCompany  ()  {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}/edit`, companyData).then(function(response){
-    console.log(response.data); // You can perform your submit logic here
-     Navigate('/manage-company');
-  });
+    axios.put(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}/edit`, companyData)
+    .then(function(response){
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);
+        Navigate('/manage-company');
+      } else {
+        alert('Error: ' + response.data.message);
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      alert('An error occurred while updating the record.');
+    }); 
+    
 }
   
   return (

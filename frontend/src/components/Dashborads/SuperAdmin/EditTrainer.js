@@ -56,11 +56,20 @@ const CreateTrainer = () => {
     event.preventDefault();
     //console.log(trainerData); 
     // You can perform your submit logic here
-    axios.put(`http://localhost/TriarightWeb/createTrainer.php/user/create/${trainerId}/edit`, trainerData).then(function(response){
-      console.log(response.data);
-           Navigate('/manage-trainer');
-
-  });
+    axios.put(`http://localhost/TriarightWeb/createTrainer.php/user/create/${trainerId}/edit`, trainerData)
+    .then(function(response){
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);
+        Navigate('/manage-trainer');
+      } else {
+        alert('Error: ' + response.data.message);
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      alert('An error occurred while updating the record.');
+    });
+         
 }
 
   return (

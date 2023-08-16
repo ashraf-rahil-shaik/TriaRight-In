@@ -25,11 +25,20 @@ const CreateCourse = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    axios.post('http://localhost/TriarightWeb/createCourse.php/user/submit', courseData).then(function(response){
-            console.log(response.data);
-           Navigate('/manage-course');
+    axios.post('http://localhost/TriarightWeb/createCourse.php/user/submit', courseData)
+    .then(function(response){
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);
+        Navigate('/manage-course');
+  } else {
+    alert('Error: ' + response.data.message);
+  }
+})
+.catch(function (error) {
+  console.error(error);
+  alert('An error occurred while creating the record.');
+});
     //console.log(courseData); // You can perform your submit logic here
-  });
 }
 
   return (
@@ -151,3 +160,4 @@ const CreateCourse = () => {
 };
 
 export default CreateCourse;
+

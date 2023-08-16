@@ -45,12 +45,20 @@ const CreateCollege = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`http://localhost/TriarightWeb/createCollege.php/user/create/${collegeId}/edit`, collegeData).then(function(response){
-            console.log(response.data);
-           Navigate('/manage-college');
-   //setSubmittedData(streamData);
-    //console.log(submittedData);
-  });
+    axios.put(`http://localhost/TriarightWeb/createCollege.php/user/create/${collegeId}/edit`, collegeData)
+    .then(function(response){
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);
+        Navigate('/manage-college');
+      } else {
+        alert('Error: ' + response.data.message);
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      alert('An error occurred while updating the record.');
+    });
+           
 }
 
   return (

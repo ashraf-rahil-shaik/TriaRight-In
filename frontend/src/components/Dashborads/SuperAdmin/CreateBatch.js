@@ -26,11 +26,21 @@ function CreateBatch(){
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriarightWeb/createBatch.php/user/Submit', batchData).then(function(response){
-    console.log(batchData); // You can perform your submit logic here
+    axios.post('http://localhost/TriarightWeb/createBatch.php/user/Submit', batchData)
+    .then(function(response){
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);// You can perform your submit logic here
     Navigate('/manage-batch');
-  });
+  } else {
+    alert('Error: ' + response.data.message);
   }
+})
+.catch(function (error) {
+  console.error(error);
+  alert('An error occurred while creating the record.');
+});
+  }
+  
   return (
     <div className="create-Batch-container">
       <h2>Batch Creation</h2>

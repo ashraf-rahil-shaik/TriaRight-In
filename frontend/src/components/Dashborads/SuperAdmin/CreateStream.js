@@ -6,7 +6,7 @@ const CreateStream = () => {
     streamLocation: "",
     streamName: "",
   });
-  
+  //const [alertMessage, setAlertMessage] = useState('');
 const Navigate = useNavigate();     
   //const [submittedData, setSubmittedData] = useState({});
   const handleChange = (event) => {
@@ -19,12 +19,31 @@ const Navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriarightWeb/createStream.php/user/create', streamData).then(function(response){
-            console.log(response.data);
-           Navigate('/manage-stream');
-   // setSubmittedData(streamData);
-    //console.log(submittedData);
-  });
+//   //   axios.post('http://localhost/TriarightWeb/createStream.php/user/create', streamData).then(function(response){
+//   //           //console.log(response.data);
+//   //          Navigate('/manage-stream');
+//   //  // setSubmittedData(streamData);
+//   //   //console.log(submittedData);
+//   // });
+//   axios.post('http://localhost/TriarightWeb/createStream.php/user/create', streamData).then(function(response){
+//     alert(response.data);
+//          Navigate('/manage-stream');
+//   // setSubmittedData(streamData);
+//   //   //console.log(submittedData);
+//  });
+axios.post('http://localhost/TriarightWeb/createStream.php/user/create', streamData)
+    .then(function (response) {
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);
+        Navigate('/manage-stream');
+      } else {
+        alert('Error: ' + response.data.message);
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      alert('An error occurred while creating the record.');
+    });
 }
 
   return (

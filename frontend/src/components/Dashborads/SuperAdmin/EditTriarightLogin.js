@@ -38,11 +38,20 @@ const handleSubmit = (event) => {
     alert("Password and Confirm Password do not match");
     return;
   }
-  axios.put(`http://localhost/TriarightWeb/createTriarightLoginform.php/user/${triarightLoginId}/edit`, triarightEssentials).then(function(response){
-      console.log(response.data);
+  axios.put(`http://localhost/TriarightWeb/createTriarightLoginform.php/user/${triarightLoginId}/edit`, triarightEssentials)
+  .then(function(response){
+    if (response.data.status === 1) {
+      alert('Success: ' + response.data.message);
       Navigate('/manage-triarightlogin');
+    } else {
+      alert('Error: ' + response.data.message);
+    }
+  })
+  .catch(function (error) {
+    console.error(error);
+    alert('An error occurred while updating the record.');
   });
-  
+      
 }
 
   return (

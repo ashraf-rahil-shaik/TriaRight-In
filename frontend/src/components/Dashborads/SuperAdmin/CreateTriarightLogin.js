@@ -28,12 +28,22 @@ function CreateTriarightLogin(){
       return;
     }
     
-    axios.post('http://localhost/TriarightWeb/createTriarightLoginform.php/user/Submit', triarightEssentialsData).then(function(response){
-    console.log(response.data); // You can perform your submit logic here
-    Navigate('/manage-triarightlogin');
-  });
-
+    axios.post('http://localhost/TriarightWeb/createTriarightLoginform.php/user/Submit', triarightEssentialsData)
+    .then(function(response){
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);// You can perform your submit logic here
+        Navigate('/manage-triarightlogin');
+  } else {
+    alert('Error: ' + response.data.message);
   }
+})
+.catch(function (error) {
+  console.error(error);
+  alert('An error occurred while creating the record.');
+}); // You can perform your submit logic here
+  }
+
+  
   return (
     <div className="create-student-container">
       <h2>Triaright Essentials</h2>
