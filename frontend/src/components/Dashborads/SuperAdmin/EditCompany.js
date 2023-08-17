@@ -35,7 +35,7 @@ function CreateCompany  ()  {
     },[]);
 
     function getUsers() {
-    axios.get(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}`).then(function(response) {
+    axios.get(`http://localhost/TriaRight-In/backend/createCompany.php/user/${companyId}`).then(function(response) {
         console.log(response.data);
         setCompanyData(response.data);
     });
@@ -49,7 +49,7 @@ function CreateCompany  ()  {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}/edit`, companyData)
+    axios.put(`http://localhost/TriaRight-In/backend/createCompany.php/user/${companyId}/edit`, companyData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);

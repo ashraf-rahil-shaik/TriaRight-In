@@ -10,7 +10,7 @@ export default function ManageCompany(){
     }, []);
 
     function getUsers() {
-    axios.get('http://localhost/TriarightWeb/createCompany.php/user/submit').then(function(response) {
+    axios.get('http://localhost/TriaRight-In/backend/createCompany.php/user/submit').then(function(response) {
         console.log(response.data);
         setUsers(response.data);
     });
@@ -20,7 +20,7 @@ const deleteRecord=(companyId)=>{
   const result = window.confirm("Are you sure you want to permanently delete this record?");
   if(result){
     
-    axios.delete(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}/delete`).then(function(response) {
+    axios.delete(`http://localhost/TriaRight-In/backend/createCompany.php/user/${companyId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
     
@@ -29,7 +29,7 @@ const deleteRecord=(companyId)=>{
 }
 
 // const deleteCompany = (companyId) => {
-//   axios.delete(`http://localhost/TriarightWeb/createCompany.php/user/${companyId}/delete`).then(function(response) {
+//   axios.delete(`http://localhost/TriaRight-In/backend/createCompany.php/user/${companyId}/delete`).then(function(response) {
 //        console.log(response.data);
 //        getUsers();
 //   });

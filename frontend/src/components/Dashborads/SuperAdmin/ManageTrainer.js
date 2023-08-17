@@ -19,7 +19,7 @@ export default function ManageTrainer(){
     }, []);
 
     function getUsers() {
-    axios.get('http://localhost/TriarightWeb/createTrainer.php/user/create').then(function(response) {
+    axios.get('http://localhost/TriaRight-In/backend/createTrainer.php/user/create').then(function(response) {
         console.log(response.data);
         setUsers(response.data);
     });
@@ -28,7 +28,7 @@ export default function ManageTrainer(){
 const deleteRecord=(trainerId)=>{
   const result = window.confirm("Are you sure you want to permanently delete this record?");
   if(result){
-    axios.delete(`http://localhost/TriarightWeb/createTrainer.php/user/${trainerId}/delete`).then(function(response) {
+    axios.delete(`http://localhost/TriaRight-In/backend/createTrainer.php/user/${trainerId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
     
@@ -37,7 +37,7 @@ const deleteRecord=(trainerId)=>{
 }
 
 // const deleteTrainer = (trainerId) => {
-//   axios.delete(`http://localhost/TriarightWeb/createTrainer.php/user/${trainerId}/delete`).then(function(response) {
+//   axios.delete(`http://localhost/TriaRight-In/backend/createTrainer.php/user/${trainerId}/delete`).then(function(response) {
 //        console.log(response.data);
 //        getUsers();
 //   });
@@ -85,7 +85,7 @@ const deleteRecord=(trainerId)=>{
       <td>{user.panImage}</td>
       <td>{user.DateOfJoining}</td>
       <td>{user.qualification}</td>
-      {  (user.experience == 1)?
+      {  (user.experience === 1)?
       
         <>
       <td>Yes</td>

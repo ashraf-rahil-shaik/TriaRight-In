@@ -28,7 +28,7 @@ function CreateTriarightLogin(){
       return;
     }
     
-    axios.post('http://localhost/TriarightWeb/createTriarightLoginform.php/user/Submit', triarightEssentialsData)
+    axios.post('http://localhost/TriaRight-In/backend/createTriarightLoginform.php/user/Submit', triarightEssentialsData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);// You can perform your submit logic here

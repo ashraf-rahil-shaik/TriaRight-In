@@ -29,7 +29,7 @@ const CreateTrainer = () => {
     },[]);
 
     function getUsers() {
-    axios.get(`http://localhost/TriarightWeb/createTrainer.php/user/create/${trainerId}`).then(function(response) {
+    axios.get(`http://localhost/TriaRight-In/backend/createTrainer.php/user/create/${trainerId}`).then(function(response) {
         console.log(response.data);
         setTrainerData(response.data);
     });
@@ -56,7 +56,7 @@ const CreateTrainer = () => {
     event.preventDefault();
     //console.log(trainerData); 
     // You can perform your submit logic here
-    axios.put(`http://localhost/TriarightWeb/createTrainer.php/user/create/${trainerId}/edit`, trainerData)
+    axios.put(`http://localhost/TriaRight-In/backend/createTrainer.php/user/create/${trainerId}/edit`, trainerData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);

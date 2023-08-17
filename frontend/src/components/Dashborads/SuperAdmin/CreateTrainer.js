@@ -39,7 +39,7 @@ const CreateTrainer = () => {
     event.preventDefault();
     //console.log(trainerData); 
     // You can perform your submit logic here
-    axios.post('http://localhost/TriarightWeb/createTrainer.php/user/create', trainerData)
+    axios.post('http://localhost/TriaRight-In/backend/createTrainer.php/user/create', trainerData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);

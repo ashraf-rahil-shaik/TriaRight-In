@@ -36,7 +36,7 @@ function CreateCompany  ()  {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriarightWeb/createCompany.php/user/Submit', companyData)
+    axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/Submit', companyData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);// You can perform your submit logic here

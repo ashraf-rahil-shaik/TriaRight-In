@@ -10,7 +10,7 @@ export default function ManageCourse(){
     }, []);
 
     function getUsers() {
-    axios.get('http://localhost/TriarightWeb/createCourse.php/user/submit').then(function(response) {
+    axios.get('http://localhost/TriaRight-In/backend/createCourse.php/user/submit').then(function(response) {
         console.log(response.data);
         setUsers(response.data);
     });
@@ -20,7 +20,7 @@ const deleteRecord=(courseId)=>{
   const result = window.confirm("Are you sure you want to permanently delete this record?");
   if(result){
     
-    axios.delete(`http://localhost/TriarightWeb/createCourse.php/user/${courseId}/delete`).then(function(response) {
+    axios.delete(`http://localhost/TriaRight-In/backend/createCourse.php/user/${courseId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
     
@@ -29,7 +29,7 @@ const deleteRecord=(courseId)=>{
 }
 
 // const deleteCourse = (courseId) => {
-//   axios.delete(`http://localhost/TriarightWeb/createCourse.php/user/${courseId}/delete`).then(function(response) {
+//   axios.delete(`http://localhost/TriaRight-In/backend/createCourse.php/user/${courseId}/delete`).then(function(response) {
 //        console.log(response.data);
 //        getUsers();
 //   });

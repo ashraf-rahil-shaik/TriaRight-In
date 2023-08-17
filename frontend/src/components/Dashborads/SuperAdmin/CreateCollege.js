@@ -32,11 +32,12 @@ const CreateCollege = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriarightWeb/createCollege/user/submit',collegeData)
+    axios.post('http://localhost/TriaRight-In/backend/createCollege/user/submit',collegeData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);// You can perform your submit logic here
         Navigate('/manage-college');
+
   } else {
     alert('Error: ' + response.data.message);
   }

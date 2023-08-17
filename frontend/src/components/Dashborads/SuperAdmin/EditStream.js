@@ -13,7 +13,7 @@ function EditStream(){
     },[]);
 
     function getUsers() {
-    axios.get(`http://localhost/TriarightWeb/createStream.php/user/create/${streamId}`).then(function(response) {
+    axios.get(`http://localhost/TriaRight-In/backend/createStream.php/user/create/${streamId}`).then(function(response) {
         console.log(response.data);
         setStreamData(response.data);
     });
@@ -30,7 +30,7 @@ const Navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`http://localhost/TriarightWeb/createStream.php/user/create/${streamId}/edit`, streamData)
+    axios.put(`http://localhost/TriaRight-In/backend/createStream.php/user/create/${streamId}/edit`, streamData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);

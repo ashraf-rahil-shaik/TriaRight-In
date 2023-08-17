@@ -15,7 +15,7 @@ function EditBatch(){
     },[]);
 
     function getUser() {
-        axios.get(`http://localhost/TriarightWeb/createBatch.php/user/${batchId}`).then(function(response) {
+        axios.get(`http://localhost/TriaRight-In/backend/createBatch.php/user/${batchId}`).then(function(response) {
             console.log(response.data);
             setInputs(response.data);
         });
@@ -28,7 +28,7 @@ function EditBatch(){
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.put(`http://localhost/TriarightWeb/createBatch.php/user/${batchId}/edit`, batchData)
+        axios.put(`http://localhost/TriaRight-In/backend/createBatch.php/user/${batchId}/edit`, batchData)
         .then(function(response){
           if (response.data.status === 1) {
             alert('Success: ' + response.data.message);

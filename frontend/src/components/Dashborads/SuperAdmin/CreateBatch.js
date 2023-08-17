@@ -26,7 +26,7 @@ function CreateBatch(){
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriarightWeb/createBatch.php/user/Submit', batchData)
+    axios.post('http://localhost/TriaRight-In/backend/createBatch.php/user/Submit', batchData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);// You can perform your submit logic here

@@ -30,7 +30,7 @@ const CreateCollege = () => {
     },[]);
 
     function getUsers() {
-    axios.get(`http://localhost/TriarightWeb/createCollege.php/user/${collegeId}`).then(function(response) {
+    axios.get(`http://localhost/TriaRight-In/backend/createCollege.php/user/${collegeId}`).then(function(response) {
         console.log(response.data);
         setCollegeData(response.data);
     });
@@ -45,7 +45,7 @@ const CreateCollege = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`http://localhost/TriarightWeb/createCollege.php/user/create/${collegeId}/edit`, collegeData)
+    axios.put(`http://localhost/TriaRight-In/backend/createCollege.php/user/create/${collegeId}/edit`, collegeData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);

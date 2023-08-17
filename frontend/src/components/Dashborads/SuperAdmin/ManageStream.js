@@ -19,7 +19,7 @@ export default function ManageStream(){
     }, []);
 
     function getUsers() {
-    axios.get('http://localhost/TriarightWeb/createStream.php/user/create').then(function(response) {
+    axios.get('http://localhost/TriaRight-In/backend/createStream.php/user/create').then(function(response) {
         console.log(response.data);
         setUsers(response.data);
     });
@@ -30,7 +30,7 @@ const deleteRecord=(streamId)=>{
   const result = window.confirm("Are you sure you want to permanently delete this record?");
   if(result){
     
-      axios.delete(`http://localhost/TriarightWeb/createStream.php/user/${streamId}/delete`).then(function(response) {
+      axios.delete(`http://localhost/TriaRight-In/backend/createStream.php/user/${streamId}/delete`).then(function(response) {
            console.log(response.data);
            getUsers();
       });
@@ -40,7 +40,7 @@ const deleteRecord=(streamId)=>{
 
 
 // const deleteStream = () => {
-//   axios.delete(`http://localhost/TriarightWeb/createStream.php/user/${streamId}/delete`).then(function(response) {
+//   axios.delete(`http://localhost/TriaRight-In/backend/createStream.php/user/${streamId}/delete`).then(function(response) {
 //        console.log(response.data);
 //        getUsers();
 //   });

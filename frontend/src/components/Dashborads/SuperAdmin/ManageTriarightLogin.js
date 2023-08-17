@@ -11,7 +11,7 @@ function ManageTriarightLogin(){
         }, []);
     
         function getUsers() {
-        axios.get('http://localhost/TriarightWeb/createTriarightLoginform.php/user/save').then(function(response) {
+        axios.get('http://localhost/TriaRight-In/backend/createTriarightLoginform.php/user/save').then(function(response) {
             console.log(response.data);
             setUsers(response.data);
         });
@@ -20,7 +20,7 @@ function ManageTriarightLogin(){
     const deleteRecord=(triarightLoginId)=>{
       const result = window.confirm("Are you sure you want to permanently delete this record?");
       if(result){
-        axios.delete(`http://localhost/TriarightWeb/createTriarightLoginform.php/user/${triarightLoginId}/delete`).then(function(response){
+        axios.delete(`http://localhost/TriaRight-In/backend/createTriarightLoginform.php/user/${triarightLoginId}/delete`).then(function(response){
             console.log(response.data);
             getUsers();
         
@@ -29,7 +29,7 @@ function ManageTriarightLogin(){
     }
 
     // const deleteTriarightEssentitals = (triarightLoginId) => {
-    //     axios.delete(`http://localhost/TriarightWeb/createTriarightLoginform.php/user/${triarightLoginId}/delete`).then(function(response){
+    //     axios.delete(`http://localhost/TriaRight-In/backend/createTriarightLoginform.php/user/${triarightLoginId}/delete`).then(function(response){
     //         console.log(response.data);
     //         getUsers();
     //     });

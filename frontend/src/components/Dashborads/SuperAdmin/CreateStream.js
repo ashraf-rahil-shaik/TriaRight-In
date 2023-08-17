@@ -31,7 +31,7 @@ const Navigate = useNavigate();
 //   // setSubmittedData(streamData);
 //   //   //console.log(submittedData);
 //  });
-axios.post('http://localhost/TriarightWeb/createStream.php/user/create', streamData)
+axios.post('http://localhost/TriaRight-In/backend/createStream.php/user/create', streamData)
     .then(function (response) {
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);

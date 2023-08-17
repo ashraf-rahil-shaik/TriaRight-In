@@ -26,7 +26,7 @@ const {triarightLoginId} = useParams();
   
 
   function getUser() {
-    axios.get(`http://localhost/TriarightWeb/createTriarightLoginform.php/user/${triarightLoginId}`).then(function(response) {
+    axios.get(`http://localhost/TriaRight-In/backend/createTriarightLoginform.php/user/${triarightLoginId}`).then(function(response) {
         console.log(response.data);
         setTriarightEssentials(response.data);
     });
@@ -38,7 +38,7 @@ const handleSubmit = (event) => {
     alert("Password and Confirm Password do not match");
     return;
   }
-  axios.put(`http://localhost/TriarightWeb/createTriarightLoginform.php/user/${triarightLoginId}/edit`, triarightEssentials)
+  axios.put(`http://localhost/TriaRight-In/backend/createTriarightLoginform.php/user/${triarightLoginId}/edit`, triarightEssentials)
   .then(function(response){
     if (response.data.status === 1) {
       alert('Success: ' + response.data.message);

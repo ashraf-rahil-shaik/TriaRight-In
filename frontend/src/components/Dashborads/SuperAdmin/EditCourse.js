@@ -11,7 +11,7 @@ function CreateCourse() {
     },[]);
 
     function getUsers() {
-    axios.get(`http://localhost/TriarightWeb/createCourse.php/user/${courseId}`).then(function(response) {
+    axios.get(`http://localhost/TriaRight-In/backend/createCourse.php/user/${courseId}`).then(function(response) {
         console.log(response.data);
         setCourseData(response.data);
     });
@@ -44,7 +44,7 @@ function CreateCourse() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`http://localhost/TriarightWeb/createCourse.php/user/${courseId}`, courseData)
+    axios.put(`http://localhost/TriaRight-In/backend/createCourse.php/user/${courseId}`, courseData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);

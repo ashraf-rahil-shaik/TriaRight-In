@@ -25,7 +25,7 @@ const CreateCourse = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    axios.post('http://localhost/TriarightWeb/createCourse.php/user/submit', courseData)
+    axios.post('http://localhost/TriaRight-In/backend/createCourse.php/user/submit', courseData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);
