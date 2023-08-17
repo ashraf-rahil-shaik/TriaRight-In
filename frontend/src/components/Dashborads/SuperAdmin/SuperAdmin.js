@@ -23,6 +23,7 @@ import CreateTriarightLogin from "./CreateTriarightLogin";
 import ManageTriarightLogin from "./ManageTriarightLogin";
 import EditTriarightLogin from "./EditTriarightLogin";
 import CreateStudentPersonalForm from "./CreateStudentPersonalForm";
+import Example from "./example";
 
 const SuperAdmin=()=>{
 return(
@@ -74,6 +75,7 @@ return(
         <Route path="/:triarightLoginId/edit7" element={<EditTriarightLogin />}></Route>
 
         <Route path="/create-studentpersonalform" element={<CreateStudentPersonalForm/>}></Route>
+        <Route path="/create-example" element={<Example />}></Route>
     </Routes>
  
     </BrowserRouter>

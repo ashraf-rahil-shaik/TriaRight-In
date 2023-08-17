@@ -18,7 +18,7 @@ ini_set('display_errors',1);
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM trainercreation";
+            $sql = "SELECT * FROM trainercreation order by trainerId";
             $path = explode('/', $_SERVER['REQUEST_URI']);
              
               if(isset($path[6]) && is_numeric($path[6])) {

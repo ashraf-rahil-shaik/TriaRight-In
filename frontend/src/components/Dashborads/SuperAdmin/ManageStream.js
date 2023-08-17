@@ -1,12 +1,3 @@
-// import React from 'react'
-
-
-//  const ManageStream = () => (
-//   <div>
-  
-//   </div>
-// )
-// export default ManageStream
 import axios from "axios"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";

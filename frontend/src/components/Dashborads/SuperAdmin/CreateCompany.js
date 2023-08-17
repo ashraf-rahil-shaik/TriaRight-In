@@ -187,7 +187,7 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
             name="gstNo" 
             id="gstNo" 
             value={companyData.gstNo}
-            onchange={handleChange}
+            onChange={handleChange}
             />
           </div>
             
@@ -198,7 +198,7 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
            name="gstFile"
            id="gstFile" 
            value={companyData.gstFile}
-           onchange={handleChange}
+           onChange={handleChange}
            accept=".pdf,.doc"
            />
         </div>
@@ -224,7 +224,7 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
             name="panNo" 
             id="panNo"  
             value={companyData.panNo}
-            onchange={handleChange}
+            onChange={handleChange}
             />
             </div>
             <div className="from-group">
@@ -234,7 +234,7 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
            name="panFile"
            id="panFile" 
            value={companyData.panFile}
-           onchange={handleChange}
+           onChange={handleChange}
            accept=".pdf,.doc"
            />
         </div>

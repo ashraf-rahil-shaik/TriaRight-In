@@ -16,7 +16,7 @@
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM collegecreation";
+            $sql = "SELECT * FROM collegecreation order by collegeId";
             $path = explode('/', $_SERVER['REQUEST_URI']);
              //print_r($path);
             if(isset($path[5]) && is_numeric($path[5])) {

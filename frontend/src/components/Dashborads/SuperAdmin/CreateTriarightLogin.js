@@ -45,7 +45,7 @@ function CreateTriarightLogin(){
 
   
   return (
-    <div className="create-student-container">
+    <div className="create-studentlogin-container">
       <h2>Triaright Essentials</h2>
       <form onSubmit={handleSubmit}>
       <div className="form-group">

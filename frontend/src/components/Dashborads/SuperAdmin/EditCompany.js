@@ -35,28 +35,28 @@
     
 // }
   
-import React, { useState } from "react";
- import axios from "axios";
- import {useNavigate} from "react-router-dom";
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
+import {useNavigate, useParams } from "react-router-dom"
 
 const CreateCompany = () => {
    const Navigate = useNavigate();
 
    const [companyData, setCompanyData] = useState({
     companyName: "",
-    companyEmailId: "",
-    companyPhoneNumber: "",
-    companyRegistrationType: "",
+    companyEmail: "",
+    companyPhNo: "",
+    companyRegType: "",
     companyWebsite: "",
     industry: "",
     yearOfEstablishment: "",
     subBusinessName: "",
     doYouHaveGst: false,
-    gstNo:"",
-    gstFile:"",
-    doYouHavePan:false,
-    panNo:"",
-    panFile:"",
+    GSTno:"",
+    GSTfile:"",
+    doYouHaveCompanyPan:false,
+    PANno:"",
+    PANfile:"",
     address:"",
     city:"",
     district:"",
@@ -64,15 +64,27 @@ const CreateCompany = () => {
     pincode:"",
     representativeName:"",
     designation:"",
-    representativePhoneNumber:"",
-    personalMailId:"",
+    representativePhoneNo:"",
+    personalEmail:"",
 
   });
    
+  const {companyId} =useParams();
+  
+  useEffect(() =>{
+        getUsers();
+    },[]);
+
+    function getUsers() {
+    axios.get(`http://localhost/TriaRight-In/backend/createCompany.php/user/${companyId}`).then(function(response) {
+        console.log(response.data);
+        setCompanyData(response.data);
+    });
+}
+
+   
   const handleChange = (event) => {
     const {name,value,type}  = event.target; 
-  
-
     if( type === "checkbox") {
       setCompanyData({...companyData, [name]: event.target.checked });
     }else {
@@ -81,21 +93,22 @@ const CreateCompany = () => {
   };
    
   const handleSubmit = (event) => {
-    event.preventDefault();
-axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create', companyData)
-    .then(function (response) {
-      if (response.data.status === 1) {
-        alert('Success: ' + response.data.message);
-        Navigate('/manage-company');
-      } else {
-        alert('Error: ' + response.data.message);
-      }
-    })
-    .catch(function (error) {
-      console.error(error);
-      alert('An error occurred while creating the record.');
-    });
-}
+        event.preventDefault();
+        axios.put(`http://localhost/TriaRight-In/backend/createCompany.php/user/${companyId}/edit`, companyData)
+        .then(function(response){
+          if (response.data.status === 1) {
+            alert('Success: ' + response.data.message);
+            Navigate('/manage-company');
+          } else {
+            alert('Error: ' + response.data.message);
+          }
+        })
+        .catch(function (error) {
+          console.error(error);
+          alert('An error occurred while updating the record.');
+        }); 
+        
+    }
   
   return (
     <div className="create-Comapny-container">
@@ -113,33 +126,33 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
           />
         </div>
         <div className="form-group">
-          <label htmlFor="companyEmailId">Company Email ID:</label>
+          <label htmlFor="companyEmail">Company Email ID:</label>
           <input
             type="email"
-            name="companyEmailId"
-            id="companyEmailId"
-            value={companyData.companyEmailId}
+            name="companyEmail"
+            id="companyEmail"
+            value={companyData.companyEmail}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="companyPhoneNumber">Company Phone Number:</label>
+          <label htmlFor="companyPhNo">Company Phone Number:</label>
            <input
-            type="companyPhoneNumber"
-            name="companyPhoneNumber"
-            id="companyPhoneNumber"
-            value={companyData.companyPhoneNumber}
+            type="number"
+            name="companyPhNo"
+            id="companyPhNo"
+            value={companyData.companyPhNo}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="companyRegistrationType"> Company Registration Type:</label>
+          <label htmlFor="companyRegType"> Company Registration Type:</label>
           <select
-            name="companyRegistrationType"
-            id="companyRegistrationType"
-            value={companyData.companyRegistrationType}
+            name="companyRegType"
+            id="companyRegType"
+            value={companyData.companyRegType}
             onChange={handleChange}
             required
           > <option value="">Select</option>
@@ -218,24 +231,24 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
         { companyData.doYouHaveGst && (
           <div>
             <div className="form-group">
-            <label htmlFor="gstNo" >Company GST Number: *</label>
+            <label htmlFor="GSTno" >Company GST Number: *</label>
             <input
             type="text" 
-            id="gstNo" 
-            name="gstNo" 
-            value={companyData.gstNo}
-            onchange={handleChange}
+            id="GSTno" 
+            name="GSTno" 
+            value={companyData.GSTno}
+            onChange={handleChange}
             />
           </div>
             
           <div className="from-group">
-           <label htmlFor="gstFile">Upload GST </label>
+           <label htmlFor="GSTfile">Upload GST </label>
            <input
            type="file" 
-           id="gstFile" 
-           name="gstFile"
-           value={companyData.gstFile}
-           onchange={handleChange}
+           id="GSTfile" 
+           name="GSTfile"
+           //value={companyData.GSTfile}
+           onChange={handleChange}
            accept=".pdf,.doc"
            />
         </div>
@@ -243,35 +256,35 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
      )}
 
       <div className="form-group">
-          <label htmlFor="doYouHavePan">Do you have Company PAN?</label>
+          <label htmlFor="doYouHaveCompanyPan">Do you have Company PAN?</label>
           <input
             type="checkbox"
-            name="doYouHavePan"
-            id="doYouHavePan"
-            checked={companyData.doYouHavePan}
+            name="doYouHaveCompanyPan"
+            id="doYouHaveCompanyPan"
+            checked={companyData.doYouHaveCompanyPan}
             onChange={handleChange}
           />
         </div>
-        { companyData.doYouHavePan && (
+        { companyData.doYouHaveCompanyPan && (
           <div>
           <div className="form-group">
-            <label htmlFor="panNo" >Company PAN Number *</label>
+            <label htmlFor="PANno" >Company PAN Number *</label>
             <input
             type="text" 
-            id="panNo" 
-            name="panNo" 
-            value={companyData.panNo}
-            onchange={handleChange}
+            id="PANno" 
+            name="PANno" 
+            value={companyData.PANno}
+            onChange={handleChange}
             />
             </div>
             <div className="from-group">
-           <label htmlFor="panFile">Upload PAN Document*</label>
+           <label htmlFor="PANfile">Upload PAN Document*</label>
            <input
            type="file" 
-           id="panFile" 
-           name="panFile"
-           value={companyData.panFile}
-           onchange={handleChange}
+           id="PANfile" 
+           name="PANfile"
+           //value={companyData.PANfile}
+           onChange={handleChange}
            accept=".pdf,.doc"
            />
         </div>
@@ -355,23 +368,23 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
           />
         </div>
         <div className="form-group">
-          <label htmlFor="representativePhoneNumber">Representative Phone Number:</label>
+          <label htmlFor="representativePhoneNo">Representative Phone Number:</label>
           <input
             type="number"
-            name="representativePhoneNumber"
-            id="representativePhoneNumber"
-            value={companyData.representativePhoneNumber}
+            name="representativePhoneNo"
+            id="representativePhoneNo"
+            value={companyData.representativePhoneNo}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="personalMailId">Personal Mail ID:</label>
+          <label htmlFor="personalEmail">Personal Mail ID:</label>
           <input
             type="email"
-            name="personalMailId"
-            id="personalMailId"
-            value={companyData.personalMailId}
+            name="personalEmail"
+            id="personalEmail"
+            value={companyData.personalEmail}
             onChange={handleChange}
             required
           />

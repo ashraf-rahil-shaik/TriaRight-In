@@ -17,7 +17,7 @@ ini_set('display_errors',1);
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-             $sql = "SELECT * FROM streamcreation";
+             $sql = "SELECT * FROM streamcreation order by streamId";
              $path = explode('/', $_SERVER['REQUEST_URI']);
              
               if(isset($path[6]) && is_numeric($path[6])) {

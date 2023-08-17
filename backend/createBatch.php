@@ -15,7 +15,7 @@ ini_set('display_errors', 1);
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM batchcreation";
+            $sql = "SELECT * FROM batchcreation order by batchId";
             $path = explode('/', $_SERVER['REQUEST_URI']);
            // print_r($path);
         if(isset($path[5]) && is_numeric($path[5])) {

@@ -52,6 +52,7 @@ const deleteRecord=(courseId)=>{
                         <th>TopicsCovered</th>
                         <th>Benefits</th>
                         <th>Price</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,12 +71,11 @@ const deleteRecord=(courseId)=>{
       <td>{user.Benefits}</td>
       <td>{user.Price}</td>
 
-      <td>
+      <td className="button-container">
         <Link to={`/${user.courseId}/edit2`} style={{ marginRight: "10px" }}>
-          Edit
+        <button>Edit</button>
         </Link>
-        <button onClick={() => deleteRecord(user.courseId)}>Delete</button>
-      </td>
+        <button onClick={() => deleteRecord(user.courseId)}>Delete</button> </td>
     </tr>
   ))
 ) : (

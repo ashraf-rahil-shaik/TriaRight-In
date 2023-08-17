@@ -16,7 +16,7 @@
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM companycreation";
+            $sql = "SELECT * FROM companycreation order by companyId";
             $path = explode('/', $_SERVER['REQUEST_URI']);
              //print_r($path);
             if(isset($path[5]) && is_numeric($path[5])) {
@@ -88,11 +88,11 @@
             $stmt->bindParam(':yearOfEstablishment', $user->yearOfEstablishment);
             $stmt->bindParam(':subBusinessName', $user->subBusinessName);
             $stmt->bindParam(':doYouHaveGst', $user->doYouHaveGst);
-            $stmt->bindParam(':GSTno', $user->gstNo);
-            $stmt->bindParam(':GSTfile', $user->gstFile);
-            $stmt->bindParam(':doYouHaveCompanyPan', $user->doYouHavePan); 
-            $stmt->bindParam(':PANno', $user->panNo);
-            $stmt->bindParam(':PANfile', $user->panFile);
+            $stmt->bindParam(':GSTno', $user->GSTno);
+            $stmt->bindParam(':GSTfile', $user->GSTfile);
+            $stmt->bindParam(':doYouHaveCompanyPan', $user->doYouHaveCompanyPan); 
+            $stmt->bindParam(':PANno', $user->PANno);
+            $stmt->bindParam(':PANfile', $user->PANfile);
             $stmt->bindParam(':address', $user->address);
             $stmt->bindParam(':city', $user->city);
             $stmt->bindParam(':district', $user->district);
