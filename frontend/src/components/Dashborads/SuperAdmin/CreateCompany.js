@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
+ import axios from "axios";
+ import {useNavigate} from "react-router-dom";
 
-function CreateCompany  ()  {
-  const Navigate = useNavigate();
+const CreateCompany = () => {
+   const Navigate = useNavigate();
 
    const [companyData, setCompanyData] = useState({
     companyName: "",
@@ -14,8 +14,12 @@ function CreateCompany  ()  {
     industry: "",
     yearOfEstablishment: "",
     subBusinessName: "",
-    doYouHaveGst:"",
-    doYouHaveCompanyPan:"",
+    doYouHaveGst: false,
+    gstNo:"",
+    gstFile:"",
+    doYouHavePan:false,
+    panNo:"",
+    panFile:"",
     address:"",
     city:"",
     district:"",
@@ -27,36 +31,39 @@ function CreateCompany  ()  {
     personalMailId:"",
 
   });
-
+   
   const handleChange = (event) => {
-    const name  = event.target.name; 
-    const value = event.target.value;
-    setCompanyData(values => ({...values, [name]: value }));
-  };
+    const {name,value,type}  = event.target; 
+  
 
+    if( type === "checkbox") {
+      setCompanyData({...companyData, [name]: event.target.checked });
+    }else {
+      setCompanyData({...companyData, [name]:value });
+    }
+  };
+   
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/Submit', companyData)
-    .then(function(response){
+axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create', companyData)
+    .then(function (response) {
       if (response.data.status === 1) {
-        alert('Success: ' + response.data.message);// You can perform your submit logic here
+        alert('Success: ' + response.data.message);
         Navigate('/manage-company');
-  } else {
-    alert('Error: ' + response.data.message);
-  }
-})
-.catch(function (error) {
-  console.error(error);
-  alert('An error occurred while creating the record.');
-}); // You can perform your submit logic here
-    
+      } else {
+        alert('Error: ' + response.data.message);
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      alert('An error occurred while creating the record.');
+    });
 }
   
   return (
-    <div className="create-Company-container">
+    <div className="create-Comapny-container">
       <h2>Company Information</h2>
       <form onSubmit={handleSubmit}>      
-        
         <div className="form-group">
           <label htmlFor="companyName">Company Name:</label>
           <input
@@ -65,26 +72,29 @@ function CreateCompany  ()  {
             id="companyName"
             value={companyData.companyName}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="companyEamilId">Company Email ID:</label>
+          <label htmlFor="companyEmailId">Company Email ID:</label>
           <input
             type="email"
             name="companyEmailId"
             id="companyEmailId"
             value={companyData.companyEmailId}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
           <label htmlFor="companyPhoneNumber">Company Phone Number:</label>
            <input
-            type="number"
+            type="companyPhoneNumber"
             name="companyPhoneNumber"
             id="companyPhoneNumber"
             value={companyData.companyPhoneNumber}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -94,11 +104,12 @@ function CreateCompany  ()  {
             id="companyRegistrationType"
             value={companyData.companyRegistrationType}
             onChange={handleChange}
+            required
           > <option value="">Select</option>
             <option value="soleProprietor">Sole Proprietor</option>
-            <option value="limitedLiabilityPartnerShip">Limited Liability Partnership</option>
+            <option value="limitedLiabilityPartnerShip">Limited Liability PartnerShip</option>
             <option value="onePersonCompany">One Person Company</option>
-            <option value="partnerships">Partnerships</option>
+            <option value="partnerships">PartnerShips</option>
             <option value="privateLimitedCompany">Private Limited Company</option>
             <option value="publicLimitedCompany">Public Limited Company</option>
           </select>
@@ -112,6 +123,7 @@ function CreateCompany  ()  {
             id="companyWebsite"
             value={companyData.companyWebsite}
             onChange={handleChange}
+            required
             
           />
         </div>
@@ -122,13 +134,14 @@ function CreateCompany  ()  {
             id="industry"
             value={companyData.industry}
             onChange={handleChange}
+            required
           >
             <option value="">Select</option>
             <option value="IT">IT</option>
             <option value="Non-IT">Non-IT</option>
-            <option value="Pharmacy">Pharmacy</option>
-            <option value="Management">Management</option>
-            <option value="Finance">Finance</option>
+            <option value="pharmacy">Pharmacy</option>
+            <option value="management">Management</option>
+            <option value="finance">Finance</option>
           </select>
     
         </div>
@@ -140,6 +153,7 @@ function CreateCompany  ()  {
             id="yearOfEstablishment"
             value={companyData.yearOfEstablishment}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -150,38 +164,82 @@ function CreateCompany  ()  {
             id="subBusinessName"
             value={companyData.subBusinessName}
             onChange={handleChange}
+            required
           />
         </div>
+        {/* checkbox for GST*/}
         <div className="form-group">
-          <label htmlFor="doYouHaveGst">Do You Have GST:</label>
-          <select
+          <label htmlFor="doYouHaveGst">Do You Have GST?</label>
+          <input
+            type="checkbox"
             name="doYouHaveGst"
             id="doYouHaveGst"
-            value={companyData.doYouHaveGst}
+            checked={companyData.doYouHaveGst}
             onChange={handleChange}
-          >
-            <option value="">Select</option>
-            <option value="yes">Yes</option>
-            <option value="No">No</option>
-
-          </select>
-    
+          />
         </div>
-        <div className="form-group">
-          <label htmlFor="doYouHavePan">Do You Have PAN?:</label>
-          <select
+        { companyData.doYouHaveGst && (
+          <div>
+            <div className="form-group">
+            <label htmlFor="gstNo" >Company GST Number: </label>
+            <input
+            type="text" 
+            name="gstNo" 
+            id="gstNo" 
+            value={companyData.gstNo}
+            onchange={handleChange}
+            />
+          </div>
+            
+          <div className="from-group">
+           <label htmlFor="gstFile">Upload GST </label>
+           <input
+           type="file" 
+           name="gstFile"
+           id="gstFile" 
+           value={companyData.gstFile}
+           onchange={handleChange}
+           accept=".pdf,.doc"
+           />
+        </div>
+      </div>
+     )}
+
+      <div className="form-group">
+          <label htmlFor="doYouHavePan">Do you have Company PAN?</label>
+          <input
+            type="checkbox"
             name="doYouHavePan"
             id="doYouHavePan"
-            value={companyData.doYouHavePan}
+            checked={companyData.doYouHavePan}
             onChange={handleChange}
-            >
-            <option value="">Select</option>
-            <option value="yes">Yes</option>
-            <option value="No">No</option>
-
-          </select>
-        
+          />
         </div>
+        { companyData.doYouHavePan && (
+          <div>
+          <div className="form-group">
+            <label htmlFor="panNo" >Company PAN Number *</label>
+            <input
+            type="text"
+            name="panNo" 
+            id="panNo"  
+            value={companyData.panNo}
+            onchange={handleChange}
+            />
+            </div>
+            <div className="from-group">
+           <label htmlFor="panFile">Upload PAN Document*</label>
+           <input
+           type="file" 
+           name="panFile"
+           id="panFile" 
+           value={companyData.panFile}
+           onchange={handleChange}
+           accept=".pdf,.doc"
+           />
+        </div>
+      </div>
+     )}
         <div className="form-group">
           <label htmlFor="address">Address:</label>
           <input
@@ -190,6 +248,7 @@ function CreateCompany  ()  {
             id="address"
             value={companyData.address}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -200,6 +259,7 @@ function CreateCompany  ()  {
             id="city"
             value={companyData.city}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -210,6 +270,7 @@ function CreateCompany  ()  {
             id="district"
             value={companyData.district}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -220,6 +281,7 @@ function CreateCompany  ()  {
             id="state"
             value={companyData.state}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -230,6 +292,7 @@ function CreateCompany  ()  {
             id="pincode"
             value={companyData.pincode}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -240,6 +303,7 @@ function CreateCompany  ()  {
             id="representativeName"
             value={companyData.representativeName}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -250,6 +314,7 @@ function CreateCompany  ()  {
             id="designation"
             value={companyData.designation}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -260,6 +325,7 @@ function CreateCompany  ()  {
             id="representativePhoneNumber"
             value={companyData.representativePhoneNumber}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -270,9 +336,13 @@ function CreateCompany  ()  {
             id="personalMailId"
             value={companyData.personalMailId}
             onChange={handleChange}
+            required
           />
         </div>
+      
+        <div className="form-group">
         <button type="submit">Submit</button>
+      </div>
       </form>
     </div>
   );

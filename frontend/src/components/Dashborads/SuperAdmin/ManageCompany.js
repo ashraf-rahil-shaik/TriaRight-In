@@ -51,7 +51,11 @@ const deleteRecord=(companyId)=>{
                         <th>year Of Establishment</th>
                         <th>Sub-Business name</th>
                         <th>Do you have Gst</th>
-                        <th>Do you have Pan</th>
+                        <th>GST No</th>
+                        <th>GST File</th>
+                        <th>Do you have Company Pan</th>
+                        <th>PAN No</th>
+                        <th>Pan File</th>
                         <th>Address</th>
                         <th>City</th>
                         <th>District</th>
@@ -77,8 +81,28 @@ const deleteRecord=(companyId)=>{
       <td>{user.industry}</td>
       <td>{user.yearOfEstablishment}</td>
       <td>{user.subBusinessName}</td>
-      <td>{user.doYouHaveGst}</td>
-      <td>{user.doYouHavePan}</td>
+      {  (user.doYouHaveGst === 1)?
+         <>
+         <td>{user.GSTno}</td>
+         <td>{user.GSTfile}</td>
+         </>
+        :
+        <>
+        <td>-</td>
+         <td>-</td>
+        </>
+      }
+      { (user.doYouHaveCompanyPan === 1)?
+      <>
+         <td>{user.PANno}</td>
+         <td>{user.PANfile}</td>
+      </>
+      :
+      <>
+         <td>-</td>
+         <td>-</td>
+      </>
+      }
       <td>{user.address}</td>
       <td>{user.city}</td>
       <td>{user.district}</td>

@@ -36,7 +36,7 @@
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
             //$sql = "INSERT INTO streamcreation(streamId, streamName, streamLocation, created_at) VALUES(null, :streamName, :streamLocation, :created_at)";
-            $sql = "INSERT INTO companycreation(companyName,companyEmail,companyPhNo,companyRegType,companyWebsite,industry,yearOfEstablishment,subBusinessName,doYouHaveGst,doYouHavePan,address,city,district,state,pincode,representativeName,designation,representativePhoneNo,personalEmail,created_at) VALUES(:companyName,:companyEmail,:companyPhNo,:companyRegType,:companyWebsite,:industry,:yearOfEstablishment,:subBusinessName,:doYouHaveGst,:doYouHavePan,:address,:city,:district,:state,:pincode,:representativeName,:designation,:representativePhoneNo,:personalEmail,:created_at)";
+            $sql = "INSERT INTO companycreation(companyName,companyEmail,companyPhNo,companyRegType,companyWebsite,industry,yearOfEstablishment,subBusinessName,doYouHaveGst,GSTno,GSTfile,doYouHaveCompanyPan,PANno,PANfile,address,city,district,state,pincode,representativeName,designation,representativePhoneNo,personalEmail,created_at) VALUES(:companyName,:companyEmail,:companyPhNo,:companyRegType,:companyWebsite,:industry,:yearOfEstablishment,:subBusinessName,:doYouHaveGst,:GSTno,:GSTfile,:doYouHaveCompanyPan,:PANno,:PANfile,:address,:city,:district,:state,:pincode,:representativeName,:designation,:representativePhoneNo,:personalEmail,:created_at)";
             $stmt = $conn->prepare($sql);
             $created_at = date('Y-m-d');
            //$stmt->bindParam(':streamName', $user->name);
@@ -49,7 +49,11 @@
             $stmt->bindParam(':yearOfEstablishment', $user->yearOfEstablishment);
             $stmt->bindParam(':subBusinessName', $user->subBusinessName);
             $stmt->bindParam(':doYouHaveGst', $user->doYouHaveGst);
-            $stmt->bindParam(':doYouHavePan', $user->doYouHavePan);
+            $stmt->bindParam(':GSTno', $user->gstNo);
+            $stmt->bindParam(':GSTfile', $user->gstFile);
+            $stmt->bindParam(':doYouHaveCompanyPan', $user->doYouHavePan);
+            $stmt->bindParam(':PANno', $user->panNo);
+            $stmt->bindParam(':PANfile', $user->panFile);
             $stmt->bindParam(':address', $user->address);
             $stmt->bindParam(':city', $user->city);
             $stmt->bindParam(':district', $user->district);
@@ -71,7 +75,7 @@
 
            case "PUT":
             $user = json_decode( file_get_contents('php://input') );
-            $sql = "UPDATE companycreation SET personalEmail=:personalEmail,representativePhoneNo=:representativePhoneNo,designation=:designation,representativeName=:representativeName,pincode=:pincode,state=:state,district=:district,city=:city,address=:address,doYouHavePan=:doYouHavePan,doYouHaveGst=:doYouHaveGst,subBusinessName=:subBusinessName,yearOfEstablishment=:yearOfEstablishment,industry=:industry,companyWebsite=:companyWebsite,companyRegType=:companyRegType,companyPhNo=:companyPhNo,companyName=:companyName,companyEmail=:companyEmail, updated_at =:updated_at WHERE companyId = :companyId";
+            $sql = "UPDATE companycreation SET PANfile=:PANfile,PANno=:PANno,GSTfile=:GSTfile,GSTno=:GSTno,personalEmail=:personalEmail,representativePhoneNo=:representativePhoneNo,designation=:designation,representativeName=:representativeName,pincode=:pincode,state=:state,district=:district,city=:city,address=:address,doYouHaveCompanyPan=:doYouHaveCompanyPan,doYouHaveGst=:doYouHaveGst,subBusinessName=:subBusinessName,yearOfEstablishment=:yearOfEstablishment,industry=:industry,companyWebsite=:companyWebsite,companyRegType=:companyRegType,companyPhNo=:companyPhNo,companyName=:companyName,companyEmail=:companyEmail, updated_at =:updated_at WHERE companyId = :companyId";
             $stmt = $conn->prepare($sql);
             $updated_at = date('Y-m-d');
             $stmt->bindParam(':companyId',$user->companyId);
@@ -84,7 +88,11 @@
             $stmt->bindParam(':yearOfEstablishment', $user->yearOfEstablishment);
             $stmt->bindParam(':subBusinessName', $user->subBusinessName);
             $stmt->bindParam(':doYouHaveGst', $user->doYouHaveGst);
-            $stmt->bindParam(':doYouHavePan', $user->doYouHavePan);
+            $stmt->bindParam(':GSTno', $user->gstNo);
+            $stmt->bindParam(':GSTfile', $user->gstFile);
+            $stmt->bindParam(':doYouHaveCompanyPan', $user->doYouHavePan); 
+            $stmt->bindParam(':PANno', $user->panNo);
+            $stmt->bindParam(':PANfile', $user->panFile);
             $stmt->bindParam(':address', $user->address);
             $stmt->bindParam(':city', $user->city);
             $stmt->bindParam(':district', $user->district);

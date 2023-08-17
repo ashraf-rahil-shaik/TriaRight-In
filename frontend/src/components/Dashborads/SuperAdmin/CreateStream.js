@@ -19,18 +19,6 @@ const Navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-//   //   axios.post('http://localhost/TriarightWeb/createStream.php/user/create', streamData).then(function(response){
-//   //           //console.log(response.data);
-//   //          Navigate('/manage-stream');
-//   //  // setSubmittedData(streamData);
-//   //   //console.log(submittedData);
-//   // });
-//   axios.post('http://localhost/TriarightWeb/createStream.php/user/create', streamData).then(function(response){
-//     alert(response.data);
-//          Navigate('/manage-stream');
-//   // setSubmittedData(streamData);
-//   //   //console.log(submittedData);
-//  });
 axios.post('http://localhost/TriaRight-In/backend/createStream.php/user/create', streamData)
     .then(function (response) {
       if (response.data.status === 1) {
