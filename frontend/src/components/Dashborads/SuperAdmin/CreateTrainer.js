@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 const CreateTrainer = () => {
   const [trainerData, setTrainerData] = useState({
-    id: "",
     trainerName: "",
     personalEmail: "",
     personalPhone: "",
@@ -13,12 +14,15 @@ const CreateTrainer = () => {
     panNumber: "",
     aadharPhoto: "",
     panPhoto: "",
+    doj: "",
     qualification: "",
     hasExperience: false,
     prevOrgName: "",
     designation: "",
     trainerDocuments: "",
   });
+
+  const Navigate = useNavigate(); 
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;
@@ -33,25 +37,27 @@ const CreateTrainer = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(trainerData); // You can perform your submit logic here
-  };
+    //console.log(trainerData); 
+    // You can perform your submit logic here
+    axios.post('http://localhost/TriarightWeb/createTrainer.php/user/create', trainerData)
+    .then(function(response){
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);
+        Navigate('/manage-trainer');
+  } else {
+    alert('Error: ' + response.data.message);
+  }
+})
+.catch(function (error) {
+  console.error(error);
+  alert('An error occurred while creating the record.');
+});
+}
 
   return (
     <div className="create-trainer-container">
       <h2>Create Trainer Form</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="id">ID:</label>
-          <input
-            type="text"
-            name="id"
-            id="id"
-            value={trainerData.id}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
         <div className="form-group">
           <label htmlFor="trainerName">Trainer Name:</label>
           <input
@@ -123,6 +129,7 @@ const CreateTrainer = () => {
             id="aadharNumber"
             value={trainerData.aadharNumber}
             onChange={handleChange}
+            style={{minLength:"12"}}
             required
           />
         </div>
@@ -160,6 +167,18 @@ const CreateTrainer = () => {
             id="panPhoto"
             onChange={handleChange}
             accept="image/*"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="doj">Date of joining:</label>
+          <input
+            type="date"
+            name="doj"
+            id="doj"
+            value={trainerData.doj}
+            onChange={handleChange}
             required
           />
         </div>

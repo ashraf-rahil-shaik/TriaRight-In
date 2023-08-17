@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateCollege = () => {
   const [collegeData, setCollegeData] = useState({
@@ -17,9 +19,11 @@ const CreateCollege = () => {
     affiliatedUniversity: "",
     collegeWebsite: "",
     collegeUsername: "",
-    password: "",
-    confirmPassword: "",
+    // password: "",
+    // confirmPassword: "",
   });
+
+  const Navigate = useNavigate(); 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,8 +32,21 @@ const CreateCollege = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(collegeData); // You can perform your submit logic here
-  };
+    axios.post('http://localhost/TriarightWeb/createCollege/user/submit',collegeData)
+    .then(function(response){
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);// You can perform your submit logic here
+        Navigate('/manage-college');
+  } else {
+    alert('Error: ' + response.data.message);
+  }
+})
+.catch(function (error) {
+  console.error(error);
+  alert('An error occurred while creating the record.');
+});
+           // You can perform your submit logic here
+}
 
   return (
     <div className="create-college-container">
@@ -93,7 +110,7 @@ const CreateCollege = () => {
         <div className="form-group">
           <label htmlFor="pincode">pincode:</label>
           <input
-            type="text"
+            type="number"
             name="pincode"
             id="pincode"
             value={collegeData.pincode}
@@ -102,23 +119,23 @@ const CreateCollege = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="collegephone">college phone number:</label>
+          <label htmlFor="collegePhone">college phone number:</label>
           <input
             type="number"
-            name="collegephone"
-            id="collegephone"
-            value={collegeData.collegephone}
+            name="collegePhone"
+            id="collegePhone"
+            value={collegeData.collegePhone}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="collegemail">college mail id:</label>
+          <label htmlFor="collegeMail">college mail id:</label>
           <input
             type="email"
-            name="collegemail"
-            id="collegemail"
-            value={collegeData.collegemail}
+            name="collegeMail"
+            id="collegeMail"
+            value={collegeData.collegeMail}
             onChange={handleChange}
             required
           />
@@ -195,7 +212,7 @@ const CreateCollege = () => {
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="collegeUsername">College Username:</label>
           <input
             type="text"
@@ -229,7 +246,7 @@ const CreateCollege = () => {
             onChange={handleChange}
             required
           />
-        </div>
+        </div> */}
 
         <div className="form-group">
           <button type="submit">Submit</button>

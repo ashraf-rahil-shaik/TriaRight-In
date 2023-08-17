@@ -7,6 +7,10 @@ const SideNav = () => {
   const [isTrainerDropdownOpen, setTrainerDropdownOpen] = useState(false);
   const [isCourseDropdownOpen, setCourseDropdownOpen] = useState(false);
   const [isCollegeDropdownOpen, setCollegeDropdownOpen] = useState(false);
+  const [isBatchDropdownOpen, setBatchDropdownOpen] = useState(false);
+  const [isCompanyDropdownOpen, setCompanyDropdownOpen] = useState(false);
+  const [isLoginDropdownOpen, setLoginDropdownOpen] = useState(false);
+  const [isStudentPersonalFormDropdownOpen, setStudentPersonalFormDropdownOpen] = useState(false);
   const handleStreamClick = () => {
     setStreamDropdownOpen(!isStreamDropdownOpen);
   };
@@ -19,6 +23,18 @@ const SideNav = () => {
   };
   const handleCollegeClick = () => {
     setCollegeDropdownOpen(!isCollegeDropdownOpen);
+  };
+  const handleBatchClick = () => {
+    setBatchDropdownOpen(!isBatchDropdownOpen);
+  };
+  const handleCompanyClick = () => {
+    setCompanyDropdownOpen(!isCompanyDropdownOpen);
+  };
+  const handleLoginClick = () => {
+    setLoginDropdownOpen(!isLoginDropdownOpen);
+  };
+  const handleStudentPersonalFormClick = () => {
+    setStudentPersonalFormDropdownOpen(!isStudentPersonalFormDropdownOpen);
   };
 
   return (
@@ -47,7 +63,7 @@ const SideNav = () => {
             <Link to="/create-course" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-stream" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="/manage-course" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -83,6 +99,66 @@ const SideNav = () => {
           </>
         )}
       </ul>
+      <ul className={`slide-menu ${isBatchDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleBatchClick}>
+         Batch
+        </li>
+        {isBatchDropdownOpen && (
+          <>
+            <Link to="/create-batch" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Create</li>
+            </Link>
+            <Link to="/manage-batch" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Manage</li>
+            </Link>
+          </>
+        )}
+      </ul>
+      <ul className={`slide-menu ${isCompanyDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleCompanyClick}>
+         Company
+        </li>
+        {isCompanyDropdownOpen && (
+          <>
+            <Link to="/create-company" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Create</li>
+            </Link>
+            <Link to="/manage-company" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Manage</li>
+            </Link>
+          </>
+        )}
+      </ul>
+      <ul className={`slide-menu ${isLoginDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleLoginClick}>
+         Login
+        </li>
+        {isLoginDropdownOpen && (
+          <>
+            <Link to="/create-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Create</li>
+            </Link>
+            <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Manage</li>
+            </Link>
+          </>
+        )}
+        </ul>
+        <ul className={`slide-menu ${isStudentPersonalFormDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleStudentPersonalFormClick}>
+        Student Personal Form
+        </li>
+        {isStudentPersonalFormDropdownOpen && (
+          <>
+            <Link to="/create-studentpersonalform" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Create</li>
+            </Link>
+            {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Manage</li>
+            </Link> */}
+          </>
+        )}
+        </ul>
     </div>
   );
 };
