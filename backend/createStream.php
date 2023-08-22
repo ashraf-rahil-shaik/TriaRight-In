@@ -17,16 +17,17 @@ ini_set('display_errors',1);
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-             $sql = "SELECT * FROM streamcreation order by streamId";
+             $sql = "SELECT * FROM streamcreation ";
              $path = explode('/', $_SERVER['REQUEST_URI']);
              
               if(isset($path[6]) && is_numeric($path[6])) {
-                  $sql .= " WHERE streamId = :streamId";
+                  $sql .= "WHERE streamId = :streamId";
                   $stmt = $conn->prepare($sql);
                   $stmt->bindParam(':streamId', $path[6]);
                   $stmt->execute();
                   $users = $stmt->fetch(PDO::FETCH_ASSOC);
               } else {
+                $sql .="order by streamId";
                  $stmt = $conn->prepare($sql);
                  $stmt->execute();
                  $users = $stmt->fetchAll(PDO::FETCH_ASSOC);

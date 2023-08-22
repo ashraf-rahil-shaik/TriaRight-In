@@ -91,5 +91,9 @@ const handleSubmit = (event) => {
         </div>
     )
 }
-
+// React.createElement("div", {
+//   className: "slideContent",
+//   style: {
+//     backgroundImage: `url(${slide.state_image})` }
+// }
 export default Example;

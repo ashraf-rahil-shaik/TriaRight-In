@@ -89,7 +89,7 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
         <div className="form-group">
           <label htmlFor="companyPhoneNumber">Company Phone Number:</label>
            <input
-            type="companyPhoneNumber"
+            type="number"
             name="companyPhoneNumber"
             id="companyPhoneNumber"
             value={companyData.companyPhoneNumber}

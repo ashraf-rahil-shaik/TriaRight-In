@@ -72,6 +72,7 @@ function CreateCourse() {
             name="Images"
             id="image"
             onChange={handleChange}
+            required
             accept="image/*"
             //value={courseData.Images}
           />
@@ -82,6 +83,7 @@ function CreateCourse() {
             name="Stream"
             id="stream"
             value={courseData.Stream}
+            required
             onChange={handleChange}
           >
             <option value="IT">IT</option>
@@ -98,6 +100,7 @@ function CreateCourse() {
             name="Duration"
             id="duration"
             value={courseData.Duration}
+            required
             onChange={handleChange}
           />
         </div>
@@ -108,6 +111,7 @@ function CreateCourse() {
             name="Providers"
             id="provider"
             value={courseData.Providers}
+            required
             onChange={handleChange}
           />
         </div>
@@ -117,6 +121,7 @@ function CreateCourse() {
             name="trainingType"
             id="type"
             value={courseData.trainingType}
+            required
             onChange={handleChange}
           >
             <option value="online">Online</option>
@@ -130,6 +135,7 @@ function CreateCourse() {
             name="Hours1"
             id="hours"
             value={courseData.Hours1}
+            required
             onChange={handleChange}
           />
         </div>
@@ -139,6 +145,7 @@ function CreateCourse() {
             name="coarseDescription"
             id="courseDescription"
             value={courseData.coarseDescription}
+            required
             onChange={handleChange}
             rows={4}
           />
@@ -159,6 +166,7 @@ function CreateCourse() {
             name="Benefits"
             id="benefits"
             value={courseData.Benefits}
+            required
             onChange={handleChange}
             rows={4}
           />

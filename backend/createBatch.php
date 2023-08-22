@@ -15,7 +15,7 @@ ini_set('display_errors', 1);
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM batchcreation order by batchId";
+            $sql = "SELECT * FROM batchcreation ";
             $path = explode('/', $_SERVER['REQUEST_URI']);
            // print_r($path);
         if(isset($path[5]) && is_numeric($path[5])) {
@@ -25,6 +25,7 @@ ini_set('display_errors', 1);
             $stmt->execute();
             $users = $stmt->fetch(PDO::FETCH_ASSOC);
         } else {
+            $sql .= "order by batchId";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -63,7 +64,7 @@ ini_set('display_errors', 1);
 
            case "PUT":
             $user = json_decode( file_get_contents('php://input') );
-            $sql = "UPDATE batchcreation SET batchName=:batchName, classDuration=:classDuration, courseId= :courseId, courseName= :courseName, trainerId= :trainerId, trainerName= :trainerName, batchStartingDate= :batchStartingDate, batchEndingDate= :batchEndingDate, sessionSlot= :sessionSlot updated_at=:updated_at WHERE batchId = :batchId";
+            $sql = "UPDATE batchcreation SET batchName=:batchName, classDuration=:classDuration, courseId=:courseId, courseName=:courseName, trainerId=:trainerId, trainerName=:trainerName, batchStartingDate=:batchStartingDate, batchEndingDate=:batchEndingDate, sessionSlot=:sessionSlot, updated_at=:updated_at WHERE batchId = :batchId ";
             $stmt = $conn->prepare($sql);
             $updated_at = date('Y-m-d');
             $stmt->bindParam(':batchId', $user->batchId);

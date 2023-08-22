@@ -14,7 +14,7 @@ export default function ManageCourse(){
         console.log(response.data);
         setUsers(response.data);
     });
-}
+} 
 
 const deleteRecord=(courseId)=>{
   const result = window.confirm("Are you sure you want to permanently delete this record?");
@@ -60,7 +60,14 @@ const deleteRecord=(courseId)=>{
   users.map((user, key) => (
     <tr key={key}>
       <td>{user.courseId}</td>
-      <td>{user.Images}</td>
+      <td>
+        <img 
+            src={`http://localhost/TriaRight-In/Images/${user.Images}`}
+            alt={`Course ${user.Images} Image`}
+            style={{width: '100px', height:'100px'}}
+            />
+      </td>
+      {/* <td>{user.Images}</td> */}
       <td>{user.Stream}</td>
       <td>{user.Duration}</td>
       <td>{user.Providers}</td>

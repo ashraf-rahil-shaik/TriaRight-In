@@ -67,9 +67,9 @@ const deleteRecord=(batchId)=>{
       <td>{user.batchStartingDate}</td>
       <td>{user.batchEndingDate}</td>
       <td>{user.sessionSlot}</td>
-      <td>
+      <td className="button-container">
         <Link to={`/${user.batchId}/edit5`} style={{ marginRight: "10px" }}>
-          Edit
+         <button>Edit</button> 
         </Link>
         <button onClick={() => deleteRecord(user.batchId)}>Delete</button>
       </td>

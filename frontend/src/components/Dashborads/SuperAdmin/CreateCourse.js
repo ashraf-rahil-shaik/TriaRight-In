@@ -52,6 +52,7 @@ const CreateCourse = () => {
             name="image"
             id="image"
             onChange={handleChange}
+            required
             accept="image/*"
             //value={courseData.image}
           />
@@ -62,6 +63,7 @@ const CreateCourse = () => {
             name="stream"
             id="stream"
             value={courseData.stream}
+            required
             onChange={handleChange}
           >
             <option value="IT">IT</option>
@@ -78,6 +80,7 @@ const CreateCourse = () => {
             name="duration"
             id="duration"
             value={courseData.duration}
+            required
             onChange={handleChange}
           />
         </div>
@@ -88,6 +91,7 @@ const CreateCourse = () => {
             name="provider"
             id="provider"
             value={courseData.provider}
+            required
             onChange={handleChange}
           />
         </div>
@@ -97,6 +101,7 @@ const CreateCourse = () => {
             name="type"
             id="type"
             value={courseData.type}
+            required
             onChange={handleChange}
           >
             <option value="online">Online</option>
@@ -110,6 +115,7 @@ const CreateCourse = () => {
             name="hours"
             id="hours"
             value={courseData.hours}
+            required
             onChange={handleChange}
           />
         </div>
@@ -119,6 +125,7 @@ const CreateCourse = () => {
             name="courseDescription"
             id="courseDescription"
             value={courseData.courseDescription}
+            required
             onChange={handleChange}
             rows={4}
           />
@@ -129,6 +136,7 @@ const CreateCourse = () => {
             name="topicsCovered"
             id="topicsCovered"
             value={courseData.topicsCovered}
+            required
             onChange={handleChange}
             rows={4}
           />
@@ -139,6 +147,7 @@ const CreateCourse = () => {
             name="benefits"
             id="benefits"
             value={courseData.benefits}
+            required
             onChange={handleChange}
             rows={4}
           />

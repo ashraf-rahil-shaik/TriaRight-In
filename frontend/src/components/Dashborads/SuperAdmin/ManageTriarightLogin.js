@@ -57,9 +57,9 @@ function ManageTriarightLogin(){
       <td>{user.password}</td>
       <td>{user.registerAs}</td>
      
-      <td>
+      <td className="button-container">
         <Link to={`/${user.triarightLoginId}/edit7`} style={{ marginRight: "10px" }}>
-          Edit
+         <button>Edit</button> 
         </Link>
         <button onClick={() => deleteRecord(user.triarightLoginId)}>Delete</button>
       </td>

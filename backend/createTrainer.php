@@ -18,7 +18,7 @@ ini_set('display_errors',1);
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM trainercreation order by trainerId";
+            $sql = "SELECT * FROM trainercreation ";
             $path = explode('/', $_SERVER['REQUEST_URI']);
              
               if(isset($path[6]) && is_numeric($path[6])) {
@@ -28,6 +28,7 @@ ini_set('display_errors',1);
                   $stmt->execute();
                   $users = $stmt->fetch(PDO::FETCH_ASSOC);
               } else {
+            $sql .="order by trainerId";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -37,10 +38,6 @@ ini_set('display_errors',1);
 
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
-            //$sql = "INSERT INTO streamcreation(streamId, streamName, streamLocation, created_at) VALUES(null, :streamName, :streamLocation, :created_at)";
-            // if($user->hasExperience == 1)
-            // {
-            //     $exp="yes";
             $sql = "INSERT INTO trainercreation(trainerName,personalEmail,phNumber,Gender,DateOfBirth,DateOfJoining,aadharNumber,panNumber,aadharImage,panImage,qualification,experience,previousOrganization,designation,trainerDocuments,created_at) VALUES(:trainerName,:personalEmail,:phNumber,:Gender,:DateOfBirth,:DateOfJoining,:aadharNumber,:panNumber,:aadharImage,:panImage,:qualification,:experience,:previousOrganization,:designation,:trainerDocuments,:created_at)";
             $stmt = $conn->prepare($sql);
             $created_at = date('Y-m-d');
@@ -61,34 +58,6 @@ ini_set('display_errors',1);
             $stmt->bindParam(':designation', $user->designation);
             $stmt->bindParam(':trainerDocuments', $user->trainerDocuments);
             $stmt->bindParam(':created_at', $created_at);
-        //     }
-        //     if($user->hasExperience == "")
-        //     {
-        //         $exp="No";
-        //         $preorg="-";
-        //         $des="-";
-        //         $trainerdocu="-";
-        //     $sql = "INSERT INTO trainercreation(trainerName,Email,phNumber,Gender,DateOfBirth,aadharNumber,panNumber,aadharImage,panImage,DateOfJoining,qualification,experience,previousOrganization,designation,trainerDocuments,created_at) VALUES(:trainerName,:Email,:phNumber,:Gender,:DateOfBirth,:aadharNumber,:panNumber,:aadharImage,:panImage,:DateOfJoining,:qualification,:experience,:previousOrganization,:designation,:trainerDocuments,:created_at)";
-        //     $stmt = $conn->prepare($sql);
-        //     $created_at = date('Y-m-d');
-        //    //$stmt->bindParam(':streamName', $user->name);
-        //     $stmt->bindParam(':trainerName', $user->trainerName);
-        //     $stmt->bindParam(':Email', $user->personalEmail);
-        //     $stmt->bindParam(':phNumber', $user->personalPhone);
-        //     $stmt->bindParam(':Gender', $user->gender);
-        //     $stmt->bindParam(':DateOfBirth', $user-> dob);
-        //     $stmt->bindParam(':aadharNumber', $user->aadharNumber);
-        //     $stmt->bindParam(':panNumber', $user->panNumber);
-        //     $stmt->bindParam(':aadharImage', $user->aadharPhoto);
-        //     $stmt->bindParam(':panImage', $user->panPhoto);
-        //     $stmt->bindParam(':DateOfJoining',$user->doj);
-        //     $stmt->bindParam(':qualification', $user->qualification);
-        //     $stmt->bindParam(':experience', $exp);
-        //     $stmt->bindParam(':previousOrganization', $preorg);
-        //     $stmt->bindParam(':designation', $des);
-        //     $stmt->bindParam(':trainerDocuments', $trainerdocu);
-        //     $stmt->bindParam(':created_at', $created_at);
-        //     }
          if($stmt->execute()){
             $response = ['status' => 1, 'message' => 'Record created Successfully.'];
          }

@@ -85,6 +85,7 @@ const handleSubmit = (event) => {
             name="userName"
             id="userName"
             value={triarightEssentials.userName}
+            required
             onChange={handleChange}
           />
         </div>
@@ -95,6 +96,7 @@ const handleSubmit = (event) => {
             name="password"
             id="password"
             value={triarightEssentials.password}
+            required
             onChange={handleChange}
           />
         </div>

@@ -57,9 +57,9 @@ const deleteRecord=(streamId)=>{
       <td>{user.streamId}</td>
       <td>{user.streamName}</td>
       <td>{user.streamLocation}</td>
-      <td>
+      <td className="button-container">
         <Link to={`/${user.streamId}/edit1`} style={{marginRight: "10px" }}>
-          Edit
+          <button>Edit</button>
         </Link>
         <button onClick={() => deleteRecord(user.streamId)}>Delete</button>
          {/* <button onClick={() => deleteStream(user.streamId)}>Delete</button> */}

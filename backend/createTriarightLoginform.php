@@ -16,7 +16,7 @@ ini_set('display_errors', 1);
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM triarightlogincreation order by triarightLoginId ";
+            $sql = "SELECT * FROM triarightlogincreation ";
             $path = explode('/', $_SERVER['REQUEST_URI']);
            // print_r($path);
         if(isset($path[5]) && is_numeric($path[5])) {
@@ -26,6 +26,7 @@ ini_set('display_errors', 1);
             $stmt->execute();
             $users = $stmt->fetch(PDO::FETCH_ASSOC);
         } else {
+            $sql .="order by triarightLoginId";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);

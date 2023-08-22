@@ -16,7 +16,7 @@ ini_set('display_errors',1);
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM coursecreation order by courseId";
+            $sql = "SELECT * FROM coursecreation ";
             $path = explode('/', $_SERVER['REQUEST_URI']);
              //print_r($path);
             if(isset($path[5]) && is_numeric($path[5])) {
@@ -26,6 +26,7 @@ ini_set('display_errors',1);
                 $stmt->execute();
                 $users = $stmt->fetch(PDO::FETCH_ASSOC);
             } else {
+            $sql .="order by courseId";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -39,7 +40,9 @@ ini_set('display_errors',1);
             $stmt = $conn->prepare($sql);
             $created_at = date('Y-m-d');
            //$stmt->bindParam(':streamName', $user->name);
-            $stmt->bindParam(':Images', $user->image);
+           $file=$user->image;
+           $file=str_replace("C:\\fakepath\\","",$file);
+            $stmt->bindParam(':Images', $file);
             $stmt->bindParam(':Stream', $user->stream);
             $stmt->bindParam(':Duration', $user->duration);
             $stmt->bindParam(':Providers', $user->provider);
@@ -50,8 +53,9 @@ ini_set('display_errors',1);
             $stmt->bindParam(':Benefits', $user->benefits);
             $stmt->bindParam(':Price', $user->price);
             $stmt->bindParam(':created_at', $created_at);
-         if($stmt->execute()){
-            $response = ['status' => 1, 'message' => 'Record created Successfully.'];
+         if($stmt->execute())
+         {
+               $response = ['status' => 1, 'message' => 'Record created Successfully.'];
          }
         else{
            $response = ['status' => 0, 'message' => 'Failed to created record.'];

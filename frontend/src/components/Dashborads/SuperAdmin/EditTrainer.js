@@ -83,6 +83,7 @@ const CreateTrainer = () => {
             name="trainerName"
             id="trainerName"
             value={trainerData.trainerName}
+            required
             onChange={handleChange}
           />
         </div>
@@ -94,6 +95,7 @@ const CreateTrainer = () => {
             name="personalEmail"
             id="personalEmail"
             value={trainerData.personalEmail}
+            required
             onChange={handleChange}
           />
         </div>
@@ -105,6 +107,7 @@ const CreateTrainer = () => {
             name="phNumber"
             id="personalPhone"
             value={trainerData.phNumber}
+            required
             onChange={handleChange}
           />
         </div>
@@ -115,6 +118,7 @@ const CreateTrainer = () => {
             name="Gender"
             id="gender"
             value={trainerData.Gender}
+            required
             onChange={handleChange}
           >
             <option value="male">Male</option>
@@ -130,6 +134,7 @@ const CreateTrainer = () => {
             name="DateOfBirth"
             id="dob"
             value={trainerData.DateOfBirth}
+            required
             onChange={handleChange}
           />
         </div>
@@ -141,6 +146,7 @@ const CreateTrainer = () => {
             name="aadharNumber"
             id="aadharNumber"
             value={trainerData.aadharNumber}
+            required
             onChange={handleChange}
             style={{minLength:"12"}}
           />
@@ -154,6 +160,7 @@ const CreateTrainer = () => {
             name="panNumber"
             id="panNumber"
             value={trainerData.panNumber}
+            required
             onChange={handleChange}
           />
         </div>
@@ -189,6 +196,7 @@ const CreateTrainer = () => {
             name="DateOfJoining"
             id="doj"
             value={trainerData.DateOfJoining}
+            required
             onChange={handleChange}
           />
         </div>
@@ -200,6 +208,7 @@ const CreateTrainer = () => {
             name="qualification"
             id="qualification"
             value={trainerData.qualification}
+            required
             onChange={handleChange}
           />
         </div>

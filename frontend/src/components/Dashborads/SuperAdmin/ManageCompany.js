@@ -116,9 +116,9 @@ const deleteRecord=(companyId)=>{
       <td>{user.designation}</td>
       <td>{user.representativePhoneNo}</td>
       <td>{user.personalEmail}</td>
-      <td>
+      <td className="button-container">
         <Link to={`/${user.companyId}/edit6`} style={{ marginRight: "10px" }}>
-          Edit
+         <button>Edit</button>
         </Link>
         <button onClick={() => deleteRecord(user.companyId)}>Delete</button>
       </td>

@@ -16,7 +16,7 @@
     $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case "GET":
-            $sql = "SELECT * FROM collegecreation order by collegeId";
+            $sql = "SELECT * FROM collegecreation ";
             $path = explode('/', $_SERVER['REQUEST_URI']);
              //print_r($path);
             if(isset($path[5]) && is_numeric($path[5])) {
@@ -26,6 +26,7 @@
                 $stmt->execute();
                 $users = $stmt->fetch(PDO::FETCH_ASSOC);
             } else {
+            $sql .="order by collegeId";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);

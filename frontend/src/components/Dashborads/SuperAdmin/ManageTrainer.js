@@ -104,9 +104,9 @@ const deleteRecord=(trainerId)=>{
       </>
       
     } 
-      <td>
+      <td className="button-container">
         <Link to={`/${user.trainerId}/edit3`} style={{ marginRight: "10px" }}>
-          Edit
+         <button>Edit</button>
         </Link>
         <button onClick={() => deleteRecord(user.trainerId)}>Delete</button>
       </td>

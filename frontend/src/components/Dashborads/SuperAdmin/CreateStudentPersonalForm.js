@@ -24,15 +24,13 @@ const CreateStudentPersonalForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(studentData); // You can perform your submit logic here
+    console.log(studentData.data); // You can perform your submit logic here
   };
 
   return (
     <div className="create-student-container">
       <h2>Student Registration</h2>
-      <form onSubmit={handleSubmit}>
-      
-       
+      <form onSubmit={handleSubmit} className="form">
         <div className="form-group">
           <label htmlFor="studentName">Student Name:</label>
           <input
@@ -41,7 +39,6 @@ const CreateStudentPersonalForm = () => {
             id="studentName"
             value={studentData.studentName}
             onChange={handleChange}
-            required
           />
         </div>
         <div className="form-group">
@@ -162,7 +159,7 @@ const CreateStudentPersonalForm = () => {
             <option value="placement assistances">Placement Assistances</option>
           </select>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
   );

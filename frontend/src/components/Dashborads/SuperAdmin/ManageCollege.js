@@ -79,9 +79,9 @@ const deleteRecord=(collegeId)=>{
       <td>{user.affiliatedUniversity}</td>
       <td>{user.collegeWebsite}</td>
 
-      <td>
+      <td className="button-container">
         <Link to={`/${user.collegeId}/edit4`} style={{ marginRight: "10px" }}>
-          Edit
+         <button>Edit</button> 
         </Link>
         <button onClick={() => deleteRecord(user.collegeId)}>Delete</button>
       </td>

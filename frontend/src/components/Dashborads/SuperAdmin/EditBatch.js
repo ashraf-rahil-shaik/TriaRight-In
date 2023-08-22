@@ -66,6 +66,7 @@ function EditBatch(){
             name="batchName"
             id="batchName"
             value={batchData.batchName}
+            required
             onChange={handleChange}
           />
         </div>
@@ -76,6 +77,7 @@ function EditBatch(){
             name="classDuration"
             id="classDuration"
             value={batchData.classDuration}
+            required
             onChange={handleChange}
           />
         </div>
@@ -86,6 +88,7 @@ function EditBatch(){
             name="courseId"
             id="courseId"
             value={batchData.courseId}
+            required
             onChange={handleChange}
           />
         </div>
@@ -96,16 +99,18 @@ function EditBatch(){
             name="courseName"
             id="courseName"
             value={batchData.courseName}
+            required
             onChange={handleChange}
           /> 
         </div>
         <div className="form-group">
           <label htmlFor="trainerId">TrainerId:</label>
           <input 
-            type="number"
+            type="text"
             name="trainerId"
             id="trainerId"
             value={batchData.trainerId}
+            required
             onChange={handleChange}
             
           />
@@ -117,6 +122,7 @@ function EditBatch(){
             name="trainerName"
             id="traineriname"
             value={batchData.trainerName}
+            required
             onChange={handleChange}
             
           />
@@ -128,6 +134,7 @@ function EditBatch(){
             name="batchStartingDate"
             id="batchStartingDate"
             value={batchData.batchStartingDate}
+            required
             onChange={handleChange}
           />
         </div>
@@ -138,6 +145,7 @@ function EditBatch(){
             name="batchEndingDate"
             id="batchEndingDate"
             value={batchData.batchEndingDate}
+            required
             onChange={handleChange}
           />
         </div>
@@ -148,6 +156,7 @@ function EditBatch(){
             name="sessionSlot"
             id="sessionSlot"
             value={batchData.sessionSlot}
+            required
             onChange={handleChange}
           />
         </div>

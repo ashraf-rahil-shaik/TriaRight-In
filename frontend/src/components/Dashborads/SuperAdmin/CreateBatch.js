@@ -52,6 +52,7 @@ function CreateBatch(){
             name="batchName"
             id="batchName"
             value={batchData.batchName}
+            required
             onChange={handleChange}
           />
         </div>
@@ -62,6 +63,7 @@ function CreateBatch(){
             name="classDuration"
             id="classDuration"
             value={batchData.classDuration}
+            required
             onChange={handleChange}
           />
         </div>
@@ -72,6 +74,7 @@ function CreateBatch(){
             name="courseId"
             id="courseId"
             value={batchData.courseId}
+            required
             onChange={handleChange}
           />
         </div>
@@ -82,6 +85,7 @@ function CreateBatch(){
             name="courseName"
             id="courseName"
             value={batchData.courseName}
+            required
             onChange={handleChange}
           /> 
         </div>
@@ -92,6 +96,7 @@ function CreateBatch(){
             name="trainerId"
             id="trainerId"
             value={batchData.trainerId}
+            required
             onChange={handleChange}
             
           />
@@ -103,6 +108,7 @@ function CreateBatch(){
             name="trainerName"
             id="traineriname"
             value={batchData.trainerName}
+            required
             onChange={handleChange}
             
           />
@@ -114,6 +120,7 @@ function CreateBatch(){
             name="batchStartingDate"
             id="batchStartingDate"
             value={batchData.batchStartingDate}
+            required
             onChange={handleChange}
           />
         </div>
@@ -124,6 +131,7 @@ function CreateBatch(){
             name="batchEndingDate"
             id="batchEndingDate"
             value={batchData.batchEndingDate}
+            required
             onChange={handleChange}
           />
         </div>
@@ -134,6 +142,7 @@ function CreateBatch(){
             name="sessionSlot"
             id="sessionSlot"
             value={batchData.sessionSlot}
+            required
             onChange={handleChange}
           />
         </div>

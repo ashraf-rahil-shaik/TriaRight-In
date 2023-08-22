@@ -75,6 +75,7 @@ function CreateTriarightLogin(){
             name="userName"
             id="userName"
             value={triarightEssentialsData.userName}
+            required
             onChange={handleChange}
           />
         </div>
@@ -85,6 +86,7 @@ function CreateTriarightLogin(){
             name="password"
             id="password"
             value={triarightEssentialsData.password}
+            required
             onChange={handleChange}
           />
         </div>
@@ -95,6 +97,7 @@ function CreateTriarightLogin(){
             name="confirmPassword"
             id="confirmPassword"
             value={triarightEssentialsData.confirmPassword}
+            required
             onChange={handleChange}
           />
         </div>
