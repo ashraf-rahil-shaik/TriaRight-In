@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import CustomModal from "./modal";
 
  // Adjust the path accordingly
@@ -17,7 +17,7 @@ const CreateStream = () => {
     message: "",
   });
 
-  const Navigate = useNavigate();
+  //const Navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,7 +38,7 @@ const CreateStream = () => {
             message: response.data.message,
           });
           setIsModalOpen(true);
-          // Navigate("/manage-stream"); 
+          //Navigate("/manage-stream"); 
         } else {
           setModalContent({
             title: "Error",

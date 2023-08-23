@@ -36,10 +36,11 @@
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
             //$sql = "INSERT INTO streamcreation(streamId, streamName, streamLocation, created_at) VALUES(null, :streamName, :streamLocation, :created_at)";
-            $sql = "INSERT INTO collegecreation(registrationType,pincode,studentName,emailId,phoneNo,alternatePhoneNo,gender,dateOfBirth,currentaddress,city,district,state,created_at) 
+            $sql = "INSERT INTO studentcicreation(registrationType,pincode,studentName,emailId,phoneNo,alternatePhoneNo,gender,dateOfBirth,currentaddress,city,district,state,created_at) 
                     VALUES(:registrationType,:pincode,:studentName,:emailId,:phoneNo,:alternatePhoneNo,:gender,:dateOfBirth,:currentaddress,:city,:district,:state,:created_at)";
             $stmt = $conn->prepare($sql);
             $created_at = date('Y-m-d');
+            $regtype="course and Internship";
            //$stmt->bindParam(':streamName', $user->name);
             $stmt->bindParam(':studentName', $user->studentName);
             $stmt->bindParam(':emailId', $user->emailId);
@@ -52,7 +53,7 @@
             $stmt->bindParam(':district', $user->district);
             $stmt->bindParam(':state', $user->state);
             $stmt->bindParam(':pincode', $user->pincode);
-            $stmt->bindParam(':registrationType',$user->registrationType);
+            $stmt->bindParam(':registrationType',$regtype);
             $stmt->bindParam(':created_at', $created_at);
          if($stmt->execute()){
             $response = ['status' => 1, 'message' => 'Record created Successfully.'];

@@ -22,7 +22,13 @@ import EditCompany from "./EditCompany";
 import CreateTriarightLogin from "./CreateTriarightLogin";
 import ManageTriarightLogin from "./ManageTriarightLogin";
 import EditTriarightLogin from "./EditTriarightLogin";
-import CreateStudentPersonalForm from "./CreateStudentPersonalForm";
+import CreateStudentPersonalC from "./CreateStudentPersonalC";
+import StudentEducationC from "./CreateStudentEducationC";
+import CreateStudentPersonalCi from "./CreateStudentPersonalCi";
+import StudentEducationCi from "./CreateStudentEducationCi";
+import CreateStudentPersonalCip from "./CreateStudentPersonalCip";
+import StudentEducationCip from "./CreateStudentEducationCip";
+import StudentAdditionalCip from "./CreateStudentAdditionalCip";
 import Example from "./example";
 
 const SuperAdmin=()=>{
@@ -74,7 +80,16 @@ return(
         <Route path="/manage-triarightlogin" element={<ManageTriarightLogin />}></Route>
         <Route path="/:triarightLoginId/edit7" element={<EditTriarightLogin />}></Route>
 
-        <Route path="/create-studentpersonalform" element={<CreateStudentPersonalForm/>}></Route>
+        <Route path="/create-studentpersonalC" element={<CreateStudentPersonalC/>}></Route>
+        <Route path="/create-studenteducationC" element={<StudentEducationC/>}></Route>
+
+        <Route path="/create-studentpersonalCi" element={<CreateStudentPersonalCi/>}></Route>
+        <Route path="/create-studenteducationCi" element={<StudentEducationCi/>}></Route>
+        
+        <Route path="/create-studentpersonalCip" element={<CreateStudentPersonalCip/>}></Route>
+        <Route path="/create-studenteducationCip" element={<StudentEducationCip/>}></Route>
+        <Route path="/create-studentadditionalCip" element={<StudentAdditionalCip/>}></Route>
+
         <Route path="/create-example" element={<Example />}></Route>
     </Routes>
  
