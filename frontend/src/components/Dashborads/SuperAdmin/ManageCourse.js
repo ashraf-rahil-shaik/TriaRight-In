@@ -1,96 +1,87 @@
-import axios from "axios"
-import { useEffect, useState } from "react";
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import DeleteModal from "./deleteModal";
+ // Adjust the path accordingly
 
-export default function ManageCourse(){
+export default function ManageCourse() {
+  const [users, setUsers] = useState([]);
+  const [deleteCourseId, setDeleteCourseId] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-    const [users, setUsers] = useState([]);
-    useEffect(() =>{
-        getUsers();
-    }, []);
+  useEffect(() => {
+    getUsers();
+  }, []);
 
-    function getUsers() {
+  function getUsers() {
     axios.get('http://localhost/TriaRight-In/backend/createCourse.php/user/submit').then(function(response) {
-        console.log(response.data);
-        setUsers(response.data);
+      console.log(response.data);
+      setUsers(response.data);
     });
-} 
+  } 
+  
+  const deleteRecord = (courseId) => {
+    setDeleteCourseId(courseId);
+    setIsDeleteModalOpen(true);
+  };
 
-const deleteRecord=(courseId)=>{
-  const result = window.confirm("Are you sure you want to permanently delete this record?");
-  if(result){
-    
-    axios.delete(`http://localhost/TriaRight-In/backend/createCourse.php/user/${courseId}/delete`).then(function(response) {
-       console.log(response.data);
-       getUsers();
-    
-  });
-}
-}
+  const confirmDelete = () => {
+    if (deleteCourseId) {
+      axios.delete(`http://localhost/TriaRight-In/backend/createCourse.php/user/${deleteCourseId}/delete`).then(function(response) {
+        console.log(response.data);
+        getUsers();
+      });
+    }
+    setDeleteCourseId(null);
+    setIsDeleteModalOpen(false);
+  };
 
-// const deleteCourse = (courseId) => {
-//   axios.delete(`http://localhost/TriaRight-In/backend/createCourse.php/user/${courseId}/delete`).then(function(response) {
-//        console.log(response.data);
-//        getUsers();
-//   });
-// }
+  const closeDeleteModal = () => {
+    setDeleteCourseId(null);
+    setIsDeleteModalOpen(false);
+  };
 
-    return (
-        <div>
-            <h1>Manage Coarse</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>courseId</th>
-                        <th>Course Image</th>
-                        <th>Stream </th>
-                        <th>Duration</th>
-                        <th>Provider</th>
-                        <th>trainingType</th>
-                        <th>Hours</th>
-                        <th>courseDescription</th>
-                        <th>TopicsCovered</th>
-                        <th>Benefits</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {Array.isArray(users) ? (
-  users.map((user, key) => (
-    <tr key={key}>
-      <td>{user.courseId}</td>
-      <td>
-        <img 
-            src={`http://localhost/TriaRight-In/Images/${user.Images}`}
-            alt={`Course ${user.Images} Image`}
-            style={{width: '100px', height:'100px'}}
-            />
-      </td>
-      {/* <td>{user.Images}</td> */}
-      <td>{user.Stream}</td>
-      <td>{user.Duration}</td>
-      <td>{user.Providers}</td>
-      <td>{user.trainingType}</td>
-      <td>{user.Hours1}</td>
-      <td>{user.coarseDescription}</td>
-      <td>{user.TopicsCovered}</td>
-      <td>{user.Benefits}</td>
-      <td>{user.Price}</td>
+  return (
+    <div>
+      <h1>Manage Course</h1>
+      <div className="course-container">
+        {Array.isArray(users) && users.length > 0 ? (
+          users.map((user, key) => (
+            <div className="course-card" key={key}>
+             <img
+                src={`http://localhost/TriaRight-In/Images/${user.Images}`}
+                alt={`Course ${user.Images} Image`}
+              />
+              <div className="course-details">
+                <h2>{user.Stream}</h2>
+                <p>Duration: {user.Duration}</p>
+                <p>Provider: {user.Providers}</p>
+                <p>Training Type: {user.trainingType}</p>
+                <p>Hours: {user.Hours1}</p>
+                <p>Description: {user.coarseDescription}</p>
+                <p>Topics Covered: {user.TopicsCovered}</p>
+                <p>Benefits: {user.Benefits}</p>
+                <p>Price: {user.Price}</p>
+              </div>
+              <div className="course-actions">
+                <Link to={`/${user.courseId}/edit2`}>
+                  <button>Edit</button>
+                </Link>
+                <button onClick={() => deleteRecord(user.courseId)}>Delete</button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No courses to display</p>
+        )}
+      </div>
 
-      <td className="button-container">
-        <Link to={`/${user.courseId}/edit2`} style={{ marginRight: "10px" }}>
-        <button>Edit</button>
-        </Link>
-        <button onClick={() => deleteRecord(user.courseId)}>Delete</button> </td>
-    </tr>
-  ))
-) : (
-  <p>No users to display</p> // or any other appropriate message or component
-)}
-
-                </tbody>
-            </table>
-        </div>
-    )
+      <DeleteModal
+        isOpen={isDeleteModalOpen}
+        onClose={closeDeleteModal}
+        onConfirm={confirmDelete}
+      />
+    </div>
+  );
 }

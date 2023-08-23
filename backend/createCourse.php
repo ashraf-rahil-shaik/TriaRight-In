@@ -68,6 +68,7 @@ ini_set('display_errors',1);
             $sql = "UPDATE coursecreation SET Images= :Images, Stream =:Stream, Duration=:Duration, Providers=:Providers,trainingType=:trainingType,Hours1=:Hours1, coarseDescription=:coarseDescription, TopicsCovered=:TopicsCovered, Benefits=:Benefits, Price=:Price, updated_at =:updated_at WHERE courseId = :courseId";
             $stmt = $conn->prepare($sql);
             $updated_at = date('Y-m-d');
+            
             $stmt->bindParam(':courseId', $user->courseId);
             $stmt->bindParam(':Images', $user->Images);
             $stmt->bindParam(':Stream', $user->Stream);
