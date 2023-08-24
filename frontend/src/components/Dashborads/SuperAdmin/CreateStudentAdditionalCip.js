@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import {useNavigate} from "react-router-dom";
 
 const StudentAdditionalCip = () => {
   const [studentAdditionalCip, setStudentAdditionalCip] = useState({
@@ -16,7 +16,7 @@ const StudentAdditionalCip = () => {
     workExperience:"",
 
 });
-
+const Navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setStudentAdditionalCip({...studentAdditionalCip, [name]: value });
@@ -25,6 +25,7 @@ const StudentAdditionalCip = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(studentAdditionalCip.data); // You can perform your submit logic here
+    Navigate('/create-studenttriarightCip')
   };
 
   return (
@@ -39,6 +40,7 @@ const StudentAdditionalCip = () => {
             name="hobbies"
             id="hobbies"
             value={studentAdditionalCip.hobbies}
+            required
             onChange={handleChange}
           />
         </div>
@@ -48,6 +50,7 @@ const StudentAdditionalCip = () => {
             type="text"
             name="interests"
             id="interests"
+            required
             value={studentAdditionalCip.interests}
             onChange={handleChange}
           />

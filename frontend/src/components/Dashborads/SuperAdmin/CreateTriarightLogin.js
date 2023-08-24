@@ -27,7 +27,8 @@ function CreateTriarightLogin(){
       alert("Password and Confirm Password do not match");
       return;
     }
-    
+    else
+    {
     axios.post('http://localhost/TriaRight-In/backend/createTriarightLoginform.php/user/Submit', triarightEssentialsData)
     .then(function(response){
       if (response.data.status === 1) {
@@ -41,6 +42,7 @@ function CreateTriarightLogin(){
   console.error(error);
   alert('An error occurred while creating the record.');
 }); // You can perform your submit logic here
+    }
   }
 
   

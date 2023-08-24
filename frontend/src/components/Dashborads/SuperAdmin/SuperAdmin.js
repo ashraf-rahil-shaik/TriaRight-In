@@ -24,11 +24,17 @@ import ManageTriarightLogin from "./ManageTriarightLogin";
 import EditTriarightLogin from "./EditTriarightLogin";
 import CreateStudentPersonalC from "./CreateStudentPersonalC";
 import StudentEducationC from "./CreateStudentEducationC";
+import StudentTriarightEssentialsC from "./CreateStudentTriarightC";
 import CreateStudentPersonalCi from "./CreateStudentPersonalCi";
 import StudentEducationCi from "./CreateStudentEducationCi";
+import StudentTriarightEssentialsCi from "./CreateStudentTriarightCi";
 import CreateStudentPersonalCip from "./CreateStudentPersonalCip";
 import StudentEducationCip from "./CreateStudentEducationCip";
 import StudentAdditionalCip from "./CreateStudentAdditionalCip";
+import StudentTriarightEssentialsCip from "./CreateStudentTriarightCip";
+import CreateStudentPersonalInt from "./CreateStudentPersonalInt";
+import StudentEducationInt from "./CreateStudentEducationInt";
+import StudentTriarightEssentialsInt from "./CreateStudentTriarightInt";
 import Example from "./example";
 
 const SuperAdmin=()=>{
@@ -82,13 +88,20 @@ return(
 
         <Route path="/create-studentpersonalC" element={<CreateStudentPersonalC/>}></Route>
         <Route path="/create-studenteducationC" element={<StudentEducationC/>}></Route>
+         <Route path="/create-studenttriarightC" element={<StudentTriarightEssentialsC/>}></Route>
 
         <Route path="/create-studentpersonalCi" element={<CreateStudentPersonalCi/>}></Route>
         <Route path="/create-studenteducationCi" element={<StudentEducationCi/>}></Route>
+        <Route path="/create-studenttriarightCi" element={<StudentTriarightEssentialsCi/>}></Route>
         
         <Route path="/create-studentpersonalCip" element={<CreateStudentPersonalCip/>}></Route>
         <Route path="/create-studenteducationCip" element={<StudentEducationCip/>}></Route>
         <Route path="/create-studentadditionalCip" element={<StudentAdditionalCip/>}></Route>
+        <Route path="/create-studenttriarightCip" element={<StudentTriarightEssentialsCip/>}></Route>
+
+        <Route path="/create-studentpersonalInt" element={<CreateStudentPersonalInt/>}></Route>
+        <Route path="/create-studenteducationInt" element={<StudentEducationInt/>}></Route>
+        <Route path="/create-studenttriarightInt" element={<StudentTriarightEssentialsInt/>}></Route>
 
         <Route path="/create-example" element={<Example />}></Route>
     </Routes>

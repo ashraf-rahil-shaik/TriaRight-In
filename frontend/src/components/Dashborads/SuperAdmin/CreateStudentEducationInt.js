@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 
-const StudentEducationCip = () => {
-  const [EducationCip, setEducationCip] = useState({
+const StudentEducationInt = () => {
+  const [EducationInt, setEducationInt] = useState({
     qualification: "",
     industry : "",
     branch : "",
@@ -15,14 +15,14 @@ const StudentEducationCip = () => {
 const Navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setEducationCip({...EducationCip, [name]: value });
+    setEducationInt({...EducationInt, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(EducationCip.data);
-    Navigate('/create-studentadditionalCip');
+    console.log(EducationInt.data);
      // You can perform your submit logic here
+     Navigate('create-studenttriarightInt')
   };
 
   return (
@@ -34,7 +34,7 @@ const Navigate = useNavigate();
           <select
             name="qualification"
             id="qualification"
-            value={EducationCip.qualification}
+            value={EducationInt.qualification}
             required
             onChange={handleChange}
           > <option value="">Select</option>
@@ -50,7 +50,7 @@ const Navigate = useNavigate();
           <select
             name="industry"
             id="inndustry"
-            value={EducationCip.industry}
+            value={EducationInt.industry}
             required
             onChange={handleChange}
           > <option value="">Select</option>
@@ -69,7 +69,7 @@ const Navigate = useNavigate();
             type="text"
             name="branch/stream"
             id="branch/stream"
-            value={EducationCip.Stream}
+            value={EducationInt.Stream}
             required
             onChange={handleChange}
           />
@@ -80,7 +80,7 @@ const Navigate = useNavigate();
             type="text"
             name="group"
             id="group"
-            value={EducationCip.group}
+            value={EducationInt.group}
             onChange={handleChange}
           />
         </div>
@@ -90,7 +90,7 @@ const Navigate = useNavigate();
             type="text"
             name="collegeName"
             id="collegeName"
-            value={EducationCip.institutionname}
+            value={EducationInt.institutionname}
             required
             onChange={handleChange}
           />
@@ -112,4 +112,4 @@ const Navigate = useNavigate();
   );
 };
 
-export default StudentEducationCip;
+export default StudentEducationInt;

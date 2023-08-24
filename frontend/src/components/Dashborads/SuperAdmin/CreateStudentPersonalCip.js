@@ -24,7 +24,7 @@ const Navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriaRight-In/backend/createStudentCi.php/user/create', studentDataCip)
+    axios.post('http://localhost/TriaRight-In/backend/createStudentCip.php/user/create', studentDataCip)
     .then(function (response) {
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);

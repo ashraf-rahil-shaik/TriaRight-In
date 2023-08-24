@@ -18,13 +18,16 @@ const CreateCourse = () => {
   const Navigate = useNavigate();   
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value} = event.target;
     setCourseData({...courseData, [name]: value });
+    // if (type === "file") {
+    //       setCourseData({ ...courseData, [name]: event.target.files[0] });
+    //    } 
+    //setCourseData(event.target.files[0]);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
     axios.post('http://localhost/TriaRight-In/backend/createCourse.php/user/submit', courseData)
     .then(function(response){
       if (response.data.status === 1) {
@@ -44,7 +47,7 @@ const CreateCourse = () => {
   return (
     <div className="create-course-container">
       <h2>Create Course</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} enctype="multipart/form-data">
       <div className="form-group">
           <label htmlFor="image">Upload Image:</label>
           <input
@@ -55,6 +58,7 @@ const CreateCourse = () => {
             required
             accept="image/*"
             //value={courseData.image}
+            //value=""
           />
         </div>
         <div className="form-group">

@@ -35,12 +35,16 @@ ini_set('display_errors',1);
             break;
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
+            $targetFolder = './Images/';
+            $targetPath = $targetFolder . basename($_FILES['image']['name']);
+            move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
             //$sql = "INSERT INTO streamcreation(streamId, streamName, streamLocation, created_at) VALUES(null, :streamName, :streamLocation, :created_at)";
             $sql = "INSERT INTO coursecreation(Images,Stream,Duration,Providers,trainingType,Hours1,coarseDescription,TopicsCovered,Benefits,Price,created_at) VALUES(:Images,:Stream,:Duration,:Providers,:trainingType,:Hours1,:coarseDescription,:TopicsCovered,:Benefits,:Price,:created_at)";
             $stmt = $conn->prepare($sql);
             $created_at = date('Y-m-d');
+           
            //$stmt->bindParam(':streamName', $user->name);
-           $file=$user->image;
+            $file=$user->image;
            $file=str_replace("C:\\fakepath\\","",$file);
             $stmt->bindParam(':Images', $file);
             $stmt->bindParam(':Stream', $user->stream);
@@ -55,7 +59,9 @@ ini_set('display_errors',1);
             $stmt->bindParam(':created_at', $created_at);
          if($stmt->execute())
          {
+           
                $response = ['status' => 1, 'message' => 'Record created Successfully.'];
+           
          }
         else{
            $response = ['status' => 0, 'message' => 'Failed to created record.'];

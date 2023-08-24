@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-
-const CreateStudentPersonalForm = () => {
-  const [studentData, setStudentData] = useState({
+const CreateStudentPersonalCip = () => {
+  const [studentDataInt, setStudentDataInt] = useState({
     studentName: "",
     emailId : "",
     phoneNo : "",
@@ -13,18 +14,29 @@ const CreateStudentPersonalForm = () => {
     city: "",
     district: "",
     pincode:"",
-    registrationType:"",
 
 });
-
+const Navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setStudentData({...studentData, [name]: value });
+    setStudentDataInt({...studentDataInt, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(studentData.data); // You can perform your submit logic here
+    axios.post('http://localhost/TriaRight-In/backend/createStudentInt.php/user/create', studentDataInt)
+    .then(function (response) {
+      if (response.data.status === 1) {
+        alert('Success: ' + response.data.message);
+        Navigate('/create-studenteducationInt');
+      } else {
+        alert('Error: ' + response.data.message);
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+      alert('An error occurred while creating the record.');
+    });
   };
 
   return (
@@ -37,7 +49,8 @@ const CreateStudentPersonalForm = () => {
             type="text"
             name="studentName"
             id="studentName"
-            value={studentData.studentName}
+            value={studentDataInt.studentName}
+            required
             onChange={handleChange}
           />
         </div>
@@ -47,7 +60,8 @@ const CreateStudentPersonalForm = () => {
             type="text"
             name="emailId"
             id="emailId"
-            value={studentData.emailId}
+            value={studentDataInt.emailId}
+            required
             onChange={handleChange}
           />
         </div>
@@ -57,7 +71,8 @@ const CreateStudentPersonalForm = () => {
             type="number"
             name="phoneNo"
             id="phoneNo"
-            value={studentData.phoneNo}
+            value={studentDataInt.phoneNo}
+            required
             onChange={handleChange}
           />
         </div>
@@ -67,19 +82,25 @@ const CreateStudentPersonalForm = () => {
             type="number"
             name="alternatePhoneNo"
             id="alternatePhoneNo"
-            value={studentData.alternatePhoneNo}
+            value={studentDataInt.alternatePhoneNo}
+            required
             onChange={handleChange}
           />
         </div>
+        
         <div className="form-group">
           <label htmlFor="gender">Gender:</label>
-          <input
-            type="text"
+          <select
             name="gender"
             id="gender"
-            value={studentData.gender}
+            value={studentDataInt.gender}
             onChange={handleChange}
-          />
+            required
+          >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="dateOfBirth">Date Of Birth:</label>
@@ -87,7 +108,8 @@ const CreateStudentPersonalForm = () => {
             type="date"
             name="dateOfBirth"
             id="dateOfBirth"
-            value={studentData.dateOfBirth}
+            value={studentDataInt.dateOfBirth}
+            required
             onChange={handleChange}
             
           />
@@ -98,7 +120,8 @@ const CreateStudentPersonalForm = () => {
           type="text"
             name="address"
             id="address"
-            value={studentData.address}
+            value={studentDataInt.address}
+            required
             onChange={handleChange}
             //rows={4}
           />
@@ -109,7 +132,8 @@ const CreateStudentPersonalForm = () => {
           type="text"
             name="city"
             id="city"
-            value={studentData.city}
+            value={studentDataInt.city}
+            required
             onChange={handleChange}
             //rows={4}
           />
@@ -120,7 +144,8 @@ const CreateStudentPersonalForm = () => {
             type="text"
             name="district"
             id="district"
-            value={studentData.district}
+            value={studentDataInt.district}
+            required
             onChange={handleChange}
           />
         </div>
@@ -130,7 +155,8 @@ const CreateStudentPersonalForm = () => {
             type="text"
             name="state"
             id="state"
-            value={studentData.state}
+            value={studentDataInt.state}
+            required
             onChange={handleChange}
           />
         </div>
@@ -140,29 +166,16 @@ const CreateStudentPersonalForm = () => {
             type="number"
             name="pincode"
             id="pincode"
-            value={studentData.pincode}
+            value={studentDataInt.pincode}
+            required
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="registrationType">Registration Type:</label>
-          <select
-            name="registrationType"
-            id="registrationType"
-            value={studentData.registrationType}
-            onChange={handleChange}
-          > <option value="">Select</option>
-            <option value="course">Course</option>
-            <option value="course with internship">Course With Internship</option>
-            <option value="internship">Internship</option>
-            <option value="course with internship & placement">Course with Internship & Placement Assistances</option>
-            <option value="placement assistances">Placement Assistances</option>
-          </select>
-        </div>
-        <button type="submit" className="submit-button">Submit</button>
+        
+        <button type="submit" >Submit</button>
       </form>
     </div>
   );
 };
 
-export default CreateStudentPersonalForm;
+export default CreateStudentPersonalCip;

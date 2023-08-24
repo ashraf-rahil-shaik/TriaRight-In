@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import {useNavigate} from "react-router-dom";
 
 const StudentEducationC = () => {
-  const [studentEducationC, setStudentEducationC] = useState({
+  const [EducationC, setEducationC] = useState({
     qulification: "",
     industry : "",
     branch : "",
@@ -12,15 +12,16 @@ const StudentEducationC = () => {
     
 
 });
-
+const Navigate = useNavigate();
 const handleChange = (event) => {
     const { name, value } = event.target;
-    setStudentEducationC({...studentEducationC, [name]: value });
+    setEducationC({...EducationC, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(studentEducationC.data); // You can perform your submit logic here
+    console.log(EducationC.data); // You can perform your submit logic here
+    Navigate('create-studenttriarightC')
   };
 
   return (
@@ -32,7 +33,7 @@ const handleChange = (event) => {
           <select
             name="qualification"
             id="qualification"
-            value={studentEducationC.qualification}
+            value={EducationC.qualification}
             required
             onChange={handleChange}
           > <option value="">Select</option>
@@ -48,7 +49,7 @@ const handleChange = (event) => {
           <select
             name="industry"
             id="inndustry"
-            value={studentEducationC.industry}
+            value={EducationC.industry}
             required
             onChange={handleChange}
           > <option value="">Select</option>
@@ -67,7 +68,7 @@ const handleChange = (event) => {
             type="text"
             name="branch/stream"
             id="branch/stream"
-            value={studentEducationC.Stream}
+            value={EducationC.Stream}
             required
             onChange={handleChange}
           />
@@ -78,7 +79,7 @@ const handleChange = (event) => {
             type="text"
             name="group"
             id="group"
-            value={studentEducationC.group}
+            value={EducationC.group}
             onChange={handleChange}
           />
         </div>
@@ -88,7 +89,7 @@ const handleChange = (event) => {
             type="text"
             name="collegeName"
             id="collegeName"
-            value={studentEducationC.collegeName}
+            value={EducationC.collegeName}
             required
             onChange={handleChange}
           />

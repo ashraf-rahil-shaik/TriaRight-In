@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import {useNavigate} from "react-router-dom";
 
 const StudentEducationCi = () => {
-  const [studentEducationCi, setStudentEducationCi] = useState({
+  const [EducationCi, setEducationCi] = useState({
     qualification: "",
     industry : "",
     branch : "",
@@ -12,15 +12,16 @@ const StudentEducationCi = () => {
     
 
 });
-
+const Navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setStudentEducationCi({...studentEducationCi, [name]: value });
+    setEducationCi({...EducationCi, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(studentEducationCi.data); // You can perform your submit logic here
+    console.log(EducationCi.data); // You can perform your submit logic here
+    Navigate('create-studenttriarightCi')
   };
 
   return (
@@ -32,7 +33,7 @@ const StudentEducationCi = () => {
           <select
             name="qualification"
             id="qualification"
-            value={studentEducationCi.qualification}
+            value={EducationCi.qualification}
             required
             onChange={handleChange}
           > <option value="">Select</option>
@@ -48,7 +49,7 @@ const StudentEducationCi = () => {
           <select
             name="industry"
             id="inndustry"
-            value={studentEducationCi.industry}
+            value={EducationCi.industry}
             required
             onChange={handleChange}
           > <option value="">Select</option>
@@ -67,7 +68,7 @@ const StudentEducationCi = () => {
             type="text"
             name="branch/stream"
             id="branch/stream"
-            value={studentEducationCi.Stream}
+            value={EducationCi.Stream}
             required
             onChange={handleChange}
           />
@@ -78,7 +79,7 @@ const StudentEducationCi = () => {
             type="text"
             name="group"
             id="group"
-            value={studentEducationCi.group}
+            value={EducationCi.group}
             onChange={handleChange}
           />
         </div>
@@ -88,7 +89,7 @@ const StudentEducationCi = () => {
             type="text"
             name="collegeName"
             id="collegeName"
-            value={studentEducationCi.institutionname}
+            value={EducationCi.institutionname}
             onChange={handleChange}
           />
         </div>
