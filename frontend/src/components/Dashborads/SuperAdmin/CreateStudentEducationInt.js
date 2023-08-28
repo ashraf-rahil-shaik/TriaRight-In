@@ -22,7 +22,7 @@ const Navigate = useNavigate();
     event.preventDefault();
     console.log(EducationInt.data);
      // You can perform your submit logic here
-     Navigate('create-studenttriarightInt')
+     Navigate('/create-studenttriarightInt')
   };
 
   return (
