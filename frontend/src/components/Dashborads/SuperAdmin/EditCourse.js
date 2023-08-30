@@ -31,20 +31,32 @@ function CreateCourse() {
 //     }));
 //   }
   const handleChange = (event) => {
-    const { name, value } = event.target;
-        // if (type === "file") {
-        //     setCourseData({ ...courseData, [name]: event.target.files[0] });
-        //  } else {
-    setCourseData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { name, value, type } = event.target;
 
+    if (type === 'file') {
+      setCourseData({ ...courseData, [name]: event.target.files[0] });
+    } else {
+      setCourseData({ ...courseData, [name]: value });
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`http://localhost/TriaRight-In/backend/createCourse.php/user/${courseId}`, courseData)
+
+    const formData = new FormData();
+    formData.append('courseId', courseData.courseId); 
+    formData.append('Images', courseData.Images); // Append the image file
+    formData.append('Stream', courseData.Stream);
+    formData.append('Duration', courseData.Duration);
+    formData.append('Providers', courseData.Providers);
+    formData.append('trainingType', courseData.trainingType);
+    formData.append('Hours1', courseData.Hours1);
+    formData.append('coarseDescription', courseData.coarseDescription);
+    formData.append('TopicsCovered', courseData.TopicsCovered);
+    formData.append('Benefits', courseData.Benefits);
+    formData.append('Price', courseData.Price);
+
+    axios.put(`http://localhost/TriaRight-In/backend/createCourse.php/user/${courseId}`, formData)
     .then(function(response){
       if (response.data.status === 1) {
         alert('Success: ' + response.data.message);
@@ -72,7 +84,6 @@ function CreateCourse() {
             name="Images"
             id="image"
             onChange={handleChange}
-            required
             accept="image/*"
             //value={courseData.Images}
           />

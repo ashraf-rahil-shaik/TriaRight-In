@@ -24,7 +24,7 @@ import ManageTriarightLogin from "./ManageTriarightLogin";
 import EditTriarightLogin from "./EditTriarightLogin";
 import CreateStudentPersonalC from "./CreateStudentPersonalC";
 import StudentEducationC from "./CreateStudentEducationC";
-import StudentTriarightEssentialsC from "./CreateStudentTriarightC";
+// import StudentTriarightEssentialsC from "./CreateStudentTriarightC";
 import CreateStudentPersonalCi from "./CreateStudentPersonalCi";
 import StudentEducationCi from "./CreateStudentEducationCi";
 import StudentTriarightEssentialsCi from "./CreateStudentTriarightCi";
@@ -35,7 +35,11 @@ import StudentTriarightEssentialsCip from "./CreateStudentTriarightCip";
 import CreateStudentPersonalInt from "./CreateStudentPersonalInt";
 import StudentEducationInt from "./CreateStudentEducationInt";
 import StudentTriarightEssentialsInt from "./CreateStudentTriarightInt";
+import CreateConsultant  from "./CreateConsultant";
+import ManageConsultant from "./ManageConsultant";
 import Example from "./example";
+import EditConsultant from "./EditConsultant";
+import StudentTriarightEssentialsC from "./CreateStudentTriarightC";
 
 const SuperAdmin=()=>{
 return(
@@ -103,6 +107,10 @@ return(
         <Route path="/create-studenteducationInt" element={<StudentEducationInt/>}></Route>
         <Route path="/create-studenttriarightInt" element={<StudentTriarightEssentialsInt/>}></Route>
 
+        <Route path="/create-consultant" element={<CreateConsultant/>}></Route>
+        <Route path="/manage-consultant" element={<ManageConsultant/>}></Route>
+        <Route path="/:consultantId/edit8" element={<EditConsultant/>}></Route>
+        
         <Route path="/create-example" element={<Example />}></Route>
     </Routes>
  

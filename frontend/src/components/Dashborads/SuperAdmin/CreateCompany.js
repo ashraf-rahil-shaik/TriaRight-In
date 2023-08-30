@@ -61,7 +61,7 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
 }
   
   return (
-    <div className="create-Comapny-container">
+    <div className="create-course-container">
       <h2>Company Information</h2>
       <form onSubmit={handleSubmit}>      
         <div className="form-group">

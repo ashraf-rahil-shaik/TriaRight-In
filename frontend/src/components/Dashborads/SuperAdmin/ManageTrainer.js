@@ -45,7 +45,7 @@ const deleteRecord=(trainerId)=>{
 
 
     return (
-        <div>
+        <div className="manage-college-container">
             <h1>Manage Trainer</h1>
             <table>
                 <thead>

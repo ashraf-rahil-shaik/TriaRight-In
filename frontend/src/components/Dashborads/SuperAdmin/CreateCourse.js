@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const CreateCourse = () => {
   const [courseData, setCourseData] = useState({
-    image:"",
+    image:null,
     stream: "IT",
     duration: "",
     provider: "",
@@ -18,36 +18,50 @@ const CreateCourse = () => {
   const Navigate = useNavigate();   
 
   const handleChange = (event) => {
-    const { name, value} = event.target;
-    setCourseData({...courseData, [name]: value });
-    // if (type === "file") {
-    //       setCourseData({ ...courseData, [name]: event.target.files[0] });
-    //    } 
-    //setCourseData(event.target.files[0]);
+    const { name, value, type } = event.target;
+
+    if (type === 'file') {
+      setCourseData({ ...courseData, [name]: event.target.files[0] });
+    } else {
+      setCourseData({ ...courseData, [name]: value });
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriaRight-In/backend/createCourse.php/user/submit', courseData)
-    .then(function(response){
-      if (response.data.status === 1) {
-        alert('Success: ' + response.data.message);
-        Navigate('/manage-course');
-  } else {
-    alert('Error: ' + response.data.message);
+  
+    const formData = new FormData();
+    formData.append('image', courseData.image); // Append the image file
+    formData.append('stream', courseData.stream);
+    formData.append('duration', courseData.duration);
+    formData.append('provider', courseData.provider);
+    formData.append('type', courseData.type);
+    formData.append('hours', courseData.hours);
+    formData.append('courseDescription', courseData.courseDescription);
+    formData.append('topicsCovered', courseData.topicsCovered);
+    formData.append('benefits', courseData.benefits);
+    formData.append('price', courseData.price);
+  
+    axios.post('http://localhost/TriaRight-In/backend/createCourse.php/user/submit', formData)
+      .then(function(response){
+        if (response.data.status === 1) {
+          alert('Success: ' + response.data.message);
+          Navigate('/manage-course');
+        } else {
+          alert('Error: ' + response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        alert('An error occurred while creating the record.');
+      });
   }
-})
-.catch(function (error) {
-  console.error(error);
-  alert('An error occurred while creating the record.');
-});
-    //console.log(courseData); // You can perform your submit logic here
-}
+  
 
   return (
     <div className="create-course-container">
       <h2>Create Course</h2>
-      <form onSubmit={handleSubmit} enctype="multipart/form-data">
+      <form onSubmit={handleSubmit}>
       <div className="form-group">
           <label htmlFor="image">Upload Image:</label>
           <input
@@ -58,7 +72,6 @@ const CreateCourse = () => {
             required
             accept="image/*"
             //value={courseData.image}
-            //value=""
           />
         </div>
         <div className="form-group">
@@ -70,7 +83,7 @@ const CreateCourse = () => {
             required
             onChange={handleChange}
           >
-            <option value="IT">IT</option>
+            <option value="It">IT</option>
             <option value="Non-IT">Non-IT</option>
             <option value="pharmacy">Pharmacy</option>
             <option value="management">Management</option>

@@ -21,7 +21,7 @@ const Navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(EducationCi.data); // You can perform your submit logic here
-    Navigate('create-studenttriarightCi')
+    Navigate('/create-studenttriarightCi')
   };
 
   return (

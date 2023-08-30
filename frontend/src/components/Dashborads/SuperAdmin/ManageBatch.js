@@ -35,7 +35,7 @@ const deleteRecord=(batchId)=>{
 //     });
 // }
     return (
-        <div>
+        <div className="manage-college-container">
             <h1>List Batch</h1>
             <table>
                 <thead>

@@ -221,7 +221,6 @@ const CreateCollege = () => {
             name="collegeWebsite"
             id="collegeWebsite"
             value={collegeData.collegeWebsite}
-            required
             onChange={handleChange}
           />
         </div>

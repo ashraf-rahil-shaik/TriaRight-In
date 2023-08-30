@@ -40,7 +40,7 @@ const Navigate = useNavigate();
   };
 
   return (
-    <div className="create-student-container">
+    <div className="create-course-container">
       <h2>Student Registration</h2>
       <form onSubmit={handleSubmit} className="form">
         <div className="form-group">

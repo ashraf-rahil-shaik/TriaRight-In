@@ -20,12 +20,15 @@ const handleChange = (event) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(EducationC.data); // You can perform your submit logic here
-    Navigate('create-studenttriarightC')
+    console.log(EducationC.data);
+    
+    console.log("it works")
+    // You can perform your submit logic here
+    Navigate('/create-studenttriarightC')
   };
 
   return (
-    <div className="student-education-container">
+    <div className="create-course-container">
       <h2>Student Educational Details</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

@@ -50,7 +50,7 @@ export default function ManageCourse() {
           users.map((user, key) => (
             <div className="course-card" key={key}>
              <img
-                src={`http://localhost/TriaRight-In/Images/${user.Images}`}
+                src={`http://localhost/TriaRight-In/backend/CoursesImages/${user.Images}`}
                 alt={`Course ${user.Images} Image`}
               />
               <div className="course-details">

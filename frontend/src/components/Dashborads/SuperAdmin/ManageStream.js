@@ -39,7 +39,7 @@ const deleteRecord=(streamId)=>{
  
 
     return (
-        <div>
+        <div className="create-course-container">
             <h1>Manage Stream</h1>
             <table>
                 <thead>

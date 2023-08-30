@@ -36,7 +36,7 @@ const deleteRecord=(companyId)=>{
 // }
 
     return (
-        <div>
+        <div className="manage-college-container">
             <h1>Manage Company</h1>
             <table>
                 <thead>
