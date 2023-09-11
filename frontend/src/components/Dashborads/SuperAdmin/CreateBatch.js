@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
@@ -10,14 +10,36 @@ function CreateBatch(){
   const [batchData, setBatchData] = useState({
     batchName: "",
     classDuration: "",
-    courseId: "",
+    // courseId: "",
     courseName: "",
-    trainerId: "",
+    // trainerId: "",
     trainerName: "",
     batchStartingDate: "",
     batchEndingDate: "",
     sessionSlot:""
 });
+
+const [users, setUsers] = useState([]);
+const [users1 , setUsers1] = useState([]);
+useEffect(() =>{
+  getUsers();
+  getUsers1();
+}, []);
+
+function getUsers() {
+  axios.get('http://localhost/TriaRight-In/backend/createSlot.php/user/create').then(function(response) {
+      console.log(response.data);
+      setUsers(response.data);
+  });
+}
+
+function getUsers1() {
+  axios.get('http://localhost/TriaRight-In/backend/createCourse.php/user/create').then(function(response) {
+      console.log(response.data);
+      setUsers1(response.data);
+  });
+}
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -67,7 +89,7 @@ function CreateBatch(){
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="courseId">Course Id:</label>
            <input
             type="text"
@@ -77,19 +99,30 @@ function CreateBatch(){
             required
             onChange={handleChange}
           />
-        </div>
+  </div> */}
         <div className="form-group">
-          <label htmlFor="courseName">Course Name:</label>
-          <input
-            type="text"
-            name="courseName"
+          <label htmlFor="courseName">course Name</label>
+          <select
             id="courseName"
+            name="courseName"
             value={batchData.courseName}
-            required
             onChange={handleChange}
-          /> 
-        </div>
-        <div className="form-group">
+            required
+            className="input-field"
+          >
+            <option value="">Select</option>
+            {Array.isArray(users1) ? (
+            users1.map((user, key) => (
+                <>
+            <option  key={key} value={user.course}>{user.course}</option>
+            </>
+            ))) : (
+                <>
+                </>
+            )}
+          </select>
+        </div>  
+        {/* <div className="form-group">
           <label htmlFor="trainerId">TrainerId:</label>
           <input 
             type="text"
@@ -100,7 +133,7 @@ function CreateBatch(){
             onChange={handleChange}
             
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="trainerName">Trainer Name:</label>
           <input
@@ -135,18 +168,29 @@ function CreateBatch(){
             onChange={handleChange}
           />
         </div>
+        
         <div className="form-group">
-          <label htmlFor="sessionSlot">Session Solt:</label>
-          <input
-            type="text"
-            name="sessionSlot"
+          <label htmlFor="sessionSlot">Session Slot:</label>
+          <select
             id="sessionSlot"
+            name="sessionSlot"
             value={batchData.sessionSlot}
-            required
             onChange={handleChange}
-          />
-        </div>
-               
+            required
+            className="input-field"
+          >
+            <option value="">Select</option>
+            {Array.isArray(users) ? (
+            users.map((user, key) => (
+                <>
+            <option  key={key} value={`${user.startTime}-${user.endTime}`}>{`${user.startTime}-${user.endTime}`}</option>
+            </>
+            ))) : (
+                <>
+                </>
+            )}
+          </select>
+        </div>  
         <button type="submit">Submit</button>
       </form>
     </div>

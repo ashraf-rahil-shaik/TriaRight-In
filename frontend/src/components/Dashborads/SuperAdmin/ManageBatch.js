@@ -43,9 +43,9 @@ const deleteRecord=(batchId)=>{
                         <th>Batch Id</th>
                         <th>Batch Name</th>
                         <th>Class Duration</th>
-                        <th>Course Id</th>
+                        {/* <th>Course Id</th> */}
                         <th>Course Name</th>
-                        <th>Trainer Id</th>
+                        {/* <th>Trainer Id</th> */}
                         <th>Trainer Name</th>
                         <th>Batch Starting Date</th>
                         <th>Batch Ending Date</th>
@@ -60,9 +60,9 @@ const deleteRecord=(batchId)=>{
       <td>{user.batchId}</td>
       <td>{user.batchName}</td>
       <td>{user.classDuration}</td>
-      <td>{user.courseId}</td>
+      {/* <td>{user.courseId}</td> */}
       <td>{user.courseName}</td>
-      <td>{user.trainerId}</td>
+      {/* <td>{user.trainerId}</td> */}
       <td>{user.trainerName}</td>
       <td>{user.batchStartingDate}</td>
       <td>{user.batchEndingDate}</td>

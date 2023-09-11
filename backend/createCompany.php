@@ -40,6 +40,7 @@
             $sql = "INSERT INTO companycreation(companyName,companyEmail,companyPhNo,companyRegType,companyWebsite,industry,yearOfEstablishment,subBusinessName,doYouHaveGst,GSTno,GSTfile,doYouHaveCompanyPan,PANno,PANfile,address,city,district,state,pincode,representativeName,designation,representativePhoneNo,personalEmail,created_at) VALUES(:companyName,:companyEmail,:companyPhNo,:companyRegType,:companyWebsite,:industry,:yearOfEstablishment,:subBusinessName,:doYouHaveGst,:GSTno,:GSTfile,:doYouHaveCompanyPan,:PANno,:PANfile,:address,:city,:district,:state,:pincode,:representativeName,:designation,:representativePhoneNo,:personalEmail,:created_at)";
             $stmt = $conn->prepare($sql);
             $created_at = date('Y-m-d');
+            
            //$stmt->bindParam(':streamName', $user->name);
             $stmt->bindParam(':companyName', $user->companyName);
             $stmt->bindParam(':companyEmail', $user->companyEmailId);

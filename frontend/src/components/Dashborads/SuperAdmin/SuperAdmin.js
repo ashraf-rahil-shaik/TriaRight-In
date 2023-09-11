@@ -22,24 +22,17 @@ import EditCompany from "./EditCompany";
 import CreateTriarightLogin from "./CreateTriarightLogin";
 import ManageTriarightLogin from "./ManageTriarightLogin";
 import EditTriarightLogin from "./EditTriarightLogin";
-import CreateStudentPersonalC from "./CreateStudentPersonalC";
-import StudentEducationC from "./CreateStudentEducationC";
-// import StudentTriarightEssentialsC from "./CreateStudentTriarightC";
-import CreateStudentPersonalCi from "./CreateStudentPersonalCi";
-import StudentEducationCi from "./CreateStudentEducationCi";
-import StudentTriarightEssentialsCi from "./CreateStudentTriarightCi";
-import CreateStudentPersonalCip from "./CreateStudentPersonalCip";
-import StudentEducationCip from "./CreateStudentEducationCip";
-import StudentAdditionalCip from "./CreateStudentAdditionalCip";
-import StudentTriarightEssentialsCip from "./CreateStudentTriarightCip";
-import CreateStudentPersonalInt from "./CreateStudentPersonalInt";
-import StudentEducationInt from "./CreateStudentEducationInt";
-import StudentTriarightEssentialsInt from "./CreateStudentTriarightInt";
+import CreateStudentWithoutPlacement from "./CreateStudentWithoutPlacement";
+import CreateStudentWithPlacement from "./CreateStudentWithPlacement";
+import RegMainForm from "./MainForm";
 import CreateConsultant  from "./CreateConsultant";
 import ManageConsultant from "./ManageConsultant";
-import Example from "./example";
 import EditConsultant from "./EditConsultant";
-import StudentTriarightEssentialsC from "./CreateStudentTriarightC";
+import Example from "./example";
+import CreateSlots from "./CreateSlot";
+import ManageSlot from "./ManageSlot";
+import EditSlot from "./EditSlot";
+//import StudentTriarightEssentialsC from "./CreateStudentTriarightC";
 
 const SuperAdmin=()=>{
 return(
@@ -90,28 +83,19 @@ return(
         <Route path="/manage-triarightlogin" element={<ManageTriarightLogin />}></Route>
         <Route path="/:triarightLoginId/edit7" element={<EditTriarightLogin />}></Route>
 
-        <Route path="/create-studentpersonalC" element={<CreateStudentPersonalC/>}></Route>
-        <Route path="/create-studenteducationC" element={<StudentEducationC/>}></Route>
-         <Route path="/create-studenttriarightC" element={<StudentTriarightEssentialsC/>}></Route>
-
-        <Route path="/create-studentpersonalCi" element={<CreateStudentPersonalCi/>}></Route>
-        <Route path="/create-studenteducationCi" element={<StudentEducationCi/>}></Route>
-        <Route path="/create-studenttriarightCi" element={<StudentTriarightEssentialsCi/>}></Route>
-        
-        <Route path="/create-studentpersonalCip" element={<CreateStudentPersonalCip/>}></Route>
-        <Route path="/create-studenteducationCip" element={<StudentEducationCip/>}></Route>
-        <Route path="/create-studentadditionalCip" element={<StudentAdditionalCip/>}></Route>
-        <Route path="/create-studenttriarightCip" element={<StudentTriarightEssentialsCip/>}></Route>
-
-        <Route path="/create-studentpersonalInt" element={<CreateStudentPersonalInt/>}></Route>
-        <Route path="/create-studenteducationInt" element={<StudentEducationInt/>}></Route>
-        <Route path="/create-studenttriarightInt" element={<StudentTriarightEssentialsInt/>}></Route>
+        <Route path="/create-studentwithoutPlacement" element={<CreateStudentWithoutPlacement/>}></Route>
+        <Route path="/create-studentwithPlacement" element={<CreateStudentWithPlacement/>}></Route>
+        <Route path="/create-regMainForm" element={<RegMainForm/>}></Route>
 
         <Route path="/create-consultant" element={<CreateConsultant/>}></Route>
         <Route path="/manage-consultant" element={<ManageConsultant/>}></Route>
         <Route path="/:consultantId/edit8" element={<EditConsultant/>}></Route>
         
         <Route path="/create-example" element={<Example />}></Route>
+
+        <Route path="/create-slot" element={<CreateSlots/>}></Route>
+        <Route path="/manage-slot" element={<ManageSlot/>}></Route>
+        <Route path="/:slotId/edit9" element={<EditSlot/>}></Route>
     </Routes>
  
     </BrowserRouter>

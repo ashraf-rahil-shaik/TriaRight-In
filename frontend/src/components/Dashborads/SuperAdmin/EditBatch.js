@@ -8,10 +8,13 @@ function EditBatch(){
    const Navigate = useNavigate();        
 
     const [batchData, setInputs] = useState([]);
-
+    const [users, setUsers1] = useState([]);
+    const [users2, setUsers2] = useState([]);
     const {batchId} = useParams();
     useEffect(() => {
-        getUser();  
+        getUser(); 
+        getUsers1(); 
+        getUsers2();
     },[]);
 
     function getUser() {
@@ -19,6 +22,21 @@ function EditBatch(){
             console.log(response.data);
             setInputs(response.data);
         });
+    }
+    
+    
+    function getUsers1() {
+      axios.get('http://localhost/TriaRight-In/backend/createSlot.php/user/create').then(function(response) {
+          console.log(response.data);
+          setUsers1(response.data);
+      });
+    }
+
+    function getUsers2() {
+      axios.get('http://localhost/TriaRight-In/backend/createCourse.php/user/create').then(function(response) {
+          console.log(response.data);
+          setUsers2(response.data);
+      });
     }
 
     const handleChange = (event) =>{
@@ -46,7 +64,7 @@ function EditBatch(){
 
 
     return (
-        <div>
+        <div className="create-course-container">
         <h1>Edit Batch</h1>
         <form onSubmit={handleSubmit}>
         {/* <div className="form-group">
@@ -81,7 +99,7 @@ function EditBatch(){
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="courseId">Course Id:</label>
            <input
             type="text"
@@ -91,19 +109,30 @@ function EditBatch(){
             required
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className="form-group">
-          <label htmlFor="courseName">Course Name:</label>
-          <input
-            type="text"
-            name="courseName"
+          <label htmlFor="courseName">course Name</label>
+          <select
             id="courseName"
+            name="courseName"
             value={batchData.courseName}
-            required
             onChange={handleChange}
-          /> 
-        </div>
-        <div className="form-group">
+            required
+            className="input-field"
+          >
+            <option value="">Select</option>
+            {Array.isArray(users2) ? (
+            users2.map((user, key) => (
+                <>
+            <option  key={key} value={user.course}>{user.course}</option>
+            </>
+            ))) : (
+                <>
+                </>
+            )}
+          </select>
+        </div>  
+        {/* <div className="form-group">
           <label htmlFor="trainerId">TrainerId:</label>
           <input 
             type="text"
@@ -114,7 +143,7 @@ function EditBatch(){
             onChange={handleChange}
             
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="trainerName">Trainer Name:</label>
           <input
@@ -160,7 +189,28 @@ function EditBatch(){
             onChange={handleChange}
           />
         </div>
-               
+        <div className="form-group">
+          <label htmlFor="sessionSlot">Session Slot:</label>
+          <select
+            id="sessionSlot"
+            name="sessionSlot"
+            value={batchData.sessionSlot}
+            onChange={handleChange}
+            required
+            className="input-field"
+          >
+            <option value="">Select</option>
+            {Array.isArray(users) ? (
+            users.map((user, key) => (
+                <>
+            <option  key={key} value={`${user.startTime}-${user.endTime}`}>{`${user.startTime}-${user.endTime}`}</option>
+            </>
+            ))) : (
+                <>
+                </>
+            )}
+          </select>
+        </div>    
         <button type="submit">Update</button>
       </form>
     </div>

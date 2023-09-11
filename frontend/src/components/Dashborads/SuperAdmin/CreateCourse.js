@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 const CreateCourse = () => {
   const [courseData, setCourseData] = useState({
     image:null,
-    stream: "IT",
+    stream: "",
+    subStream:"",
+    jobRole1:"",
+    jobRole2:"",
+    jobRole3:"",
+    course:"",
     duration: "",
     provider: "",
     type: "online",
@@ -33,6 +38,11 @@ const CreateCourse = () => {
     const formData = new FormData();
     formData.append('image', courseData.image); // Append the image file
     formData.append('stream', courseData.stream);
+    formData.append('subStream', courseData.subStream);
+    formData.append('course', courseData.course);
+    formData.append('jobRole1', courseData.jobRole1);
+    formData.append('jobRole2', courseData.jobRole2);
+    formData.append('jobRole3', courseData.jobRole3);
     formData.append('duration', courseData.duration);
     formData.append('provider', courseData.provider);
     formData.append('type', courseData.type);
@@ -83,21 +93,89 @@ const CreateCourse = () => {
             required
             onChange={handleChange}
           >
-            <option value="It">IT</option>
+            <option value="">Select</option>
+            <option value="IT">IT</option>
             <option value="Non-IT">Non-IT</option>
-            <option value="pharmacy">Pharmacy</option>
-            <option value="management">Management</option>
-            <option value="finance">Finance</option>
+            <option value="Pharmaceutical">Pharmaceutical</option>
+            <option value="Management">Management</option>
+            <option value="Finance">Finance</option>
           </select>
         </div>
+        
+          {courseData.stream === "Non-IT" && (
+            <div className="form-group">
+              <label htmlFor="subStream">Non-IT:
+            <select name="subStream" id="subStream" value={courseData.subStream} onChange={handleChange}>
+              <option value="">Select</option>
+              <option value="ECE">ECE</option>
+              <option value="EEE">EEE</option>
+              <option value="Mechanical">Mechanical</option>
+              <option value="Civil">Civil</option>
+            </select>
+            </label>
+            </div>
+          )}
+          
+          {courseData.stream === "Management" && (
+            <div className="form-group">
+              <label htmlFor="subStream">Management:
+            <select name="subStream" id="subStream" value={courseData.subStream} onChange={handleChange}>
+              <option value="">Select</option>
+              <option value="HRM">HRM</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Business Analysis">Business Analysis</option>
+            </select>
+            </label>
+            </div>
+          )}
         <div className="form-group">
-          <label htmlFor="duration">Duration (in months):</label>
+        <label htmlFor="course">Course:</label>
           <input
-            type="number"
-            name="duration"
-            id="duration"
-            value={courseData.duration}
+            type="text"
+            name="course"
+            id="course"
+            value={courseData.course}
             required
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="duration">Duration :</label>
+          <select name="duration" id="duration" value={courseData.duration} onChange={handleChange}>
+              <option value="">Select</option>
+              <option value="45 days">45 days</option>
+              <option value="2 months">2 months</option>
+              <option value="3 months">3 months</option>
+              <option value="6 months">6 months</option>
+             </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="jobRole1">Job role 1:</label>
+          <input
+            type="text"
+            name="jobRole1"
+            id="jobRole1"
+            value={courseData.jobRole1}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="jobRole2">Job role 2:</label>
+          <input
+            type="text"
+            name="jobRole2"
+            id="jobRole2"
+            value={courseData.jobRole2}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="jobRole3">Job role 3:</label>
+          <input
+            type="text"
+            name="jobRole3"
+            id="jobRole3"
+            value={courseData.jobRole3}
             onChange={handleChange}
           />
         </div>

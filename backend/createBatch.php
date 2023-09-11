@@ -35,15 +35,15 @@ ini_set('display_errors', 1);
 
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
-            $sql = "INSERT INTO batchcreation(batchName, classDuration, courseId, courseName, trainerId, trainerName, batchStartingDate, batchEndingDate, sessionSlot,created_at) VALUES(:batchName, :classDuration, :courseId, :courseName, :trainerId, :trainerName, :batchStartingDate, :batchEndingDate, :sessionSlot, :created_at)";
+            $sql = "INSERT INTO batchcreation(batchName, classDuration, courseName,  trainerName, batchStartingDate, batchEndingDate, sessionSlot,created_at) VALUES(:batchName, :classDuration,  :courseName,  :trainerName, :batchStartingDate, :batchEndingDate, :sessionSlot, :created_at)";
            $stmt = $conn->prepare($sql);
            $created_at = date('Y-m-d');
            //$stmt->bindParam(':batchId', $user->batchId);
            $stmt->bindParam(':batchName', $user->batchName);
            $stmt->bindParam(':classDuration', $user->classDuration);
-           $stmt->bindParam(':courseId', $user->courseId);
+        //    $stmt->bindParam(':courseId', $user->courseId);
            $stmt->bindParam(':courseName', $user->courseName);
-           $stmt->bindParam(':trainerId', $user->trainerId);
+        //    $stmt->bindParam(':trainerId', $user->trainerId);
            $stmt->bindParam(':trainerName', $user->trainerName);
            $stmt->bindParam(':batchStartingDate', $user->batchStartingDate);
            $stmt->bindParam(':batchEndingDate', $user->batchEndingDate);
@@ -64,15 +64,13 @@ ini_set('display_errors', 1);
 
            case "PUT":
             $user = json_decode( file_get_contents('php://input') );
-            $sql = "UPDATE batchcreation SET batchName=:batchName, classDuration=:classDuration, courseId=:courseId, courseName=:courseName, trainerId=:trainerId, trainerName=:trainerName, batchStartingDate=:batchStartingDate, batchEndingDate=:batchEndingDate, sessionSlot=:sessionSlot, updated_at=:updated_at WHERE batchId = :batchId ";
+            $sql = "UPDATE batchcreation SET batchName=:batchName, classDuration=:classDuration,  courseName=:courseName,trainerName=:trainerName, batchStartingDate=:batchStartingDate, batchEndingDate=:batchEndingDate, sessionSlot=:sessionSlot, updated_at=:updated_at WHERE batchId = :batchId ";
             $stmt = $conn->prepare($sql);
             $updated_at = date('Y-m-d');
-            $stmt->bindParam(':batchId', $user->batchId);
-            $stmt->bindParam(':batchName', $user->batchName);
+           $stmt->bindParam(':batchId', $user->batchId);
+           $stmt->bindParam(':batchName', $user->batchName);
            $stmt->bindParam(':classDuration', $user->classDuration);
-           $stmt->bindParam(':courseId', $user->courseId);
            $stmt->bindParam(':courseName', $user->courseName);
-           $stmt->bindParam(':trainerId', $user->trainerId);
            $stmt->bindParam(':trainerName', $user->trainerName);
            $stmt->bindParam(':batchStartingDate', $user->batchStartingDate);
            $stmt->bindParam(':batchEndingDate', $user->batchEndingDate);

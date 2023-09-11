@@ -69,7 +69,58 @@ const CreateConsultant = () => {
 
      const handleSubmit = (event) => {
       event.preventDefault();
-      axios.post('http://localhost/triaRight-In/backend/createConsultant.php/user/submit', consultantData)
+
+    //   const formData = new FormData();
+    // formData.append('companyName', consultantData.companyName); 
+    // formData.append('companyEmailId', consultantData.companyEmailId);
+    // formData.append('companyPhoneNumber', consultantData.companyPhoneNumber);
+    // formData.append('companyRegistrationType', consultantData.companyRegistrationType);
+    // formData.append('companyWebsite', consultantData.companyWebsite);
+    // formData.append('yearOfEstablishment', consultantData.yearOfEstablishment);
+    // formData.append('subBusinessName', consultantData.subBusinessName);
+    // formData.append('doYouHaveGST', consultantData.doYouHaveGST);
+    // formData.append('companyGSTNo', consultantData.companyGSTNo);
+    // formData.append('uploadGSTDocument', consultantData.uploadGSTDocument);// Append the image file
+    // formData.append('doYouHavePan', consultantData.doYouHavePan); 
+    // formData.append('companyPanNo', consultantData.companyPanNo);
+    // formData.append('uploadPanDocument', consultantData.uploadPanDocument);// Append the image file
+    // formData.append('address', consultantData.address);
+    // formData.append('city', consultantData.city);
+    // formData.append('district', consultantData.district);
+    // formData.append('state', consultantData.state);
+    // formData.append('pincode', consultantData.pincode);
+    // formData.append('representativeName', consultantData.representativeName);
+    // formData.append('designation', consultantData.designation);
+    // formData.append('representativePhoneNumber', consultantData.representativePhoneNumber); // Append the image file
+    // formData.append('personalMailId', consultantData.personalMailId);
+    // formData.append('java', consultantData.java);
+    // formData.append('python', consultantData.python);
+    // formData.append('webTechnology', consultantData.webTechnology);
+    // formData.append('couldComputing', consultantData.couldComputing);
+    // formData.append('dataScience', consultantData.dataScience);
+    // formData.append('artificialIntelligenceandmachineLearning', consultantData.artificialIntelligenceandmachineLearning);
+    // formData.append('testingTools', consultantData.testingTools);
+    // formData.append('deepLearning', consultantData.deepLearning);
+    // formData.append('matLab', consultantData.matLab); // Append the image file
+    // formData.append('vlsiDesign', consultantData.vlsiDesign);
+    // formData.append('embeddedSystem', consultantData.embeddedSystem);
+    // formData.append('matLab1', consultantData.matLab1);
+    // formData.append('visio', consultantData.visio);
+    // formData.append('tSim', consultantData.tSim);
+    // formData.append('autoCad', consultantData.autoCad);
+    // formData.append('sedPro', consultantData.sedPro);
+    // formData.append('payRolls', consultantData.payRolls);
+    // formData.append('hr', consultantData.hr);
+    // formData.append('usItRecruitment', consultantData.usItRecruitment);
+    // formData.append('digitalMarketing', consultantData.digitalMarketing);
+    // formData.append('businessAnalysis', consultantData.businessAnalysis);
+    // formData.append('medicalTranscription', consultantData.medicalTranscription);
+    // formData.append('medicalCoding', consultantData.medicalCoding);
+    // formData.append('tallyandgst', consultantData.tallyandgst);
+    // formData.append('incomeTax', consultantData.incomeTax);
+    // formData.append('usTaxation', consultantData.usTaxation);
+
+      axios.post('http://localhost/triaRight-In/backend/createConsultant.php/user/submit',consultantData)
       .then(function(response){
         if (response.data.status === 1) {
           alert('Success: ' + response.data.message);
@@ -215,7 +266,7 @@ const CreateConsultant = () => {
             onChange={handleChange}
           />
         </div>
-        { consultantData.hasPan && (
+        { consultantData.doYouHavePan && (
           <div>
           <div className="form-group">
             <label htmlFor="companyPanNo" >Company PAN Number *</label>
@@ -340,7 +391,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="java"
           id="java"
-          value={consultantData.java}
+          checked={consultantData.java}
           onChange={handleChange}
           />
          </div>
@@ -350,7 +401,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="python"
           id="python"
-          value={consultantData.python}
+          checked={consultantData.python}
           onChange={handleChange}
           />
           </div>
@@ -360,7 +411,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="webTechnology"
           id="webTechnology"
-          value={consultantData.webTechnology}
+          checked={consultantData.webTechnology}
           onChange={handleChange}
           />
           </div>
@@ -380,7 +431,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="couldComputing"
           id="couldComputing"
-          value={consultantData.couldComputing}
+          checked={consultantData.couldComputing}
           onChange={handleChange}
           />
           </div>
@@ -390,7 +441,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="dataScience"
           id="dataScience"
-          value={consultantData.dataScience}
+          checked={consultantData.dataScience}
           onChange={handleChange}
           />
           </div>
@@ -401,7 +452,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="artificialIntelligenceandmachineLearning"
           id="artificialIntelligenceandmachineLearning"
-          value={consultantData.artificialIntelligenceandmachineLearning}
+          checked={consultantData.artificialIntelligenceandmachineLearning}
           onChange={handleChange}
           />
           </div>
@@ -411,7 +462,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="testingTools"
           id="testingTools"
-          value={consultantData.testingTools}
+          checked={consultantData.testingTools}
           onChange={handleChange}
           />
           </div>
@@ -421,7 +472,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="deepLearning"
           id="deepLearning"
-          value={consultantData.deepLearning}
+          checked={consultantData.deepLearning}
           onChange={handleChange}
           />
           </div>
@@ -433,7 +484,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="matLab"
           id="matLab"
-          value={consultantData.matLab}
+          checked={consultantData.matLab}
           onChange={handleChange}
           />
           </div>
@@ -443,7 +494,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="vlsiDesign"
           id="vlsiDesign"
-          value={consultantData.vlsiDesign}
+          checked={consultantData.vlsiDesign}
           onChange={handleChange}
           />
           </div>
@@ -453,7 +504,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="embeddedSystem"
           id="embeddedSystem"
-          value={consultantData.embeddedSystem}
+          checked={consultantData.embeddedSystem}
           onChange={handleChange}
           />
           </div>
@@ -464,7 +515,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="matLab1"
           id="matLab1"
-          value={consultantData.matLab1}
+          checked={consultantData.matLab1}
           onChange={handleChange}
           />
           </div>
@@ -474,7 +525,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="visio"
           id="visio"
-          value={consultantData.visio}
+          checked={consultantData.visio}
           onChange={handleChange}
           />
           </div>
@@ -484,7 +535,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="tSim"
           id="tSim"
-          value={consultantData.tSim}
+          checked={consultantData.tSim}
           onChange={handleChange}
           />
           </div>
@@ -495,7 +546,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="autoCad"
           id="autoCad"
-          value={consultantData.autoCad}
+          checked={consultantData.autoCad}
           onChange={handleChange}
           />
           </div>
@@ -505,7 +556,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="sedPro"
           id="sedPro"
-          value={consultantData.sedPro}
+          checked={consultantData.sedPro}
           onChange={handleChange}
           />
           </div>
@@ -527,7 +578,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="payRolls"
           id="payRolls"
-          value={consultantData.payRolls}
+          checked={consultantData.payRolls}
           onChange={handleChange}
           />
           </div>
@@ -537,7 +588,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="hr"
           id="hr"
-          value={consultantData.hr}
+          checked={consultantData.hr}
           onChange={handleChange}
           />
           </div>
@@ -547,7 +598,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="usItRecruitment"
           id="usItRecruitment"
-          value={consultantData.usItRecruitment}
+          checked={consultantData.usItRecruitment}
           onChange={handleChange}
           />
           </div>
@@ -558,7 +609,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="digitalMarketing"
           id="digitalMarketing"
-          value={consultantData.digitalMarketing}
+          checked={consultantData.digitalMarketing}
           onChange={handleChange}
           />
           </div>
@@ -569,7 +620,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="businessAnalysis"
           id="businessAnalysis"
-          value={consultantData.businessAnalysis}
+          checked={consultantData.businessAnalysis}
           onChange={handleChange}
           />
           </div>
@@ -580,7 +631,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="medicalTranscription"
           id="medicalTranscription"
-          value={consultantData.medicalTranscription}
+          checked={consultantData.medicalTranscription}
           onChange={handleChange}
           />
           </div>
@@ -590,7 +641,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="medicalCoding"
           id="medicalCoding"
-          value={consultantData.medicalCoding}
+          checked={consultantData.medicalCoding}
           onChange={handleChange}
           />
           </div>
@@ -601,7 +652,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="tallyandgst"
           id="tallyandgst"
-          value={consultantData.tallyandgst}
+          checked={consultantData.tallyandgst}
           onChange={handleChange}
           />
           </div>
@@ -611,7 +662,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="incomeTax"
           id="incomeTax"
-          value={consultantData.incomeTax}
+          checked={consultantData.incomeTax}
           onChange={handleChange}
           />
           </div>
@@ -621,7 +672,7 @@ const CreateConsultant = () => {
           type="checkbox"
           name="usTaxation"
           id="usTaxation"
-          value={consultantData.usTaxation}
+          checked={consultantData.usTaxation}
           onChange={handleChange}
           />
           </div>

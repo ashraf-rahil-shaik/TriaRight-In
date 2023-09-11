@@ -38,7 +38,7 @@ const handleSubmit = (event) => {
      console.log(inputs.data);
 }
     return (
-        <div>
+        <div className="create-course-container">
         <h1>Create Stream</h1>
 
         <form onSubmit={handleSubmit}>

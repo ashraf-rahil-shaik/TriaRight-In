@@ -242,7 +242,7 @@ axios.post('http://localhost/TriaRight-In/backend/createCompany.php/user/create'
      )}
         <div className="form-group">
           <label htmlFor="address">Address:</label>
-          <input
+          <textarea
             type="text"
             name="address"
             id="address"

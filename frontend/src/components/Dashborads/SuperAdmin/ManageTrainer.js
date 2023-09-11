@@ -57,9 +57,9 @@ const deleteRecord=(trainerId)=>{
                         <th>Gender</th>
                         <th>Date of birth</th>
                         <th>Aadhar Number</th>
-                        <th>PaN Number</th>
+                        <th>PAN Number</th>
                         <th>Aadhar Photo</th>
-                        <th>Pan card Photo</th>
+                        <th>PAN card Photo</th>
                         <th>Date of joining</th>
                         <th>Qualification</th>
                         <th>Has experience</th>

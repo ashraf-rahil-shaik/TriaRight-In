@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-//import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import CustomModal from "./modal";
 
  // Adjust the path accordingly
@@ -19,12 +19,16 @@ const CreateStream = () => {
 
   //const Navigate = useNavigate();
 
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setStreamData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+  // };
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setStreamData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setStreamData({...streamData, [name]: value });
   };
 
   const handleSubmit = (event) => {
@@ -86,16 +90,22 @@ const CreateStream = () => {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="streamName">Stream Name:</label>
-          <input
-            type="text"
-            id="streamName"
+          <label htmlFor="streamName">stream Name:</label>
+          <select
             name="streamName"
+            id="streamName"
             value={streamData.streamName}
-            onChange={handleChange}
             required
+            onChange={handleChange}
             className="input-field"
-          />
+          >
+            <option value="">Select</option>
+            <option value="IT">IT</option>
+            <option value="Non-IT">Non-It</option>
+            <option value="Pharmaceutical">Pharmaceutical</option>
+            <option value="Management">Management</option>
+            <option value="Finance">Finance</option>
+          </select>
         </div>
         <button type="submit" className="submit-button">
           Create

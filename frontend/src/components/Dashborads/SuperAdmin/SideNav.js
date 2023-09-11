@@ -10,12 +10,13 @@ const SideNav = () => {
   const [isBatchDropdownOpen, setBatchDropdownOpen] = useState(false);
   const [isCompanyDropdownOpen, setCompanyDropdownOpen] = useState(false);
   const [isLoginDropdownOpen, setLoginDropdownOpen] = useState(false);
-  const [isStudentCDropdownOpen, setStudentCDropdownOpen] = useState(false);
-  const [isStudentCiDropdownOpen, setStudentCiDropdownOpen] = useState(false);
-  const [isStudentCipDropdownOpen, setStudentCipDropdownOpen] = useState(false);
-  const [isStudentIntDropdownOpen, setStudentIntDropdownOpen] = useState(false);
+  const [isStudentWithoutPlacementDropdownOpen, setStudentWithoutPlacementDropdownOpen] = useState(false);
+  const [isStudentWithPlacementDropdownOpen, setStudentWithPlacementDropdownOpen] = useState(false);
+  const [isMainFormDropdownOpen, setMainFormDropdownOpen] = useState(false);
   const [isConsultantDropdownOpen, setConsultantDropdownOpen] = useState(false);
   const [isexampleDropdownOpen, setexampleDropdownOpen] = useState(false);
+  const [isslotDropdownOpen, setslotDropdownOpen] = useState(false);
+
   const handleStreamClick = () => {
     setStreamDropdownOpen(!isStreamDropdownOpen);
   };
@@ -38,17 +39,14 @@ const SideNav = () => {
   const handleLoginClick = () => {
     setLoginDropdownOpen(!isLoginDropdownOpen);
   };
-  const handleStudentCClick = () => {
-    setStudentCDropdownOpen(!isStudentCDropdownOpen);
+  const handleStudentWithoutPlacementClick = () => {
+    setStudentWithoutPlacementDropdownOpen(!isStudentWithoutPlacementDropdownOpen);
   };
-  const handleStudentCiClick = () => {
-    setStudentCiDropdownOpen(!isStudentCiDropdownOpen);
+  const handleStudentWithPlacementClick = () => {
+    setStudentWithPlacementDropdownOpen(!isStudentWithPlacementDropdownOpen);
   };
-  const handleStudentCipClick = () => {
-    setStudentCipDropdownOpen(!isStudentCipDropdownOpen);
-  };
-  const handleStudentIntClick = () => {
-    setStudentIntDropdownOpen(!isStudentIntDropdownOpen);
+  const handleMainFormClick = () => {
+    setMainFormDropdownOpen(!isMainFormDropdownOpen);
   };
   const handleConsultantClick = () => {
     setConsultantDropdownOpen(!isConsultantDropdownOpen);
@@ -56,7 +54,9 @@ const SideNav = () => {
   const handleexampleClick = () => {
     setexampleDropdownOpen(!isexampleDropdownOpen);
   };
-  
+  const handleslotClick = () => {
+    setslotDropdownOpen(!isslotDropdownOpen);
+  };
 
   return (
     <div className="side-nav">
@@ -165,13 +165,13 @@ const SideNav = () => {
           </>
         )}
         </ul>
-        <ul className={`slide-menu ${isStudentCDropdownOpen ? 'open-up' : ''}`}>
-        <li className="stream-item" onClick={handleStudentCClick}>
-        Student C 
+        <ul className={`slide-menu ${isStudentWithoutPlacementDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleStudentWithoutPlacementClick}>
+        Student Without placement 
         </li>
-        {isStudentCDropdownOpen && (
+        {isStudentWithoutPlacementDropdownOpen && (
           <>
-            <Link to="/create-studentpersonalC" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="/create-studentwithoutPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
             {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
@@ -180,13 +180,13 @@ const SideNav = () => {
           </>
         )}
         </ul>
-        <ul className={`slide-menu ${isStudentCiDropdownOpen ? 'open-up' : ''}`}>
-        <li className="stream-item" onClick={handleStudentCiClick}>
-        Student Ci 
+        <ul className={`slide-menu ${isStudentWithPlacementDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleStudentWithPlacementClick}>
+        Student With placement 
         </li>
-        {isStudentCiDropdownOpen && (
+        {isStudentWithPlacementDropdownOpen && (
           <>
-            <Link to="/create-studentpersonalCi" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="/create-studentwithPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
             {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
@@ -195,28 +195,13 @@ const SideNav = () => {
           </>
         )}
         </ul>
-        <ul className={`slide-menu ${isStudentCipDropdownOpen ? 'open-up' : ''}`}>
-        <li className="stream-item" onClick={handleStudentCipClick}>
-        Student Cip 
+        <ul className={`slide-menu ${isMainFormDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleMainFormClick}>
+       Main Form
         </li>
-        {isStudentCipDropdownOpen && (
+        {isMainFormDropdownOpen && (
           <>
-            <Link to="/create-studentpersonalCip" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
-              <li className="dropdown-item">Create</li>
-            </Link>
-            {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
-              <li className="dropdown-item">Manage</li>
-            </Link> */}
-          </>
-        )}
-        </ul>
-        <ul className={`slide-menu ${isStudentIntDropdownOpen ? 'open-up' : ''}`}>
-        <li className="stream-item" onClick={handleStudentIntClick}>
-        Student Intern
-        </li>
-        {isStudentIntDropdownOpen && (
-          <>
-            <Link to="/create-studentpersonalInt" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="/create-regMainForm" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
             {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
@@ -252,6 +237,21 @@ const SideNav = () => {
             {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link> */}
+          </>
+        )}
+        </ul>
+        <ul className={`slide-menu ${isslotDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handleslotClick}>
+       slot
+        </li>
+        {isslotDropdownOpen && (
+          <>
+            <Link to="/create-slot" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Create</li>
+            </Link>
+            <Link to="/manage-slot" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Manage</li>
+            </Link>
           </>
         )}
         </ul>

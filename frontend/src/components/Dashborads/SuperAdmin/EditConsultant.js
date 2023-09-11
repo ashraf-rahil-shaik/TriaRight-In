@@ -352,7 +352,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="java"
           id="java"
-          value={consultantData.java}
+          checked={consultantData.java}
           onChange={handleChange}
           />
          </div>
@@ -362,7 +362,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="python"
           id="python"
-          value={consultantData.python}
+          checked={consultantData.python}
           onChange={handleChange}
           />
           </div>
@@ -372,7 +372,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="webTechnology"
           id="webTechnology"
-          value={consultantData.webTechnology}
+          checked={consultantData.webTechnology}
           onChange={handleChange}
           />
           </div>
@@ -392,7 +392,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="cloudComputing"
           id="couldComputing"
-          value={consultantData.cloudComputing}
+          checked={consultantData.cloudComputing}
           onChange={handleChange}
           />
           </div>
@@ -402,7 +402,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="dataScience"
           id="dataScience"
-          value={consultantData.dataScience}
+          checked={consultantData.dataScience}
           onChange={handleChange}
           />
           </div>
@@ -413,7 +413,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="AIandML"
           id="artificialIntelligenceandmachineLearning"
-          value={consultantData.AIandML}
+          checked={consultantData.AIandML}
           onChange={handleChange}
           />
           </div>
@@ -423,7 +423,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="testingTools"
           id="testingTools"
-          value={consultantData.testingTools}
+          checked={consultantData.testingTools}
           onChange={handleChange}
           />
           </div>
@@ -433,7 +433,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="deepLearning"
           id="deepLearning"
-          value={consultantData.deepLearning}
+          checked={consultantData.deepLearning}
           onChange={handleChange}
           />
           </div>
@@ -445,7 +445,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="matLabECE"
           id="matLab"
-          value={consultantData.matLabECE}
+          checked={consultantData.matLabECE}
           onChange={handleChange}
           />
           </div>
@@ -455,7 +455,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="vlsiDesign"
           id="vlsiDesign"
-          value={consultantData.vlsiDesign}
+          checked={consultantData.vlsiDesign}
           onChange={handleChange}
           />
           </div>
@@ -465,7 +465,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="embeddedSystems"
           id="embeddedSystem"
-          value={consultantData.embeddedSystems}
+          checked={consultantData.embeddedSystems}
           onChange={handleChange}
           />
           </div>
@@ -476,7 +476,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="matLabEEE"
           id="matLab1"
-          value={consultantData.matLabEEE}
+          checked={consultantData.matLabEEE}
           onChange={handleChange}
           />
           </div>
@@ -486,7 +486,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="visio"
           id="visio"
-          value={consultantData.visio}
+          checked={consultantData.visio}
           onChange={handleChange}
           />
           </div>
@@ -496,7 +496,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="tSim"
           id="tSim"
-          value={consultantData.tSim}
+          checked={consultantData.tSim}
           onChange={handleChange}
           />
           </div>
@@ -507,7 +507,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="autoCad"
           id="autoCad"
-          value={consultantData.autoCad}
+          checked={consultantData.autoCad}
           onChange={handleChange}
           />
           </div>
@@ -517,7 +517,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="sedPro"
           id="sedPro"
-          value={consultantData.sedPro}
+          checked={consultantData.sedPro}
           onChange={handleChange}
           />
           </div>
@@ -539,7 +539,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="Payrolls"
           id="payRolls"
-          value={consultantData.Payrolls}
+          checked={consultantData.Payrolls}
           onChange={handleChange}
           />
           </div>
@@ -549,7 +549,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="hr"
           id="hr"
-          value={consultantData.hr}
+          checked={consultantData.hr}
           onChange={handleChange}
           />
           </div>
@@ -559,7 +559,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="usItRecruitment"
           id="usItRecruitment"
-          value={consultantData.usItRecruitment}
+          checked={consultantData.usItRecruitment}
           onChange={handleChange}
           />
           </div>
@@ -570,7 +570,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="digitalMarketing"
           id="digitalMarketing"
-          value={consultantData.digitalMarketing}
+          checked={consultantData.digitalMarketing}
           onChange={handleChange}
           />
           </div>
@@ -581,7 +581,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="businessAnalysis"
           id="businessAnalysis"
-          value={consultantData.businessAnalysis}
+          checked={consultantData.businessAnalysis}
           onChange={handleChange}
           />
           </div>
@@ -592,7 +592,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="medicalTransciption"
           id="medicalTranscription"
-          value={consultantData.medicalTransciption}
+          checked={consultantData.medicalTransciption}
           onChange={handleChange}
           />
           </div>
@@ -602,7 +602,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="medicalCoding"
           id="medicalCoding"
-          value={consultantData.medicalCoding}
+          checked={consultantData.medicalCoding}
           onChange={handleChange}
           />
           </div>
@@ -613,7 +613,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="tallyandGst"
           id="tallyandgst"
-          value={consultantData.tallyandGst}
+          checked={consultantData.tallyandGst}
           onChange={handleChange}
           />
           </div>
@@ -623,7 +623,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="incomeTax"
           id="incomeTax"
-          value={consultantData.incomeTax}
+          checked={consultantData.incomeTax}
           onChange={handleChange}
           />
           </div>
@@ -633,7 +633,7 @@ const EditConsultant = () => {
           type="checkbox"
           name="usTaxation"
           id="usTaxation"
-          value={consultantData.usTaxation}
+          checked={consultantData.usTaxation}
           onChange={handleChange}
           />
           </div>

@@ -54,7 +54,9 @@ export default function ManageCourse() {
                 alt={`Course ${user.Images} Image`}
               />
               <div className="course-details">
-                <h2>{user.Stream}</h2>
+                <h2>{user.course}</h2>
+                <p>Stream: {user.Stream}</p>
+                <p>subStream: {user.subStream}</p>
                 <p>Duration: {user.Duration}</p>
                 <p>Provider: {user.Providers}</p>
                 <p>Training Type: {user.trainingType}</p>
