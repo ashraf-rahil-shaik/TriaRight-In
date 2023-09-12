@@ -1,6 +1,6 @@
 <?php
    error_reporting(E_ALL);
-   ini_set('display_errors',1);
+   ini_set('display_errors', 1);
    
        header("Access-Control-Allow-Origin: *");
        header("Access-Control-Allow-Headers: *");
@@ -8,12 +8,19 @@
     //echo"Testing";
 
     include 'dbConnect.php';
-    $objDb = new dbConnect;
-    $conn = $objDb->connect();
+    // $objDb = new dbConnect;
+    // $conn = $objDb->connect();
     //var_dump($conn);
-
-    $user = file_get_contents('php://input');
-    $method = $_SERVER['REQUEST_METHOD'];
+    try {
+        $objDb = new dbConnect;
+        $conn = $objDb->connect();
+    } catch (PDOException $e) {
+        echo "Database connection failed: " . $e->getMessage();
+        die();
+    }
+    // $postdata = file_get_contents("php://input");
+$method = $_SERVER['REQUEST_METHOD'];
+$response = ['status' => 0, 'message' => 'Validation errors:', 'errors' => []];
     switch($method) {
         case "GET":
             $sql = "SELECT * FROM collegecreation";
@@ -34,56 +41,94 @@
             break;
 
         case "POST":
-            $user = json_decode(file_get_contents('php://input'));
+            // var_dump($user);
             //$sql = "INSERT INTO streamcreation(streamId, streamName, streamLocation, created_at) VALUES(null, :streamName, :streamLocation, :created_at)";
-            $sql = "INSERT INTO studentwithoutplacementcreation(confirmPassword,registrationType,fullName,email,phoneNumber,gender,dateOfBirth,address,city,district,state,pinCode,qualification,qualificationStatus,semester,qualificationIndustry,qualificationType,branchOrstream,othersBranch,specialization,othersSpecialization,instituteName,uploadCv,userName,password,accountType,paymentType,nameOnCertificate,studentRegNo,collegeName,industry,domain,course,duration,sessionSlot) 
-                    VALUES(:confirmPassword,:registrationType,:fullName,:email,:phoneNumber,:gender,:dateOfBirth,:address,:city,:district,:state,:pinCode,:qualification,:qualificationStatus,:semester,:qualificationIndustry,:qualificationType,:branchOrstream,:othersBranch,:specialization,:othersSpecialization,:instituteName,:uploadCv,:userName,:password,:accountType,:paymentType,:nameOnCertificate,:studentRegNo,:collegeName,:industry,:domain,:course,:duration,:sessionSlot)";
-            $stmt = $conn->prepare($sql);
-           //$stmt->bindParam(':streamName', $user->name);
-           $stmt->bindParam(':registrationType', $user->registerType);
-            $stmt->bindParam(':fullName', $user->fullName);
-            $stmt->bindParam(':email', $user->email);
-            $stmt->bindParam(':phoneNumber', $user->phoneNumber);
-            $stmt->bindParam(':gender', $user->gender);
-            $stmt->bindParam(':dateOfBirth', $user->dob);
-            $stmt->bindParam(':address', $user->address);
-            $stmt->bindParam(':city', $user->city);
-            $stmt->bindParam(':district', $user->district);
-            $stmt->bindParam(':state', $user->state);
-            $stmt->bindParam(':pinCode', $user->pinCode);
-            $stmt->bindParam(':qualification',$user->qualification);
-            $stmt->bindParam(':qualificationStatus', $user->qualificationStatus);
-            $stmt->bindParam(':semester', $user->semester);
-            $stmt->bindParam(':qualificationIndustry', $user->qualificationIndustry);
-            $stmt->bindParam(':qualificationType', $user->qualificationType);
-            $stmt->bindParam(':branchOrstream', $user->branchORstream);
-            $stmt->bindParam(':othersBranch', $user->othersBranch);
-            $stmt->bindParam(':specialization', $user->specialization);
-            $stmt->bindParam(':othersSpecialization', $user->othersSpecialization);
-            $stmt->bindParam(':instituteName', $user->instituteName);
-            $stmt->bindParam(':uploadCv', $user->cvFile);
-            $stmt->bindParam(':userName', $user->uName);
-            $stmt->bindParam(':password', $user->password);
-            $stmt->bindParam(':confirmPassword', $user->confirmPassword);
-            $stmt->bindParam(':accountType', $user->accountType);
-            $stmt->bindParam(':paymentType', $user->paymentType);
-            $stmt->bindParam(':nameOnCertificate', $user->nameOnCertificate);
-            $stmt->bindParam(':studentRegNo', $user->studentRegNo);
-            $stmt->bindParam(':collegeName', $user->collegeName);
-            $stmt->bindParam(':industry', $user->industry);
-            $stmt->bindParam(':domain', $user->domain);
-            $stmt->bindParam(':course', $user->course);
-            $stmt->bindParam(':duration', $user->duration);
-            $stmt->bindParam(':sessionSlot', $user->slots);
-          
-         if($stmt->execute()){
-            $response = ['status' => 1, 'message' => 'Record created Successfully.'];
-         }
-        else{
-           $response = ['status' => 0, 'message' => 'Failed to created record.'];
-        }
-          echo json_encode($response);
-          break;
+            case "POST":
+                $postdata = file_get_contents("php://input");
+                if (!empty($postdata)) {
+                    // Decode the JSON data into an associative array
+                    $data = json_decode($postdata, true);
+            
+                    // Access studentInfo, educationalDetails, and essentials from the decoded data
+                    $studentInfo = $data['studentInfo'];
+                    $educationalDetails = $data['educationalDetails'];
+                    $essentials = $data['essentials'];
+            
+                    // Insert data into the students table
+                    $sql = "INSERT INTO studentwithoutplacementcreation(registrationType, fullName, email, phoneNumber, gender, dateOfBirth, address, city, district, state, pinCode, qualification, qualificationStatus, semester, qualificationIndustry, qualificationType, branchOrstream, othersBranch, specialization, othersSpecialization, instituteName, uploadCv, userName, password, accountType, paymentType, nameOnCertificate, studentRegNo, collegeName, industry, domain, course, duration, sessionSlot) 
+                            VALUES (:registerType, :fullName, :email, :phoneNumber, :gender, :dob, :address, :city, :district, :state, :pinCode, :qualification, :qualificationStatus, :semester, :qualificationIndustry, :qualificationType, :branchORstream, :othersBranch, :specialization, :othersSpecialization, :instituteName, :cvFile, :uName, :password, :accountType, :paymentType, :nameOnCertificate, :studentRegNo, :collegeName, :industry, :domain, :course, :duration, :slots)";
+            
+                    $stmt = $conn->prepare($sql);
+            
+                    if ($stmt) {
+                        // Bind parameters
+                        $stmt->bindParam(':registerType', $studentInfo['registerType']);
+                        $stmt->bindParam(':fullName', $studentInfo['fullName']);
+                        $stmt->bindParam(':email', $studentInfo['email']);
+                        $stmt->bindParam(':phoneNumber', $studentInfo['phoneNumber']);
+                        $stmt->bindParam(':gender', $studentInfo['gender']);
+                        $stmt->bindParam(':dob', $studentInfo['dob']);
+                        $stmt->bindParam(':address', $studentInfo['address']);
+                        $stmt->bindParam(':city', $studentInfo['city']);
+                        $stmt->bindParam(':district', $studentInfo['district']);
+                        $stmt->bindParam(':state', $studentInfo['state']);
+                        $stmt->bindParam(':pinCode', $studentInfo['pinCode']);
+                        $stmt->bindParam(':qualification', $educationalDetails['qualification']);
+                        $stmt->bindParam(':qualificationStatus', $educationalDetails['qualificationStatus']);
+                        $stmt->bindParam(':semester', $educationalDetails['semester']);
+                        $stmt->bindParam(':qualificationIndustry', $educationalDetails['qualificationIndustry']);
+                        $stmt->bindParam(':qualificationType', $educationalDetails['qualificationType']);
+                        $stmt->bindParam(':branchORstream', $educationalDetails['branchORstream']);
+                        $stmt->bindParam(':othersBranch', $educationalDetails['othersBranch']);
+                        $stmt->bindParam(':specialization', $educationalDetails['specialization']);
+                        $stmt->bindParam(':othersSpecialization', $educationalDetails['othersSpecialization']);
+                        $stmt->bindParam(':instituteName', $educationalDetails['instituteName']);
+                        $stmt->bindParam(':cvFile', $educationalDetails['cvFile']);
+                        $stmt->bindParam(':uName', $essentials['uName']);
+                        $stmt->bindParam(':password', $essentials['password']);
+                        $stmt->bindParam(':accountType', $essentials['accountType']);
+                        $stmt->bindParam(':paymentType', $essentials['paymentType']);
+                        $stmt->bindParam(':nameOnCertificate', $essentials['nameOnCertificate']);
+                        $stmt->bindParam(':studentRegNo', $essentials['studentRegNo']);
+                        $stmt->bindParam(':collegeName', $essentials['collegeName']);
+                        $stmt->bindParam(':industry', $essentials['industry']);
+                        $stmt->bindParam(':domain', $essentials['domain']);
+                        $stmt->bindParam(':course', $essentials['course']);
+                        $stmt->bindParam(':duration', $essentials['duration']);
+                        $stmt->bindParam(':slots', $essentials['slots']);
+            
+                        // Execute the statement
+                        if ($stmt->execute()) {
+                            $response = [
+                                "status" => 1, // Success status code
+                                "message" => "Registration successful", // Success message
+                            ];
+                        } else {
+                            $response = [
+                                "status" => 0, // Error status code
+                                "message" => "Error inserting data into the database", // Error message
+                            ];
+                        }
+                    } else {
+                        $response = [
+                            "status" => 0, // Error status code
+                            "message" => "Database error", // Error message
+                        ];
+                    }
+                } else {
+                    $response = [
+                        "status" => 0, // Error status code
+                        "message" => "No data received", // Error message
+                    ];
+                }
+            
+                // Set the response content type to JSON
+                header('Content-Type: application/json');
+            
+                // Encode the response as JSON and send it back to React
+                echo json_encode($response);
+            
+                break;
 
           case "PUT":
             $user = json_decode(file_get_contents('php://input'));
@@ -146,4 +191,3 @@
             break;
    }
    ?>
-
