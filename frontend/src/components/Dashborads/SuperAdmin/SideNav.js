@@ -174,9 +174,9 @@ const SideNav = () => {
             <Link to="/create-studentwithoutPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="/manage-studentwithoutPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
-            </Link> */}
+            </Link>
           </>
         )}
         </ul>
@@ -189,9 +189,9 @@ const SideNav = () => {
             <Link to="/create-studentwithPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="/manage-studentwithPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
-            </Link> */}
+            </Link>
           </>
         )}
         </ul>

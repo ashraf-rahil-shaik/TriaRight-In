@@ -60,7 +60,8 @@ ini_set('display_errors',1);
             $stmt = $conn->prepare($sql);
             $updated_at = date('Y-m-d');
            // $created_at = date('Y-m-d');
-            $stmt->bindParam(':streamId', $user->streamId);
+           $stmt->bindParam(':streamId', $user->streamId);
+            
             $stmt->bindParam(':streamName', $user->streamName);
             $stmt->bindParam(':streamLocation', $user->streamLocation);
             $stmt->bindParam(':updated_at', $updated_at);

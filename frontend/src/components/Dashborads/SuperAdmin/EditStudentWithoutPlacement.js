@@ -1,17 +1,17 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams  } from "react-router-dom";
 
 
-const CreateStudentWithoutPlacement = () => {
+const EditStudentWithoutPlacement = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [studentInfo, setStudentInfo] = useState({
-    registerType:'',
+    registrationType:'',
     fullName: '',
     email: '',
     phoneNumber: '',
     gender: '',
-    dob: '',
+    dateofBirth: '',
     address: '',
     city: '',
     district:'',
@@ -24,17 +24,17 @@ const CreateStudentWithoutPlacement = () => {
     semester: '',
     qualificationIndustry: '',
     qualificationType:'',
-    branchORstream:'',
+    branchOrstream:'',
     othersBranch:'',
     specialization:'',
     othersSpecialization:'',
     instituteName:'',
-    cvFile:'',
+    uploadCv:'',
   });
   const [essentials, setEssentials] = useState({
     password: '',
     confirmPassword: '',
-    uName:'',
+    userName:'',
     accountType:'',
     paymentType:'',
     nameOnCertificate:'',
@@ -44,10 +44,10 @@ const CreateStudentWithoutPlacement = () => {
     domain:'',
     course:'',
     duration:'',
-    slots:'',
+    sessionSlot:'',
   });
 
-
+  const {studentWithoutPlacementId} =useParams();
   const Navigate = useNavigate();
  
 
@@ -58,6 +58,7 @@ const CreateStudentWithoutPlacement = () => {
     getUsers();
     getUsers1();
     getUsers2();
+    getUsers3();
   }, []);
   
   function getUsers() {
@@ -80,6 +81,15 @@ const CreateStudentWithoutPlacement = () => {
         setUsers2(response.data);
     });
   }
+  function getUsers3() {
+    axios.get(`http://localhost/TriaRight-In/backend/createStudentWithoutPlacement.php/user/create/${studentWithoutPlacementId}`).then(function(response) {
+        console.log(response.data);
+        setEssentials(response.data);
+        setEducationalDetails(response.data);
+        setStudentInfo(response.data);
+    });
+  }
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -122,7 +132,7 @@ const CreateStudentWithoutPlacement = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriaRight-In/backend/createStudentWithoutPlacement.php/user/submit', {studentInfo: studentInfo,educationalDetails: educationalDetails,essentials: essentials})
+    axios.put(`http://localhost/TriaRight-In/backend/createStudentWithoutPlacement.php/user/${studentWithoutPlacementId}/edit`, {studentInfo: studentInfo,educationalDetails: educationalDetails,essentials: essentials})
       .then(function(response){
         if (response.data.status === 1) {
           alert('Success: ' + response.data.message);
@@ -164,6 +174,7 @@ const CreateStudentWithoutPlacement = () => {
                 Qualification Status:
                 <select
                   name="qualificationStatus"
+                  id="qualificationStatus"
                   value={educationalDetails.qualificationStatus}
                   onChange={handleChange}
                 >
@@ -222,7 +233,7 @@ const CreateStudentWithoutPlacement = () => {
               <div>
               <label>
                     Branch/Stream
-                  <select name="branchORstream" id="branchORstream" value={educationalDetails.branchORstream} onChange={handleChange}>
+                  <select name="branchOrstream" id="branchOrstream" value={educationalDetails.branchOrstream} onChange={handleChange}>
                   <option value="">Select branch/stream</option>
               {educationalDetails.qualificationType === 'B.Tech' && (
                 <>
@@ -259,14 +270,14 @@ const CreateStudentWithoutPlacement = () => {
               <br />
               </div>
             
-              {educationalDetails.branchORstream === "Others" && (
+              {educationalDetails.branchOrstream === "Others" && (
                 <label>
                   Others
                   <input type="text" name="othersBranch" id="othersBranch" value={educationalDetails.othersBranch} onChange={handleChange}></input>
                 </label>
               )} 
 
-                  {educationalDetails.branchORstream === "B.Com" && (
+                  {educationalDetails.branchOrstream === "B.Com" && (
                     <>
                     <label>
                 Specialization:
@@ -278,7 +289,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
               <br/></>
                   )}
-                  {educationalDetails.branchORstream === "B.Sc" && (
+                  {educationalDetails.branchOrstream === "B.Sc" && (
                     <>
                     <label>
                 Specialization:
@@ -301,7 +312,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
               <br/> </>
                   )}
-                  {educationalDetails.branchORstream === "BA" && (
+                  {educationalDetails.branchOrstream === "BA" && (
                     <>
                     <label>
                 Specialization:
@@ -316,7 +327,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
               <br/></>
                   )}
-                  {educationalDetails.branchORstream === "BBA" && (
+                  {educationalDetails.branchOrstream === "BBA" && (
                     <>
                     <label>
                     Specialization:
@@ -328,7 +339,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
                <br/></>
                   )}
-                  {educationalDetails.branchORstream === "MBA" && (
+                  {educationalDetails.branchOrstream === "MBA" && (
                     <>
                     <label>
                 Specialization:
@@ -344,7 +355,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
               <br/></>
                   )}
-               {educationalDetails.branchORstream === "MSC" && (
+               {educationalDetails.branchOrstream === "MSC" && (
                     <>
                     <label>
                 Specialization:
@@ -383,7 +394,7 @@ const CreateStudentWithoutPlacement = () => {
               <br />
               <label>
                 Upload CV:
-                <input type="file" name="cvFile" id="cvFile" onChange={handleChange} />
+                <input type="file" name="uploadCv" id="uploadCv" onChange={handleChange} />
               </label>
            
         </form>
@@ -396,15 +407,15 @@ const CreateStudentWithoutPlacement = () => {
   
   return (
     <div className="create-trainer-container">
-      <h1>Student Registration Form</h1>
+      <h1> Edit Student Registration Form</h1>
       {currentStep === 1 && (
         <div>
           <h2>Student Personal Information</h2>
           <form>
             <label>
               registration Type:
-              <select name="registerType" id="registerType" 
-              value={studentInfo.registerType}
+              <select name="registrationType" id="registerType" 
+              value={studentInfo.registrationType}
                onChange={handleChange}>
                 <option value="">Select</option>
                 <option value="Course">Course</option>
@@ -433,7 +444,7 @@ const CreateStudentWithoutPlacement = () => {
             <br />
             <label>
               Gender:
-              <select  name="gender" value={studentInfo.gender} onChange={handleChange} >
+              <select  name="gender" id="gender" value={studentInfo.gender} onChange={handleChange} >
                 <option value="">Select</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -443,32 +454,32 @@ const CreateStudentWithoutPlacement = () => {
             <br />
             <label>
               Date of Birth (DOB):
-              <input type="date" name="dob" value={studentInfo.dob} onChange={handleChange} />
+              <input type="date" name="dateofBirth" id="dateofBirth" value={studentInfo.dateofBirth} onChange={handleChange} />
             </label>
             <br />
             <label>
               Address:
-              <input type="text" name="address" value={studentInfo.address} onChange={handleChange} />
+              <input type="text" name="address" id="address" value={studentInfo.address} onChange={handleChange} />
             </label>
             <br />
             <label>
               City:
-              <input type="text" name="city" value={studentInfo.city} onChange={handleChange} />
+              <input type="text" name="city" id="city" value={studentInfo.city} onChange={handleChange} />
             </label>
             <br />
             <label>
               District:
-              <input type="text" name="district" value={studentInfo.district} onChange={handleChange} />
+              <input type="text" name="district" id="district" value={studentInfo.district} onChange={handleChange} />
             </label>
             <br />
             <label>
               State:
-              <input type="text" name="state" value={studentInfo.state} onChange={handleChange} />
+              <input type="text" name="state" id="state" value={studentInfo.state} onChange={handleChange} />
             </label>
             <br />
             <label>
               Pin Code:
-              <input type="number" name="pinCode" value={studentInfo.pinCode} onChange={handleChange} />
+              <input type="number" name="pinCode" id="pinCode" value={studentInfo.pinCode} onChange={handleChange} />
             </label>
           </form>
           <button onClick={nextStep}>Continue</button>
@@ -483,7 +494,7 @@ const CreateStudentWithoutPlacement = () => {
           <form>
             <label>
               UserName:
-              <input type="text" name="uName" id="uName" value={essentials.uName} onChange={handleChange}></input>
+              <input type="text" name="userName" id="userName" value={essentials.userName} onChange={handleChange}></input>
             </label>
             <br/>
             <label>
@@ -577,7 +588,7 @@ const CreateStudentWithoutPlacement = () => {
               )} 
             <label>
                 Industry:
-                <select name="industry" value={essentials.industry} onChange={handleChange}>
+                <select name="industry" id="industry" value={essentials.industry} onChange={handleChange}>
                   <option value="">Select Industry</option>
                   <option value="IT">IT</option>
                   <option value="Non-IT">Non-IT</option>
@@ -655,7 +666,7 @@ const CreateStudentWithoutPlacement = () => {
              <br/>
       
              <label>Session Slot </label>
-             <select name="slots" id="slots" value={essentials.slots} onChange={handleChange}>
+             <select name="sessionSlot" id="sessionSlot" value={essentials.sessionSlot} onChange={handleChange}>
               <option value="">Select</option>
               {Array.isArray(users2) && (
                users2.map((user, key) => (
@@ -689,4 +700,4 @@ const CreateStudentWithoutPlacement = () => {
     </div>
   );
 };
-export default CreateStudentWithoutPlacement;
+export default EditStudentWithoutPlacement;

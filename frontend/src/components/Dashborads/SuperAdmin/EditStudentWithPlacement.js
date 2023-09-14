@@ -1,17 +1,17 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams  } from "react-router-dom";
 
 
-const CreateStudentWithoutPlacement = () => {
+const EditStudentWithPlacement = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [studentInfo, setStudentInfo] = useState({
-    registerType:'',
+    registrationType:'',
     fullName: '',
     email: '',
     phoneNumber: '',
     gender: '',
-    dob: '',
+    dateofBirth: '',
     address: '',
     city: '',
     district:'',
@@ -24,17 +24,17 @@ const CreateStudentWithoutPlacement = () => {
     semester: '',
     qualificationIndustry: '',
     qualificationType:'',
-    branchORstream:'',
+    branchOrstream:'',
     othersBranch:'',
     specialization:'',
     othersSpecialization:'',
     instituteName:'',
-    cvFile:'',
+    uploadCv:'',
   });
   const [essentials, setEssentials] = useState({
     password: '',
     confirmPassword: '',
-    uName:'',
+    userName:'',
     accountType:'',
     paymentType:'',
     nameOnCertificate:'',
@@ -44,10 +44,23 @@ const CreateStudentWithoutPlacement = () => {
     domain:'',
     course:'',
     duration:'',
-    slots:'',
+    sessionSlot:'',
+  });
+  const [additionalInfo, setAdditionalInfo] = useState({
+    hobbies: '',
+    interests: '',
+    achivements: '',
+    projectTitle1:'',
+    projectDescription1:'',
+    projectRole1: '',
+    projectTitle2:'',
+    projectDescription2:'',
+    projectRole2: '',
+    workExperience:'',
   });
 
 
+  const {studentWithPlacementId} =useParams();
   const Navigate = useNavigate();
  
 
@@ -58,6 +71,7 @@ const CreateStudentWithoutPlacement = () => {
     getUsers();
     getUsers1();
     getUsers2();
+    getUsers3();
   }, []);
   
   function getUsers() {
@@ -80,6 +94,16 @@ const CreateStudentWithoutPlacement = () => {
         setUsers2(response.data);
     });
   }
+  function getUsers3() {
+    axios.get(`http://localhost/TriaRight-In/backend/createStudentWithPlacement.php/user/create/${studentWithPlacementId}`).then(function(response) {
+        console.log(response.data);
+        setEssentials(response.data);
+        setEducationalDetails(response.data);
+        setStudentInfo(response.data);
+        setAdditionalInfo(response.data);
+    });
+  }
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -97,11 +121,17 @@ const CreateStudentWithoutPlacement = () => {
         });
         break;
         case 3:
-          setEssentials({
-            ...essentials,
-            [name]: value,
-            paymentType: value === "Individual" ? "Individual" : (value === "College" ? "College" : ""),
-               });
+            setAdditionalInfo({
+          ...additionalInfo,
+          [name]: value,
+        });
+        break;
+      case 4:
+        setEssentials({
+          ...essentials,
+          [name]: value,
+          paymentType: value === "Individual" ? "Individual" : (value === "College" ? "College" : ""), 
+             });
         break;
       default:
         break;
@@ -109,7 +139,7 @@ const CreateStudentWithoutPlacement = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 3) {
+    if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -122,11 +152,11 @@ const CreateStudentWithoutPlacement = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/TriaRight-In/backend/createStudentWithoutPlacement.php/user/submit', {studentInfo: studentInfo,educationalDetails: educationalDetails,essentials: essentials})
+    axios.put(`http://localhost/TriaRight-In/backend/createStudentWithPlacement.php/user/${studentWithPlacementId}/edit`, {studentInfo: studentInfo,educationalDetails: educationalDetails,essentials: essentials,additionalInfo:additionalInfo})
       .then(function(response){
         if (response.data.status === 1) {
           alert('Success: ' + response.data.message);
-           Navigate('/manage-studentwithoutPlacement');
+           Navigate('/manage-studentwithPlacement');
         } else {
           alert('Error: ' + response.data.message);
         }
@@ -139,6 +169,7 @@ const CreateStudentWithoutPlacement = () => {
       studentInfo,
       educationalDetails,
       essentials,
+      additionalInfo,
     });
   };
 
@@ -164,6 +195,7 @@ const CreateStudentWithoutPlacement = () => {
                 Qualification Status:
                 <select
                   name="qualificationStatus"
+                  id="qualificationStatus"
                   value={educationalDetails.qualificationStatus}
                   onChange={handleChange}
                 >
@@ -222,7 +254,7 @@ const CreateStudentWithoutPlacement = () => {
               <div>
               <label>
                     Branch/Stream
-                  <select name="branchORstream" id="branchORstream" value={educationalDetails.branchORstream} onChange={handleChange}>
+                  <select name="branchOrstream" id="branchOrstream" value={educationalDetails.branchOrstream} onChange={handleChange}>
                   <option value="">Select branch/stream</option>
               {educationalDetails.qualificationType === 'B.Tech' && (
                 <>
@@ -259,14 +291,14 @@ const CreateStudentWithoutPlacement = () => {
               <br />
               </div>
             
-              {educationalDetails.branchORstream === "Others" && (
+              {educationalDetails.branchOrstream === "Others" && (
                 <label>
                   Others
                   <input type="text" name="othersBranch" id="othersBranch" value={educationalDetails.othersBranch} onChange={handleChange}></input>
                 </label>
               )} 
 
-                  {educationalDetails.branchORstream === "B.Com" && (
+                  {educationalDetails.branchOrstream === "B.Com" && (
                     <>
                     <label>
                 Specialization:
@@ -278,7 +310,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
               <br/></>
                   )}
-                  {educationalDetails.branchORstream === "B.Sc" && (
+                  {educationalDetails.branchOrstream === "B.Sc" && (
                     <>
                     <label>
                 Specialization:
@@ -301,7 +333,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
               <br/> </>
                   )}
-                  {educationalDetails.branchORstream === "BA" && (
+                  {educationalDetails.branchOrstream === "BA" && (
                     <>
                     <label>
                 Specialization:
@@ -316,7 +348,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
               <br/></>
                   )}
-                  {educationalDetails.branchORstream === "BBA" && (
+                  {educationalDetails.branchOrstream === "BBA" && (
                     <>
                     <label>
                     Specialization:
@@ -328,7 +360,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
                <br/></>
                   )}
-                  {educationalDetails.branchORstream === "MBA" && (
+                  {educationalDetails.branchOrstream === "MBA" && (
                     <>
                     <label>
                 Specialization:
@@ -344,7 +376,7 @@ const CreateStudentWithoutPlacement = () => {
               </label>
               <br/></>
                   )}
-               {educationalDetails.branchORstream === "MSC" && (
+               {educationalDetails.branchOrstream === "MSC" && (
                     <>
                     <label>
                 Specialization:
@@ -383,7 +415,7 @@ const CreateStudentWithoutPlacement = () => {
               <br />
               <label>
                 Upload CV:
-                <input type="file" name="cvFile" id="cvFile" onChange={handleChange} />
+                <input type="file" name="uploadCv" id="uploadCv" onChange={handleChange} />
               </label>
            
         </form>
@@ -396,20 +428,19 @@ const CreateStudentWithoutPlacement = () => {
   
   return (
     <div className="create-trainer-container">
-      <h1>Student Registration Form</h1>
+      <h1> Edit Student Registration Form</h1>
       {currentStep === 1 && (
         <div>
           <h2>Student Personal Information</h2>
           <form>
             <label>
               registration Type:
-              <select name="registerType" id="registerType" 
-              value={studentInfo.registerType}
+              <select name="registrationType" id="registerType" 
+              value={studentInfo.registrationType}
                onChange={handleChange}>
                 <option value="">Select</option>
-                <option value="Course">Course</option>
-                <option value="Course with Internship">Course with Internship</option>
-                <option value="Internship">Internship</option>
+                <option value="Course with Internship and Placement Assistance">Course with Internship and Placement Assistance</option>
+                <option value="Placement Assistance">Placement Assistance</option>
                </select>
             </label>
             <br />
@@ -433,7 +464,7 @@ const CreateStudentWithoutPlacement = () => {
             <br />
             <label>
               Gender:
-              <select  name="gender" value={studentInfo.gender} onChange={handleChange} >
+              <select  name="gender" id="gender" value={studentInfo.gender} onChange={handleChange} >
                 <option value="">Select</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -443,32 +474,32 @@ const CreateStudentWithoutPlacement = () => {
             <br />
             <label>
               Date of Birth (DOB):
-              <input type="date" name="dob" value={studentInfo.dob} onChange={handleChange} />
+              <input type="date" name="dateofBirth" id="dateofBirth" value={studentInfo.dateofBirth} onChange={handleChange} />
             </label>
             <br />
             <label>
               Address:
-              <input type="text" name="address" value={studentInfo.address} onChange={handleChange} />
+              <input type="text" name="address" id="address" value={studentInfo.address} onChange={handleChange} />
             </label>
             <br />
             <label>
               City:
-              <input type="text" name="city" value={studentInfo.city} onChange={handleChange} />
+              <input type="text" name="city" id="city" value={studentInfo.city} onChange={handleChange} />
             </label>
             <br />
             <label>
               District:
-              <input type="text" name="district" value={studentInfo.district} onChange={handleChange} />
+              <input type="text" name="district" id="district" value={studentInfo.district} onChange={handleChange} />
             </label>
             <br />
             <label>
               State:
-              <input type="text" name="state" value={studentInfo.state} onChange={handleChange} />
+              <input type="text" name="state" id="state" value={studentInfo.state} onChange={handleChange} />
             </label>
             <br />
             <label>
               Pin Code:
-              <input type="number" name="pinCode" value={studentInfo.pinCode} onChange={handleChange} />
+              <input type="number" name="pinCode" id="pinCode" value={studentInfo.pinCode} onChange={handleChange} />
             </label>
           </form>
           <button onClick={nextStep}>Continue</button>
@@ -476,14 +507,44 @@ const CreateStudentWithoutPlacement = () => {
       )}
 
       {currentStep === 2 && renderEducationForm()}
-
       {currentStep === 3 && (
+        <div>
+          <h2>Additional Information</h2>
+          <form >
+            <label>Hobbies
+            <input name="hobbies" id="hobbies" value={additionalInfo.hobbies} onChange={handleChange}></input></label><br/>
+            <label>Intersts
+            <textarea name="interests" id="interests" value={additionalInfo.interests} onChange={handleChange} /></label><br/>
+            <label>Achievememts
+            <textarea name="achivements" id="achivements" value={additionalInfo.achivements} onChange={handleChange}/></label><br/>
+            <h3 >Project 1:-</h3>
+            <label>Title
+            <textarea name="projectTitle1" id="projectTitle1" value={additionalInfo.projectTitle1} onChange={handleChange} rows={4}></textarea></label><br/>
+            <label>Description
+            <textarea name="description1" id="description1" value={additionalInfo.description1} onChange={handleChange} rows={4}></textarea></label><br/>
+            <label>role1
+            <input name="projectRole1" id="projectRole1" value={additionalInfo.projectRole1} onChange={handleChange}></input></label><br/>
+            <h3 >Project 2:-</h3>
+            <label>Title
+            <textarea name="projectTitle2" id="projectTitle2" value={additionalInfo.title2} onChange={handleChange} rows={4}></textarea></label><br/>
+            <label>Description
+            <textarea name="projectDescription2" id="projectDescription2" value={additionalInfo.projectDescription2} onChange={handleChange} rows={4}></textarea></label><br/>
+            <label>role
+            <input name="projectRole2" id="projectRole2" value={additionalInfo.projectRole2} onChange={handleChange}></input></label><br/>
+            <label>Work Experience
+            <textarea name="workExperience" id="workExperience" value={additionalInfo.workExperience} onChange={handleChange}></textarea></label><br/>
+          </form>
+          <button onClick={prevStep}>Previous</button>
+          <button onClick={nextStep}>Continue</button>
+        </div>
+      )}
+      {currentStep === 4 && (
         <div>
           <h2>Essentials</h2>
           <form>
             <label>
               UserName:
-              <input type="text" name="uName" id="uName" value={essentials.uName} onChange={handleChange}></input>
+              <input type="text" name="userName" id="userName" value={essentials.userName} onChange={handleChange}></input>
             </label>
             <br/>
             <label>
@@ -577,7 +638,7 @@ const CreateStudentWithoutPlacement = () => {
               )} 
             <label>
                 Industry:
-                <select name="industry" value={essentials.industry} onChange={handleChange}>
+                <select name="industry" id="industry" value={essentials.industry} onChange={handleChange}>
                   <option value="">Select Industry</option>
                   <option value="IT">IT</option>
                   <option value="Non-IT">Non-IT</option>
@@ -655,7 +716,7 @@ const CreateStudentWithoutPlacement = () => {
              <br/>
       
              <label>Session Slot </label>
-             <select name="slots" id="slots" value={essentials.slots} onChange={handleChange}>
+             <select name="sessionSlot" id="sessionSlot" value={essentials.sessionSlot} onChange={handleChange}>
               <option value="">Select</option>
               {Array.isArray(users2) && (
                users2.map((user, key) => (
@@ -689,4 +750,4 @@ const CreateStudentWithoutPlacement = () => {
     </div>
   );
 };
-export default CreateStudentWithoutPlacement;
+export default EditStudentWithPlacement;

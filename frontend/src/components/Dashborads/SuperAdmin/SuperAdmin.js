@@ -23,7 +23,11 @@ import CreateTriarightLogin from "./CreateTriarightLogin";
 import ManageTriarightLogin from "./ManageTriarightLogin";
 import EditTriarightLogin from "./EditTriarightLogin";
 import CreateStudentWithoutPlacement from "./CreateStudentWithoutPlacement";
+import ManageStudentWithoutPlacement from "./ManageStudentWithoutPlacement";
+import EditStudentWithoutPlacement from "./EditStudentWithoutPlacement";
 import CreateStudentWithPlacement from "./CreateStudentWithPlacement";
+import ManageStudentWithPlacement from "./ManageStudentWithPlacement";
+import EditStudentWithPlacement from "./EditStudentWithPlacement";
 import RegMainForm from "./MainForm";
 import CreateConsultant  from "./CreateConsultant";
 import ManageConsultant from "./ManageConsultant";
@@ -84,7 +88,12 @@ return(
         <Route path="/:triarightLoginId/edit7" element={<EditTriarightLogin />}></Route>
 
         <Route path="/create-studentwithoutPlacement" element={<CreateStudentWithoutPlacement/>}></Route>
+        <Route path="/manage-studentwithoutPlacement" element={<ManageStudentWithoutPlacement/>}></Route>
+        <Route path="/:studentWithoutPlacementId/edit10" element={<EditStudentWithoutPlacement/>}></Route>
+
         <Route path="/create-studentwithPlacement" element={<CreateStudentWithPlacement/>}></Route>
+        <Route path="/manage-studentwithPlacement" element={<ManageStudentWithPlacement/>}></Route>
+        <Route path="/:studentWithPlacementId/edit11" element={<EditStudentWithPlacement/>}></Route>
         <Route path="/create-regMainForm" element={<RegMainForm/>}></Route>
 
         <Route path="/create-consultant" element={<CreateConsultant/>}></Route>

@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const CreateStudentWithPlacement = () => {
@@ -20,7 +21,7 @@ const CreateStudentWithPlacement = () => {
     qualification: '',
     qualificationStatus: '',
     semester: '',
-    industry: '',
+    qualificationIndustry: '',
     qualificationType:'',
     branchORstream:'',
     othersBranch:'',
@@ -57,7 +58,7 @@ const CreateStudentWithPlacement = () => {
     workExp:'',
   });
 
- 
+  const Navigate = useNavigate();
 
   const [users , setUsers] = useState([]);
   const [users1,setUsers1] = useState([]);
@@ -135,13 +136,26 @@ const CreateStudentWithPlacement = () => {
   };
 
   const handleSubmit = () => {
-   
+    axios.post('http://localhost/TriaRight-In/backend/createStudentWithPlacement.php/user/submit', {studentInfo: studentInfo,educationalDetails: educationalDetails,essentials: essentials,additionalInfo:additionalInfo})
+      .then(function(response){
+        if (response.data.status === 1) {
+          alert('Success: ' + response.data.message);
+         Navigate('/manage-studentwithPlacement');
+        } else {
+          alert('Error: ' + response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        alert('An error occurred while creating the record.');
+      });
     console.log('Submitted Data:', {
       studentInfo,
       educationalDetails,
       essentials,
       additionalInfo,
     });
+    
   };
 
 
@@ -424,7 +438,7 @@ const CreateStudentWithPlacement = () => {
             <br />
             <label>
               Phone Number:
-              <input type="text" name="phoneNumber" value={studentInfo.phoneNumber} onChange={handleChange} />
+              <input type="number" name="phoneNumber" value={studentInfo.phoneNumber} onChange={handleChange} />
             </label>
             <br />
             <label>
@@ -464,7 +478,7 @@ const CreateStudentWithPlacement = () => {
             <br />
             <label>
               Pin Code:
-              <input type="text" name="pinCode" value={studentInfo.pinCode} onChange={handleChange} />
+              <input type="number" name="pinCode" value={studentInfo.pinCode} onChange={handleChange} />
             </label>
           </form>
           <button onClick={nextStep}>Continue</button>
@@ -594,7 +608,7 @@ const CreateStudentWithPlacement = () => {
              <br/>
              <label>
       Student RegNo:
-      <input type="text" name="StudentRegNo" id="StudentRegNo" value={essentials.StudentRegNo} onChange={handleChange} />
+      <input type="text" name="studentRegNo" id="studentRegNo" value={essentials.studentRegNo} onChange={handleChange} />
     </label>
     <br />
             </div>
