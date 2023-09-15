@@ -101,53 +101,72 @@
           case "PUT":
 
             $data = json_decode($postdata, true);
-
+            
+            // Access studentInfo, educationalDetails, and essentials from the decoded data
             $studentInfo = $data['studentInfo'];
             $educationalDetails = $data['educationalDetails'];
             $essentials = $data['essentials'];
-            $sql = "UPDATE studentwithoutplacementcreation SET registrationType=:registrationType,fullName=:fullName,email=:email,phoneNumber=:phoneNumber,gender=:gender,dateofBirth=:dateofBirth,address=:address,city=:city, district=:district,state=:state, pinCode=:pinCode, qualification=:qualification, qualificationStatus= :qualificationStatus, semester =:semester, qualificationIndustry =:qualificationIndustry, qualificationType=:qualificationType, branchOrstream=:branchOrstream,othersBranch=:othersBranch, specialization=:specialization, othersSpecialization=:othersSpecialization, instituteName=:instituteName, uploadCv=:uploadCv, userName=:userName, password=:password, accountType=:accountType, paymentType=:paymentType, nameOnCertificate=:nameOnCertificate, studentRegNo=:studentRegNo, collegeName=:collegeName, industry=:industry, domain=:domain, course=:course, duration=:duration, sessionSlot=:sessionSlot WHERE studentWithoutPlacementId = :studentWithoutPlacementId ";
-            $stmt = $conn->prepare($sql);
-            $updated_at = date('Y-m-d');
-                        $stmt->bindParam(':studentWithoutPlacementId ', $studentInfo['studentWithoutPlacementId ']);
-                        $stmt->bindParam(':registerType', $studentInfo['registerType']);
-                        $stmt->bindParam(':fullName', $studentInfo['fullName']);
-                        $stmt->bindParam(':email', $studentInfo['email']);
-                        $stmt->bindParam(':phoneNumber', $studentInfo['phoneNumber']);
-                        $stmt->bindParam(':gender', $studentInfo['gender']);
-                        $stmt->bindParam(':dob', $studentInfo['dob']);
-                        $stmt->bindParam(':address', $studentInfo['address']);
-                        $stmt->bindParam(':city', $studentInfo['city']);
-                        $stmt->bindParam(':district', $studentInfo['district']);
-                        $stmt->bindParam(':state', $studentInfo['state']);
-                        $stmt->bindParam(':pinCode', $studentInfo['pinCode']);
-                        $stmt->bindParam(':qualification', $educationalDetails['qualification']);
-                        $stmt->bindParam(':qualificationStatus', $educationalDetails['qualificationStatus']);
-                        $stmt->bindParam(':semester', $educationalDetails['semester']);
-                        $stmt->bindParam(':qualificationIndustry', $educationalDetails['qualificationIndustry']);
-                        $stmt->bindParam(':qualificationType', $educationalDetails['qualificationType']);
-                        $stmt->bindParam(':branchORstream', $educationalDetails['branchORstream']);
-                        $stmt->bindParam(':othersBranch', $educationalDetails['othersBranch']);
-                        $stmt->bindParam(':specialization', $educationalDetails['specialization']);
-                        $stmt->bindParam(':othersSpecialization', $educationalDetails['othersSpecialization']);
-                        $stmt->bindParam(':instituteName', $educationalDetails['instituteName']);
-                        $stmt->bindParam(':cvFile', $educationalDetails['cvFile']);
-                        $stmt->bindParam(':uName', $essentials['uName']);
-                        $stmt->bindParam(':password', $essentials['password']);
-                        $stmt->bindParam(':accountType', $essentials['accountType']);
-                        $stmt->bindParam(':paymentType', $essentials['paymentType']);
-                        $stmt->bindParam(':nameOnCertificate', $essentials['nameOnCertificate']);
-                        $stmt->bindParam(':studentRegNo', $essentials['studentRegNo']);
-                        $stmt->bindParam(':collegeName', $essentials['collegeName']);
-                        $stmt->bindParam(':industry', $essentials['industry']);
-                        $stmt->bindParam(':domain', $essentials['domain']);
-                        $stmt->bindParam(':course', $essentials['course']);
-                        $stmt->bindParam(':duration', $essentials['duration']);
-                        $stmt->bindParam(':sessionSlot', $essentials['slots']);
+            if($essentials['password'] === $essentials['confirmPassword'])
+            { 
+    $sql = "UPDATE studentwithoutplacementcreation SET registrationType=:registerType,fullName=:fullName,email=:email,phoneNumber=:phoneNumber,
+    gender=:gender,dateofBirth=:dob,address=:address,city=:city,
+    district=:district,state=:state,pinCode=:pinCode,qualification=:qualification,qualificationStatus=:qualificationStatus,semester=:semester,
+    qualificationIndustry=:qualificationIndustry,qualificationType=:qualificationType,branchOrstream=:branchORstream,othersBranch=:othersBranch,
+    specialization=:specialization,othersSpecialization=:othersSpecialization,
+    instituteName=:instituteName,uploadCv=:cvFile,userName=:uName,password=:password,accountType=:accountType,paymentType=:paymentType,
+    nameOnCertificate=:nameOnCertificate,studentRegNo=:studentRegNo,collegeName=:collegeName,industry=:industry,
+    domain=:domain,course=:course,duration=:duration,sessionSlot=:sessionSlot where studentWithoutPlacementId =:studentWithoutPlacementId";
+    $stmt = $conn->prepare($sql);
+    $path = explode('/', $_SERVER['REQUEST_URI']);
+    $stmt->bindParam(':studentWithoutPlacementId', $path[5]);
+    $stmt->bindParam(':registerType', $studentInfo['registrationType']);
+                $stmt->bindParam(':fullName', $studentInfo['fullName']);
+                $stmt->bindParam(':email', $studentInfo['email']);
+                $stmt->bindParam(':phoneNumber', $studentInfo['phoneNumber']);
+                $stmt->bindParam(':gender', $studentInfo['gender']);
+                $stmt->bindParam(':dob', $studentInfo['dateofBirth']);
+                $stmt->bindParam(':address', $studentInfo['address']);
+                $stmt->bindParam(':city', $studentInfo['city']);
+                $stmt->bindParam(':district', $studentInfo['district']);
+                $stmt->bindParam(':state', $studentInfo['state']);
+                $stmt->bindParam(':pinCode', $studentInfo['pinCode']);
+                $stmt->bindParam(':qualification', $educationalDetails['qualification']);
+                $stmt->bindParam(':qualificationStatus', $educationalDetails['qualificationStatus']);
+                $stmt->bindParam(':semester', $educationalDetails['semester']);
+                $stmt->bindParam(':qualificationIndustry', $educationalDetails['qualificationIndustry']);
+                $stmt->bindParam(':qualificationType', $educationalDetails['qualificationType']);
+                $stmt->bindParam(':branchORstream', $educationalDetails['branchOrstream']);
+                $stmt->bindParam(':othersBranch', $educationalDetails['othersBranch']);
+                $stmt->bindParam(':specialization', $educationalDetails['specialization']);
+                $stmt->bindParam(':othersSpecialization', $educationalDetails['othersSpecialization']);
+                $stmt->bindParam(':instituteName', $educationalDetails['instituteName']);
+                $stmt->bindParam(':cvFile', $educationalDetails['uploadCv']);
+                $stmt->bindParam(':uName', $essentials['userName']);
+                $stmt->bindParam(':password', $essentials['password']);
+                $stmt->bindParam(':accountType', $essentials['accountType']);
+                $stmt->bindParam(':paymentType', $essentials['paymentType']);
+                $stmt->bindParam(':nameOnCertificate', $essentials['nameOnCertificate']);
+                $stmt->bindParam(':studentRegNo', $essentials['studentRegNo']);
+                $stmt->bindParam(':collegeName', $essentials['collegeName']);
+                $stmt->bindParam(':industry', $essentials['industry']);
+                $stmt->bindParam(':domain', $essentials['domain']);
+                $stmt->bindParam(':course', $essentials['course']);
+                $stmt->bindParam(':duration', $essentials['duration']);
+                $stmt->bindParam(':sessionSlot', $essentials['sessionSlot']);
     
-            if($stmt->execute()) {
-                $response = ['status' => 1, 'message' => 'Record updated successfully.'];
-            } else {
-                $response = ['status' => 0, 'message' => 'Failed to update record.'];
+                // Execute the statement
+                if ($stmt->execute()) {
+                    $response = [
+                        "status" => 1, // Success status code
+                        "message" => "update  successful", // Success message
+                    ];
+                } else {
+                    $response = [
+                        "status" => 0, // Error status code
+                        "message" => "Error inserting data into the database", // Error message
+                    ];
+                }
+            
             }
             echo json_encode($response);
             break;

@@ -152,7 +152,19 @@ const EditStudentWithPlacement = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+    axios.put(`http://localhost/TriaRight-In/backend/createStudentWithPlacement.php/user/${studentWithPlacementId}/edit`, {studentInfo: studentInfo,educationalDetails: educationalDetails,essentials: essentials,additionalInfo:additionalInfo})
+      .then(function(response){
+        if (response.data.status === 1) {
+          alert('Success: ' + response.data.message);
+           Navigate('/manage-studentwithPlacement');
+        } else {
+          alert('Error: ' + response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        alert('An error occurred while creating the record.');
+      });
     console.log('Submitted Data:', {
       studentInfo,
       educationalDetails,
