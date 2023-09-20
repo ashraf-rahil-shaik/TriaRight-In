@@ -1,5 +1,5 @@
 import React from "react";
-import SideNav from "./SideNav";
+import TrainerSideNav from "./TrainerSideNav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TrainerDashboard from "./TrainerDashboard";
 import CoursesList from "./CoursesList";
@@ -27,11 +27,15 @@ import ListDocument from "./ListDocument";
 import TrainerProfile from "./TrainerProfile";
 import ChangePassword from "./ChangePassword";
 import TrainerLogout from "./TrainerLogout";
+import ChatCompose from "./ChatCompose";
+import ChatInbox from "./ChatInbox";
+import ChatOutbox from "./ChatOutbox";
+import ChatAllDetails from "./ChatAllDetails";
 const TrainerAdmin=()=>{
     return(
         <div className="super">
     <BrowserRouter>
-    <SideNav/>
+    <TrainerSideNav/>
     <Routes>
         <Route path="/trainer-Dashboard" element={<TrainerDashboard/>}></Route>
 
@@ -56,6 +60,11 @@ const TrainerAdmin=()=>{
          <Route path="/create-recording" element={<CreateRecording/>}></Route>
          <Route path="/manage-recording" element={<ManageRecording/>}></Route>
          <Route path="/list-recording" element={<ListRecording/>}></Route>
+
+         <Route path="/compose-chat" element={<ChatCompose/>}></Route>
+         <Route path="/inbox-chat" element={<ChatInbox/>}></Route>
+         <Route path="/outbox-chat" element={<ChatOutbox/>}></Route>/
+         <Route path="/alldetails-chat" element={<ChatAllDetails/>}></Route>
 
          <Route path="/add-task" element={<AddTask/>}></Route>
          <Route path="/manage-task" element={<ManageTask/>}></Route>

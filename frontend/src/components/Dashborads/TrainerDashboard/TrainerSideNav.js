@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import './DashBoard.css';
 import { Link } from 'react-router-dom';
-const SideNav = () => {
-    // const [isDashboardDropdownOpen, setDashboardDropdownOpen] = useState(false);
+const TrainerSideNav = () => {
+    const [isChatDropdownOpen, setChatDropdownOpen] = useState(false);
     const [isCoursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
     const [isMyAccountsDropdownOpen, setMyAccountsDropdownOpen] = useState(false);
     const [isScheduleDropdownOpen, setScheduleDropdownOpen] = useState(false);
@@ -11,9 +11,9 @@ const SideNav = () => {
     const [isRecordingsDropdownOpen, setRecordingsDropdownOpen] = useState(false);
     const [isTasksDropdownOpen, setTasksDropdownOpen] = useState(false);
     const [isDocumentsDropdownOpen, setDocumentsDropdownOpen] = useState(false);
-    // const handleDashboardClick = () => {
-    //     setDashboardDropdownOpen(!isDashboardDropdownOpen);
-    //   };
+    const handleChatClick = () => {
+        setChatDropdownOpen(!isChatDropdownOpen);
+      };
       const handleCoursesClick = () => {
         setCoursesDropdownOpen(!isCoursesDropdownOpen);
       };
@@ -40,23 +40,9 @@ const SideNav = () => {
       };
       return (
         <div className="side-nav">
-          {/* <ul className={`slide-menu ${isDashboardDropdownOpen ? 'open-up' : ''}`}>
-            <li className="stream-item" onClick={handleDashboardClick}>
-              Dashboard
-            </li>
-            {isDashboardDropdownOpen && (
-              <>
-                <Link to="/trainer-Dashboard" className="link-list"  style={{ textDecoration: 'none', color: 'black' }}>
-                  <li className="dropdown-item">Dashboard</li>
-                </Link>
-                {/* <Link to="/manage-stream" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
-                  <li className="dropdown-item">Manage</li>
-                </Link> */}
-              {/* </>
-            )}
-          </ul>  */}
+          
           <br></br>
-          <Link to="/trainer-Dashboard"><h1 className="dashboard">Dashboard</h1></Link>
+          <Link to="/trainer-Dashboard" style={{ textDecoration: 'none', color: 'black' }}><h1 className="dashboard">Dashboard</h1></Link>
           <ul className={`slide-menu ${isCoursesDropdownOpen ? 'open-up' : ''}`}>
             <li className="stream-item" onClick={handleCoursesClick}>
               Course
@@ -160,6 +146,27 @@ const SideNav = () => {
               </>
             )}
           </ul>
+          <ul className={`slide-menu ${isChatDropdownOpen ? 'open-up' : ''}`}>
+            <li className="stream-item" onClick={handleChatClick}>
+              Chat
+            </li>
+            {isChatDropdownOpen && (
+              <>
+                <Link to="/compose-chat" className="link-list"  style={{ textDecoration: 'none', color: 'black' }}>
+                  <li className="dropdown-item">Compose</li>
+                </Link>
+                 <Link to="/inbox-chat" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+                  <li className="dropdown-item">Inbox</li>
+                </Link> 
+                <Link to="/outbox-chat" className="link-list"  style={{ textDecoration: 'none', color: 'black' }}>
+                  <li className="dropdown-item">Outbox</li>
+                </Link>
+                 <Link to="/alldetails-chat" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+                  <li className="dropdown-item">All Details</li>
+                </Link> 
+               </>
+            )}
+          </ul> 
           <ul className={`slide-menu ${isTasksDropdownOpen ? 'open-up' : ''}`}>
             <li className="stream-item" onClick={handleTasksClick}>
             Task
@@ -197,10 +204,10 @@ const SideNav = () => {
             )}
           </ul><hr></hr>
           <h1 className="headings">Settings</h1>
-          <Link to="/trainer-profile"><h1 className="dashboard">Profile</h1></Link>
-          <Link to="/changePassword"><h1 className="dashboard">Change Password</h1></Link>
-          <Link to="/trainer-logout"><h1 className="dashboard">logOut</h1></Link>
+          <Link to="/trainer-profile" style={{ textDecoration: 'none', color: 'black' }}><h1 className="dashboard">Profile</h1></Link>
+          <Link to="/changePassword" style={{ textDecoration: 'none', color: 'black' }}><h1 className="dashboard">Change Password</h1></Link>
+          <Link to="/trainer-logout" style={{ textDecoration: 'none', color: 'black' }}><h1 className="dashboard">logOut</h1></Link>
           </div>
           )
 };
-export default SideNav;
+export default TrainerSideNav;
