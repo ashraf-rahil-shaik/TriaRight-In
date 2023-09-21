@@ -70,6 +70,9 @@ const TrainerSideNav = () => {
                 <Link to="/myBatches" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
                   <li className="dropdown-item">My Batches</li>
                 </Link>
+                <Link to="/myCourses" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+                  <li className="dropdown-item">My Courses</li>
+                </Link>
               </>
             )}
           </ul><hr></hr>

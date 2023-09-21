@@ -20,6 +20,9 @@ const CreateTrainer = () => {
     prevOrgName: "",
     designation: "",
     trainerDocuments: "",
+    uName:"",
+    password:"",
+    confirmPassword:"",
   });
 
   const Navigate = useNavigate(); 
@@ -242,7 +245,25 @@ const CreateTrainer = () => {
             </div>
           </div>
         )}
-
+<label>
+              UserName:
+              <input type="text" name="uName" id="uName" value={trainerData.uName} onChange={handleChange}></input>
+            </label>
+            <br/>
+            <label>
+              Password:
+              <input type="password" name="password" id="password" value={trainerData.password} onChange={handleChange} />
+            </label>
+            <br />
+            <label>
+              Confirm Password:
+              <input
+                type="password"
+                name="confirmPassword" id="confirmPassword"
+                value={trainerData.confirmPassword}
+                onChange={handleChange}
+              />
+            </label>
         <div className="form-group">
           <button type="submit">Submit</button>
         </div>

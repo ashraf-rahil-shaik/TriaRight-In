@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function ManageCollege(){
+export default function ManageCollegeMentor(){
 
     const [users, setUsers] = useState([]);
     useEffect(() =>{
@@ -10,17 +10,17 @@ export default function ManageCollege(){
     }, []);
 
     function getUsers() {
-    axios.get('http://localhost/TriaRight-In/backend/createCollege.php/user/submit').then(function(response) {
+    axios.get('http://localhost/TriaRight-In/backend/createCollegeMentor.php/user/submit').then(function(response) {
         console.log(response.data);
         setUsers(response.data);
     });
 }
 
-const deleteRecord=(collegeId)=>{
+const deleteRecord=(mentorId)=>{
   const result = window.confirm("Are you sure you want to permanently delete this record?");
   if(result){
     
-    axios.delete(`http://localhost/TriaRight-In/backend/createCollege.php/user/${collegeId}/delete`).then(function(response) {
+    axios.delete(`http://localhost/TriaRight-In/backend/createCollegeMentor.php/user/${mentorId}/delete`).then(function(response) {
        console.log(response.data);
        getUsers();
     

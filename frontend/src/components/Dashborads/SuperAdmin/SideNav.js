@@ -16,7 +16,7 @@ const SideNav = () => {
   const [isConsultantDropdownOpen, setConsultantDropdownOpen] = useState(false);
   const [isexampleDropdownOpen, setexampleDropdownOpen] = useState(false);
   const [isslotDropdownOpen, setslotDropdownOpen] = useState(false);
-
+  const [iscollegeMentorDropdownOpen, setcollegeMentorDropdownOpen] = useState(false);
   const handleStreamClick = () => {
     setStreamDropdownOpen(!isStreamDropdownOpen);
   };
@@ -57,7 +57,9 @@ const SideNav = () => {
   const handleslotClick = () => {
     setslotDropdownOpen(!isslotDropdownOpen);
   };
-
+  const handlecollegeMentorClick = () => {
+    setcollegeMentorDropdownOpen(!iscollegeMentorDropdownOpen);
+  };
   return (
     <div className="side-nav">
       <ul className={`slide-menu ${isStreamDropdownOpen ? 'open-up' : ''}`}>
@@ -100,6 +102,21 @@ const SideNav = () => {
               <li className="dropdown-item">Create</li>
             </Link>
             <Link to="/manage-trainer" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Manage</li>
+            </Link>
+          </>
+        )}
+      </ul>
+      <ul className={`slide-menu ${iscollegeMentorDropdownOpen ? 'open-up' : ''}`}>
+        <li className="stream-item" onClick={handlecollegeMentorClick}>
+        college Mentor
+        </li>
+        {iscollegeMentorDropdownOpen && (
+          <>
+            <Link to="/create-collegementor" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+              <li className="dropdown-item">Create</li>
+            </Link>
+            <Link to="/manage-collegementor" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>

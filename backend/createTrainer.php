@@ -38,9 +38,10 @@ ini_set('display_errors',1);
 
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
-            $sql = "INSERT INTO trainercreation(trainerName,personalEmail,phNumber,Gender,DateOfBirth,DateOfJoining,aadharNumber,panNumber,aadharImage,panImage,qualification,experience,previousOrganization,designation,trainerDocuments,created_at) VALUES(:trainerName,:personalEmail,:phNumber,:Gender,:DateOfBirth,:DateOfJoining,:aadharNumber,:panNumber,:aadharImage,:panImage,:qualification,:experience,:previousOrganization,:designation,:trainerDocuments,:created_at)";
+            if($user->password === $user->confirmPassword)
+            { 
+            $sql = "INSERT INTO trainercreation(trainerName,personalEmail,phNumber,Gender,DateOfBirth,DateOfJoining,aadharNumber,panNumber,aadharImage,panImage,qualification,experience,previousOrganization,designation,trainerDocuments) VALUES(:trainerName,:personalEmail,:phNumber,:Gender,:DateOfBirth,:DateOfJoining,:aadharNumber,:panNumber,:aadharImage,:panImage,:qualification,:experience,:previousOrganization,:designation,:trainerDocuments)";
             $stmt = $conn->prepare($sql);
-            $created_at = date('Y-m-d');
            //$stmt->bindParam(':streamName', $user->name);
             $stmt->bindParam(':trainerName', $user->trainerName);
             $stmt->bindParam(':personalEmail', $user->personalEmail);
@@ -57,21 +58,27 @@ ini_set('display_errors',1);
             $stmt->bindParam(':previousOrganization', $user->prevOrgName);
             $stmt->bindParam(':designation', $user->designation);
             $stmt->bindParam(':trainerDocuments', $user->trainerDocuments);
-            $stmt->bindParam(':created_at', $created_at);
+            $stmt->bindParam(':userName',$user->uName);
+            $stmt->bindParam(':password',$user->password);
          if($stmt->execute()){
             $response = ['status' => 1, 'message' => 'Record created Successfully.'];
          }
         else{
            $response = ['status' => 0, 'message' => 'Failed to created record.'];
         }
+      }
+      else{
+        $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+      }
           echo json_encode($response);
           break;
 
            case "PUT":
             $user = json_decode( file_get_contents('php://input') );
-                $sql = "UPDATE trainercreation SET trainerDocuments=:trainerDocuments,designation=:designation,previousOrganization=:previousOrganization,experience=:experience,panImage=:panImage,qualification=:qualification,aadharImage=:aadharImage,panNumber=:panNumber,aadharNumber=:aadharNumber, DateOfJoining=:DateOfJoining,DateOfBirth=:DateOfBirth,Gender=:Gender,trainerName= :trainerName, personalEmail=:personalEmail, phNumber=:phNumber, updated_at =:updated_at WHERE trainerId = :trainerId";
+            if($user->password === $user->confirmPassword)
+            {
+                $sql = "UPDATE trainercreation SET trainerDocuments=:trainerDocuments,designation=:designation,previousOrganization=:previousOrganization,experience=:experience,panImage=:panImage,qualification=:qualification,aadharImage=:aadharImage,panNumber=:panNumber,aadharNumber=:aadharNumber, DateOfJoining=:DateOfJoining,DateOfBirth=:DateOfBirth,Gender=:Gender,trainerName= :trainerName, personalEmail=:personalEmail, phNumber=:phNumber, userName=:userName, password=:password WHERE trainerId = :trainerId";
             $stmt = $conn->prepare($sql);
-            $updated_at = date('Y-m-d');
             $stmt->bindParam(':trainerId', $user->trainerId);
             $stmt->bindParam(':trainerName', $user->trainerName);
             $stmt->bindParam(':personalEmail', $user->personalEmail);
@@ -88,13 +95,17 @@ ini_set('display_errors',1);
             $stmt->bindParam(':previousOrganization', $user->previousOrganization);
             $stmt->bindParam(':designation', $user->designation);
             $stmt->bindParam(':trainerDocuments', $user->trainerDocuments);
-            $stmt->bindParam(':updated_at', $updated_at);
-           
+            $stmt->bindParam(':userName',$user->userName);
+            $stmt->bindParam(':password',$user->password);
          if($stmt->execute()){
             $response = ['status' => 1, 'message' => 'Record updated Successfully.'];
          }
         else{
            $response = ['status' => 0, 'message' => 'Failed to created record.'];
+        }
+      }
+        else{
+          $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
         }
           echo json_encode($response);
           break;

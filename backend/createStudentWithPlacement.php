@@ -120,6 +120,9 @@ $response = ['status' => 0, 'message' => 'Validation errors:', 'errors' => []];
                             $response = ['status' => 0, 'message' => 'Password and Confirm Password do not match'];
                         }
                     }
+                    else{
+                        $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+                    }
                 // Encode the response as JSON and send it back to React
                 echo json_encode($response);
             
@@ -207,6 +210,9 @@ $response = ['status' => 0, 'message' => 'Validation errors:', 'errors' => []];
                                 "message" => "Error inserting data into the database", // Error message
                             ];
                         }
+                    }
+                    else{
+                        $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
                     }
             echo json_encode($response);
             break;

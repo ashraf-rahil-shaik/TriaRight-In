@@ -168,6 +168,9 @@
                 }
             
             }
+            else{
+                $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+            }
             echo json_encode($response);
             break;
       

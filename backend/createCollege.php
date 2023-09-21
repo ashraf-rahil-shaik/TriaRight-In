@@ -37,9 +37,10 @@
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
             //$sql = "INSERT INTO streamcreation(streamId, streamName, streamLocation, created_at) VALUES(null, :streamName, :streamLocation, :created_at)";
-            $sql = "INSERT INTO collegecreation(collegeName,collegeCode,Address,District,state,pincode,collegePhNo,collegeMail,collegeRepresName,colleRepresPhNo,colleeRepresMail,collegeStreams,affiliatedUniversity,collegeWebsite,created_at) VALUES(:collegeName,:collegeCode,:Address,:District,:state,:pincode,:collegePhNo,:collegeMail,:collegeRepresName,:colleRepresPhNo,:colleeRepresMail,:collegeStreams,:affiliatedUniversity,:collegeWebsite,:created_at)";
+            if($user->password === $user->confirmPassword)
+            { 
+            $sql = "INSERT INTO collegecreation(collegeName,collegeCode,Address,District,state,pincode,collegePhNo,collegeMail,collegeRepresName,colleRepresPhNo,colleeRepresMail,collegeStreams,affiliatedUniversity,collegeWebsite,userName,password) VALUES(:collegeName,:collegeCode,:Address,:District,:state,:pincode,:collegePhNo,:collegeMail,:collegeRepresName,:colleRepresPhNo,:colleeRepresMail,:collegeStreams,:affiliatedUniversity,:collegeWebsite,:userName,:password)";
             $stmt = $conn->prepare($sql);
-            $created_at = date('Y-m-d');
            //$stmt->bindParam(':streamName', $user->name);
             $stmt->bindParam(':collegeName', $user->collegeName);
             $stmt->bindParam(':collegeCode', $user->collegeCode);
@@ -55,21 +56,27 @@
             $stmt->bindParam(':collegeStreams', $user->streams);
             $stmt->bindParam(':affiliatedUniversity', $user-> affiliatedUniversity);
             $stmt->bindParam(':collegeWebsite', $user->collegeWebsite);
-            $stmt->bindParam(':created_at', $created_at);
+            $stmt->bindParam(':userName',$user->userName);
+            $stmt->bindParam(':password',$user->password);
          if($stmt->execute()){
             $response = ['status' => 1, 'message' => 'Record created Successfully.'];
          }
         else{
            $response = ['status' => 0, 'message' => 'Failed to created record.'];
         }
+    }
+    else{
+        $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+      }
           echo json_encode($response);
           break;
 
            case "PUT":
             $user = json_decode( file_get_contents('php://input') );
-            $sql = "UPDATE collegecreation SET collegeWebsite=:collegeWebsite,affiliatedUniversity=:affiliatedUniversity,collegeStreams=:collegeStreams,colleeRepresMail=:colleeRepresMail,colleRepresPhNo=:colleRepresPhNo,collegeRepresName=:collegeRepresName,pincode=:pincode,collegePhNo=:collegePhNo, collegeMail=:collegeMail,Address=:Address, District=:District, state=:state, collegeName= :collegeName, collegeCode =:collegeCode, updated_at =:updated_at WHERE collegeId = :collegeId";
+            if($user->password === $user->confirmPassword)
+            { 
+            $sql = "UPDATE collegecreation SET collegeWebsite=:collegeWebsite,affiliatedUniversity=:affiliatedUniversity,collegeStreams=:collegeStreams,colleeRepresMail=:colleeRepresMail,colleRepresPhNo=:colleRepresPhNo,collegeRepresName=:collegeRepresName,pincode=:pincode,collegePhNo=:collegePhNo, collegeMail=:collegeMail,Address=:Address, District=:District, state=:state, collegeName= :collegeName, collegeCode =:collegeCode, userName=:userName, password=:password WHERE collegeId = :collegeId";
             $stmt = $conn->prepare($sql);
-            $updated_at = date('Y-m-d');
             $stmt->bindParam(':collegeId', $user->collegeId);
             $stmt->bindParam(':collegeName', $user->collegeName);
             $stmt->bindParam(':collegeCode', $user->collegeCode);
@@ -85,13 +92,17 @@
             $stmt->bindParam(':collegeStreams', $user->collegeStreams);
             $stmt->bindParam(':affiliatedUniversity', $user->affiliatedUniversity);
             $stmt->bindParam(':collegeWebsite', $user->collegeWebsite);
-            $stmt->bindParam(':updated_at', $updated_at);
-    
+            $stmt->bindParam(':userName',$user->userName);
+            $stmt->bindParam(':password',$user->password);
             if($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record updated successfully.'];
             } else {
                 $response = ['status' => 0, 'message' => 'Failed to update record.'];
             }
+        }
+            else{
+                $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+              }
             echo json_encode($response);
             break;
     

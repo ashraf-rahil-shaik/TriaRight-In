@@ -18,9 +18,9 @@ const CreateCollege = () => {
     streams: "",
     affiliatedUniversity: "",
     collegeWebsite: "",
-    collegeUsername: "",
-    // password: "",
-    // confirmPassword: "",
+    userName: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const Navigate = useNavigate(); 
@@ -52,6 +52,7 @@ const CreateCollege = () => {
   return (
     <div className="create-college-container">
       <h2>Create College Form</h2>
+      
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="collegeName">College Name:</label>
@@ -64,7 +65,6 @@ const CreateCollege = () => {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="collegeCode">College Code:</label>
           <input
@@ -213,13 +213,13 @@ const CreateCollege = () => {
           />
         </div>
 
-        {/* <div className="form-group">
-          <label htmlFor="collegeUsername">College Username:</label>
+        <div className="form-group">
+          <label htmlFor="userName">College Username:</label>
           <input
             type="text"
-            name="collegeUsername"
-            id="collegeUsername"
-            value={collegeData.collegeUsername}
+            name="userName"
+            id="userName"
+            value={collegeData.userName}
             onChange={handleChange}
             required
           />
@@ -238,7 +238,7 @@ const CreateCollege = () => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="confirmPassword">Re-Enter Password:</label>
+          <label htmlFor="confirmPassword">confirm Password:</label>
           <input
             type="password"
             name="confirmPassword"
@@ -247,12 +247,13 @@ const CreateCollege = () => {
             onChange={handleChange}
             required
           />
-        </div> */}
+        </div>
 
         <div className="form-group">
           <button type="submit">Submit</button>
         </div>
       </form>
+      
     </div>
   );
 };

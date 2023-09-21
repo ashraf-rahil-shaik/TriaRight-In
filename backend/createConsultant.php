@@ -100,10 +100,12 @@
         //     if (move_uploaded_file($file['tmp_name'], $uploadDirectory . $uniqueFilename) && move_uploaded_file($file1['tmp_name'], $uploadDirectory . $uniqueFilename1)) {
                 // Image uploaded successfully
                 // Now proceed with inserting the other form data into the database
+                if($user->password === $user->confirmPassword)
+            { 
             $sql = "INSERT INTO consultantcreation(companyName, companyMailId, companyphoneNo, 
       companyRegistrationType,companyWebsite, yearOfEstablishment,subBusinessName,doYouHaveGST,companyGSTNo, 
       uploadGSTDocument,doYouHavePan, companyPanNo, uploadPanDocument,companyAddress,companyCity,companyState, 
-      companyDistrict,companyPincode, representiveName, designation, representativePhNo, personalMailId, java, 
+      companyDistrict,companyPincode, representiveName, designation, representativePhNo, personalMailId,userName,password, java, 
       python,webTechnology,cloudComputing,dataScience,AIandML,testingTools,deepLearning,matLabECE,vlsiDesign,
       embeddedSystems,matLabEEE,visio,tSim,autoCad,sedPro,Payrolls,hr,usItRecruitment,digitalMarketing,
       businessAnalysis,medicalTransciption,medicalCoding,tallyandGst,incomeTax,usTaxation) 
@@ -111,7 +113,7 @@
              :companyWebsite, :yearOfEstablishment, :subBusinessName, :doYouHaveGST, :companyGSTNo, 
              :uploadGSTDocument, :doYouHavePan, :companyPanNo, :uploadPanDocument, :companyAddress, 
              :companyCity, :companyDistrict, :companyState, :companyPincode, :representiveName,
-             :designation,:representativePhNo, :personalMailId, :java,:python,:webTechnology,:cloudComputing,
+             :designation,:representativePhNo, :personalMailId,:userName,:password, :java,:python,:webTechnology,:cloudComputing,
              :dataScience,:AIandML,:testingTools,:deepLearning,:matLabECE,:vlsiDesign,:embeddedSystems,:matLabEEE,
              :visio,:tSim,:autoCad,:sedPro,:Payrolls,:hr,:usItRecruitment,:digitalMarketing,:businessAnalysis,
              :medicalTransciption,:medicalCoding,:tallyandGst,:incomeTax,:usTaxation)";
@@ -143,6 +145,8 @@
             $stmt->bindParam(':designation', $user->designation);
             $stmt->bindParam(':representativePhNo', $user->representativePhoneNumber);
             $stmt->bindParam(':personalMailId', $user->personalMailId);
+            $stmt->bindParam(':userName',$user->userName);
+            $stmt->bindParam(':password',$user->password);
             $stmt->bindParam(':java', $user->java);
             $stmt->bindParam(':python', $user->python);
             $stmt->bindParam(':webTechnology', $user->webTechnology);
@@ -176,11 +180,17 @@
            else{
             $response = ['status' => 0, 'message' => 'Failed to created record.'];
            }
+        }
+        else{
+            $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+          }
            echo json_encode($response);
            break;
 
            case "PUT":
             $user = json_decode(file_get_contents('php://input'));
+            if($user->password === $user->confirmPassword)
+            { 
            $sql="UPDATE consultantcreation SET companyName=:companyName,companyMailId=:companyMailId,companyPhoneNo=:companyPhoneNo,
            companyRegistrationType=:companyRegistrationType,companyWebsite=:companyWebsite,yearOfEstablishment=:yearOfEstablishment,
            subBusinessName=:subBusinessName,doYouHaveGST=:doYouHaveGST,companyGSTNo=:companyGSTNo,uploadGSTDocument=:uploadGSTDocument,
@@ -191,7 +201,7 @@
            testingTools=:testingTools,deepLearning=:deepLearning,matLabECE=:matLabECE,vlsiDesign=:vlsiDesign,embeddedSystems=:embeddedSystems,
            matLabEEE=:matLabEEE,visio=:visio,tSim=:tSim,autoCad=:autoCad,sedPro=:sedPro,Payrolls=:Payrolls,hr=:hr,usItRecruitment=:usItRecruitment,
            digitalMarketing=:digitalMarketing,businessAnalysis=:businessAnalysis,medicalTransciption=:medicalTransciption,medicalCoding=:medicalCoding,
-           tallyandGst=:tallyandGst,incomeTax=:incomeTax,usTaxation=:usTaxation where consultantId=:consultantId";
+           tallyandGst=:tallyandGst,incomeTax=:incomeTax,usTaxation=:usTaxation, userName=:userName, password=:password where consultantId=:consultantId";
             $stmt = $conn->prepare($sql);
             $file=$user->uploadGSTDocument;
            $file=str_replace("C:\\fakepath\\","",$file);
@@ -247,12 +257,18 @@
             $stmt->bindParam(':tallyandGst', $user->tallyandGst);
             $stmt->bindParam(':incomeTax', $user->incomeTax);
             $stmt->bindParam(':usTaxation', $user->usTaxation);
+            $stmt->bindParam(':userName',$user->userName);
+            $stmt->bindParam(':password',$user->password);
            if($stmt->execute()){
             $response = ['status' => 1, 'message' => 'Record updated Successfully.'];
            }
            else{
             $response = ['status' => 0, 'message' => 'Failed to update record.'];
            }
+        }
+        else{
+            $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+          }
            echo json_encode($response);
            break;
 

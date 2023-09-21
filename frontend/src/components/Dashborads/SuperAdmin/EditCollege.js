@@ -18,9 +18,9 @@ const CreateCollege = () => {
     collegeStreams: "",
     affiliatedUniversity: "",
     collegeWebsite: "",
-    //collegeUsername: "",
-    // password: "",
-    // confirmPassword: "",
+    userName: "",
+   password: "",
+   confirmPassword: "",
   });
 
   const {collegeId} =useParams();
@@ -225,13 +225,13 @@ const CreateCollege = () => {
           />
         </div>
 
-        {/* <div className="form-group">
-          <label htmlFor="collegeUsername">College Username:</label>
+        <div className="form-group">
+          <label htmlFor="userName">College Username:</label>
           <input
             type="text"
-            name="collegeUsername"
-            id="collegeUsername"
-            value={collegeData.collegeUsername}
+            name="userName"
+            id="userName"
+            value={collegeData.userName}
             onChange={handleChange}
             required
           />
@@ -259,7 +259,7 @@ const CreateCollege = () => {
             onChange={handleChange}
             required
           />
-        </div> */}
+        </div>
 
         <div className="form-group">
           <button type="submit">Update</button>

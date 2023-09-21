@@ -5,7 +5,8 @@ import TrainerDashboard from "./TrainerDashboard";
 import CoursesList from "./CoursesList";
 import SuggestCourses from "./SuggestCourses";
 import MyStudents from "./MyStudents";
-import MyBatches from "./My Batches";
+import MyBatches from "./MyBatches";
+import MyCourses from "./MyCourses";
 import CreateSchedule from "./CreateSchedule";
 import ManageSchedule from "./ManageSchedule";
 import ListSchedule from "./ListSchedule";
@@ -44,6 +45,7 @@ const TrainerAdmin=()=>{
 
         <Route path="/myStudents" element={<MyStudents/>}></Route>
         <Route path="/myBatches" element={<MyBatches/>}></Route>
+        <Route path="myCourses" element={<MyCourses/>}></Route>
 
         <Route path="/create-schedule" element={<CreateSchedule/>}></Route>
         <Route path="/manage-schedule" element={<ManageSchedule/>}></Route>

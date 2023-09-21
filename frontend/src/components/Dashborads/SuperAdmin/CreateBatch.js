@@ -21,9 +21,11 @@ function CreateBatch(){
 
 const [users, setUsers] = useState([]);
 const [users1 , setUsers1] = useState([]);
+const[users2,setUsers2]=useState([]);
 useEffect(() =>{
   getUsers();
   getUsers1();
+  getUsers2();
 }, []);
 
 function getUsers() {
@@ -39,13 +41,19 @@ function getUsers1() {
       setUsers1(response.data);
   });
 }
-
+function getUsers2() {
+  axios.get('http://localhost/TriaRight-In/backend/createTrainer.php/user/create').then(function(response) {
+      console.log(response.data);
+      setUsers2(response.data);
+  });
+}
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setBatchData({...batchData, [name]: value });
   };
 
+   
   const handleSubmit = (event) => {
     event.preventDefault();
     axios.post('http://localhost/TriaRight-In/backend/createBatch.php/user/Submit', batchData)
@@ -136,15 +144,23 @@ function getUsers1() {
         </div> */}
         <div className="form-group">
           <label htmlFor="trainerName">Trainer Name:</label>
-          <input
-            type="text"
+          <select
             name="trainerName"
             id="traineriname"
             value={batchData.trainerName}
             required
-            onChange={handleChange}
-            
-          />
+            onChange={handleChange}>
+              <option value="">Select</option>
+              {Array.isArray(users2) ? (
+            users2.map((user, key) => (
+                <>
+            <option  key={key} value={user.userName}>{user.userName}</option>
+            </>
+            ))) : (
+                <>
+                </>
+            )}
+            </select>
         </div>
         <div className="form-group">
           <label htmlFor="batchStartingDate">Batch Starting Date:</label>

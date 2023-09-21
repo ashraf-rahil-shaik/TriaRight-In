@@ -64,6 +64,8 @@ const deleteRecord=(consultantId)=>{
                         <th>designation</th>
                         <th>representativePhNo</th>
                         <th>personalMailId</th>
+                        <th>Username</th>
+                        <th>Password</th>
                         <th>Industry</th>
                         <th>Action</th>
                     </tr>
@@ -123,6 +125,8 @@ const deleteRecord=(consultantId)=>{
       <td>{user.designation}</td>
       <td>{user.representativePhNo}</td>
       <td>{user.personalMailId}</td>
+      <td>{user.userName}</td>
+<td>{user.password}</td>
       <td>
       {  (user.java == 1)?
       

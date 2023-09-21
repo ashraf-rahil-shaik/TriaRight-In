@@ -36,6 +36,9 @@ import Example from "./example";
 import CreateSlots from "./CreateSlot";
 import ManageSlot from "./ManageSlot";
 import EditSlot from "./EditSlot";
+import CreateCollegeMentor from "./CreateCollegeMentor";
+import ManageCollegeMentor from "./ManageCollegeMentor";
+
 //import StudentTriarightEssentialsC from "./CreateStudentTriarightC";
 
 const SuperAdmin=()=>{
@@ -105,6 +108,10 @@ return(
         <Route path="/create-slot" element={<CreateSlots/>}></Route>
         <Route path="/manage-slot" element={<ManageSlot/>}></Route>
         <Route path="/:slotId/edit9" element={<EditSlot/>}></Route>
+
+        <Route path="/create-collegementor" element={<CreateCollegeMentor/>}></Route>
+        <Route path="/manage-collegementor" element={<ManageCollegeMentor/>}></Route>
+
     </Routes>
  
     </BrowserRouter>

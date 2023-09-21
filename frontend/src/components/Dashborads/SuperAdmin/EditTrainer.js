@@ -20,6 +20,9 @@ const CreateTrainer = () => {
     previousOrganization: "",
     designation: "",
     trainerDocuments: "",
+    userName:"",
+    password:"",
+    confirmPassword:"",
   });
 
   const {trainerId} =useParams();
@@ -262,7 +265,25 @@ const CreateTrainer = () => {
             </div>
           </div>
         )}
-
+<label>
+              UserName:
+              <input type="text" name="userName" id="userName" value={trainerData.userName} onChange={handleChange}></input>
+            </label>
+            <br/>
+            <label>
+              Password:
+              <input type="password" name="password" id="password" value={trainerData.password} onChange={handleChange} />
+            </label>
+            <br />
+            <label>
+              Confirm Password:
+              <input
+                type="password"
+                name="confirmPassword" id="confirmPassword"
+                value={trainerData.confirmPassword}
+                onChange={handleChange}
+              />
+            </label>
         <div className="form-group">
           <button type="submit">Update</button>
         </div>

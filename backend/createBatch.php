@@ -35,9 +35,8 @@ ini_set('display_errors', 1);
 
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
-            $sql = "INSERT INTO batchcreation(batchName, classDuration, courseName,  trainerName, batchStartingDate, batchEndingDate, sessionSlot,created_at) VALUES(:batchName, :classDuration,  :courseName,  :trainerName, :batchStartingDate, :batchEndingDate, :sessionSlot, :created_at)";
+            $sql = "INSERT INTO batchcreation(batchName, classDuration, courseName,  trainerName, batchStartingDate, batchEndingDate, sessionSlot) VALUES(:batchName, :classDuration,  :courseName,  :trainerName, :batchStartingDate, :batchEndingDate, :sessionSlot)";
            $stmt = $conn->prepare($sql);
-           $created_at = date('Y-m-d');
            //$stmt->bindParam(':batchId', $user->batchId);
            $stmt->bindParam(':batchName', $user->batchName);
            $stmt->bindParam(':classDuration', $user->classDuration);
@@ -48,7 +47,6 @@ ini_set('display_errors', 1);
            $stmt->bindParam(':batchStartingDate', $user->batchStartingDate);
            $stmt->bindParam(':batchEndingDate', $user->batchEndingDate);
            $stmt->bindParam(':sessionSlot', $user->sessionSlot);
-           $stmt->bindParam(':created_at', $created_at);
            
            if($stmt->execute()){
             $response = ['status' => 1, 'message' => 'Record created Successfully.'];
@@ -64,9 +62,8 @@ ini_set('display_errors', 1);
 
            case "PUT":
             $user = json_decode( file_get_contents('php://input') );
-            $sql = "UPDATE batchcreation SET batchName=:batchName, classDuration=:classDuration,  courseName=:courseName,trainerName=:trainerName, batchStartingDate=:batchStartingDate, batchEndingDate=:batchEndingDate, sessionSlot=:sessionSlot, updated_at=:updated_at WHERE batchId = :batchId ";
+            $sql = "UPDATE batchcreation SET batchName=:batchName, classDuration=:classDuration,  courseName=:courseName,trainerName=:trainerName, batchStartingDate=:batchStartingDate, batchEndingDate=:batchEndingDate, sessionSlot=:sessionSlot  WHERE batchId = :batchId ";
             $stmt = $conn->prepare($sql);
-            $updated_at = date('Y-m-d');
            $stmt->bindParam(':batchId', $user->batchId);
            $stmt->bindParam(':batchName', $user->batchName);
            $stmt->bindParam(':classDuration', $user->classDuration);
@@ -75,7 +72,6 @@ ini_set('display_errors', 1);
            $stmt->bindParam(':batchStartingDate', $user->batchStartingDate);
            $stmt->bindParam(':batchEndingDate', $user->batchEndingDate);
            $stmt->bindParam(':sessionSlot', $user->sessionSlot);
-           $stmt->bindParam(':updated_at', $updated_at);
     
             if($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record updated successfully.'];

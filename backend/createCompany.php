@@ -37,9 +37,10 @@
         case "POST":
             $user = json_decode(file_get_contents('php://input'));
             //$sql = "INSERT INTO streamcreation(streamId, streamName, streamLocation, created_at) VALUES(null, :streamName, :streamLocation, :created_at)";
-            $sql = "INSERT INTO companycreation(companyName,companyEmail,companyPhNo,companyRegType,companyWebsite,industry,yearOfEstablishment,subBusinessName,doYouHaveGst,GSTno,GSTfile,doYouHaveCompanyPan,PANno,PANfile,address,city,district,state,pincode,representativeName,designation,representativePhoneNo,personalEmail,created_at) VALUES(:companyName,:companyEmail,:companyPhNo,:companyRegType,:companyWebsite,:industry,:yearOfEstablishment,:subBusinessName,:doYouHaveGst,:GSTno,:GSTfile,:doYouHaveCompanyPan,:PANno,:PANfile,:address,:city,:district,:state,:pincode,:representativeName,:designation,:representativePhoneNo,:personalEmail,:created_at)";
+            if($user->password === $user->confirmPassword)
+            { 
+            $sql = "INSERT INTO companycreation(companyName,companyEmail,companyPhNo,companyRegType,companyWebsite,industry,yearOfEstablishment,subBusinessName,doYouHaveGst,GSTno,GSTfile,doYouHaveCompanyPan,PANno,PANfile,address,city,district,state,pincode,representativeName,designation,representativePhoneNo,personalEmail,userName,password) VALUES(:companyName,:companyEmail,:companyPhNo,:companyRegType,:companyWebsite,:industry,:yearOfEstablishment,:subBusinessName,:doYouHaveGst,:GSTno,:GSTfile,:doYouHaveCompanyPan,:PANno,:PANfile,:address,:city,:district,:state,:pincode,:representativeName,:designation,:representativePhoneNo,:personalEmail,:userName,:password)";
             $stmt = $conn->prepare($sql);
-            $created_at = date('Y-m-d');
             
            //$stmt->bindParam(':streamName', $user->name);
             $stmt->bindParam(':companyName', $user->companyName);
@@ -65,21 +66,27 @@
             $stmt->bindParam(':designation', $user->designation);
             $stmt->bindParam(':representativePhoneNo', $user->representativePhoneNumber);
             $stmt->bindParam(':personalEmail', $user->personalMailId);
-            $stmt->bindParam(':created_at', $created_at);
+            $stmt->bindParam(':userName',$user->userName);
+            $stmt->bindParam(':password',$user->password);
          if($stmt->execute()){
             $response = ['status' => 1, 'message' => 'Record created Successfully.'];
          }
         else{
            $response = ['status' => 0, 'message' => 'Failed to created record.'];
         }
+    }
+    else{
+        $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+      }
           echo json_encode($response);
           break;
 
            case "PUT":
             $user = json_decode( file_get_contents('php://input') );
-            $sql = "UPDATE companycreation SET PANfile=:PANfile,PANno=:PANno,GSTfile=:GSTfile,GSTno=:GSTno,personalEmail=:personalEmail,representativePhoneNo=:representativePhoneNo,designation=:designation,representativeName=:representativeName,pincode=:pincode,state=:state,district=:district,city=:city,address=:address,doYouHaveCompanyPan=:doYouHaveCompanyPan,doYouHaveGst=:doYouHaveGst,subBusinessName=:subBusinessName,yearOfEstablishment=:yearOfEstablishment,industry=:industry,companyWebsite=:companyWebsite,companyRegType=:companyRegType,companyPhNo=:companyPhNo,companyName=:companyName,companyEmail=:companyEmail, updated_at =:updated_at WHERE companyId = :companyId";
+            if($user->password === $user->confirmPassword)
+            {
+            $sql = "UPDATE companycreation SET PANfile=:PANfile,PANno=:PANno,GSTfile=:GSTfile,GSTno=:GSTno,personalEmail=:personalEmail,representativePhoneNo=:representativePhoneNo,designation=:designation,representativeName=:representativeName,pincode=:pincode,state=:state,district=:district,city=:city,address=:address,doYouHaveCompanyPan=:doYouHaveCompanyPan,doYouHaveGst=:doYouHaveGst,subBusinessName=:subBusinessName,yearOfEstablishment=:yearOfEstablishment,industry=:industry,companyWebsite=:companyWebsite,companyRegType=:companyRegType,companyPhNo=:companyPhNo,companyName=:companyName,companyEmail=:companyEmail, userName=:userName, password=:password WHERE companyId = :companyId";
             $stmt = $conn->prepare($sql);
-            $updated_at = date('Y-m-d');
             $stmt->bindParam(':companyId',$user->companyId);
             $stmt->bindParam(':companyName', $user->companyName);
             $stmt->bindParam(':companyEmail', $user->companyEmail);
@@ -104,13 +111,17 @@
             $stmt->bindParam(':designation', $user->designation);
             $stmt->bindParam(':representativePhoneNo', $user->representativePhoneNo);
             $stmt->bindParam(':personalEmail', $user->personalEmail);
-            $stmt->bindParam(':updated_at', $updated_at);
-    
+            $stmt->bindParam(':userName',$user->userName);
+            $stmt->bindParam(':password',$user->password);
             if($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record updated successfully.'];
             } else {
                 $response = ['status' => 0, 'message' => 'Failed to update record.'];
             }
+        }
+        else{
+            $response = ['status' => 0, 'message' => 'Confirm password and password is mismatch.'];
+          }
             echo json_encode($response);
             break;
     

@@ -26,6 +26,9 @@ const EditConsultant = () => {
     designation:"",
     representativePhNo:"",
     personalMailId:"",
+    userName: "",
+   password: "",
+   confirmPassword: "",
     java: false,
     python:false,
     webTechnology:false,
@@ -342,6 +345,41 @@ const EditConsultant = () => {
             id="personalMailId"
             value={consultantData.personalMailId}
             onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="userName">Username:</label>
+          <input
+            type="text"
+            name="userName"
+            id="userName"
+            value={consultantData.userName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={consultantData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="confirmPassword">Re-Enter Password:</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            value={consultantData.confirmPassword}
+            onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">

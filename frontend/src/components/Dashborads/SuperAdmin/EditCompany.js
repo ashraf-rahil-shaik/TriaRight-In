@@ -66,7 +66,9 @@ const CreateCompany = () => {
     designation:"",
     representativePhoneNo:"",
     personalEmail:"",
-
+    userName: "",
+    password: "",
+    confirmPassword: "",
   });
    
   const {companyId} =useParams();
@@ -389,7 +391,41 @@ const CreateCompany = () => {
             required
           />
         </div>
-      
+        <div className="form-group">
+          <label htmlFor="userName">Username:</label>
+          <input
+            type="text"
+            name="userName"
+            id="userName"
+            value={companyData.userName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={companyData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="confirmPassword">Re-Enter Password:</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            value={companyData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className="form-group">
         <button type="submit">Submit</button>
       </div>
