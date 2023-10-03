@@ -83,7 +83,7 @@ const deleteRecord=(companyId)=>{
       <td>{user.industry}</td>
       <td>{user.yearOfEstablishment}</td>
       <td>{user.subBusinessName}</td>
-      {  (user.doYouHaveGst == 1)?
+      {  (user.doYouHaveGst === 1)?
          <>
          <td>Yes</td>
          <td>{user.GSTno}</td>
@@ -96,7 +96,7 @@ const deleteRecord=(companyId)=>{
          <td>-</td>
         </>
       }
-      { (user.doYouHaveCompanyPan == 1)?
+      { (user.doYouHaveCompanyPan === 1)?
       <>
       <td>Yes</td>
          <td>{user.PANno}</td>

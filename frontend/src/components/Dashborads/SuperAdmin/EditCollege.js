@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import {useNavigate, useParams } from "react-router-dom"
 
-const CreateCollege = () => {
+const EditCollege = () => {
   const [collegeData, setCollegeData] = useState({
     collegeName: "",
     collegeCode: "",
@@ -269,4 +269,4 @@ const CreateCollege = () => {
   );
 };
 
-export default CreateCollege;
+export default EditCollege;

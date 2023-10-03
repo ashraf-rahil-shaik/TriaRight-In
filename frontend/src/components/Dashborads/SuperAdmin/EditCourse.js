@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import {useNavigate, useParams } from "react-router-dom"
 
-const CreateCourse = () => {
+const EditCourse = () => {
   const [courseData, setCourseData] = useState({
     image:null,
     Stream: "IT",
@@ -288,5 +288,5 @@ axios.get(`http://localhost/TriaRight-In/backend/createCourse.php/user/create/${
   );
 };
 
-export default CreateCourse;
+export default EditCourse;
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './DashBoard.css';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const SideNav = () => {
   const [isStreamDropdownOpen, setStreamDropdownOpen] = useState(false);
@@ -68,10 +68,10 @@ const SideNav = () => {
         </li>
         {isStreamDropdownOpen && (
           <>
-            <Link to="/create-stream" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-stream" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-stream" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-stream" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -83,10 +83,10 @@ const SideNav = () => {
         </li>
         {isCourseDropdownOpen && (
           <>
-            <Link to="/create-course" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-course" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-course" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-course" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -98,10 +98,10 @@ const SideNav = () => {
         </li>
         {isTrainerDropdownOpen && (
           <>
-            <Link to="/create-trainer" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-trainer" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-trainer" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-trainer" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -113,10 +113,10 @@ const SideNav = () => {
         </li>
         {iscollegeMentorDropdownOpen && (
           <>
-            <Link to="/create-collegementor" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-collegementor" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-collegementor" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-collegementor" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -128,10 +128,10 @@ const SideNav = () => {
         </li>
         {isCollegeDropdownOpen && (
           <>
-            <Link to="/create-college" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-college" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-college" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-college" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -143,10 +143,10 @@ const SideNav = () => {
         </li>
         {isBatchDropdownOpen && (
           <>
-            <Link to="/create-batch" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-batch" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-batch" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-batch" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -158,10 +158,10 @@ const SideNav = () => {
         </li>
         {isCompanyDropdownOpen && (
           <>
-            <Link to="/create-company" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-company" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-company" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-company" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -173,10 +173,10 @@ const SideNav = () => {
         </li>
         {isLoginDropdownOpen && (
           <>
-            <Link to="/create-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -188,10 +188,10 @@ const SideNav = () => {
         </li>
         {isStudentWithoutPlacementDropdownOpen && (
           <>
-            <Link to="/create-studentwithoutPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-studentwithoutPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-studentwithoutPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-studentwithoutPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -203,10 +203,10 @@ const SideNav = () => {
         </li>
         {isStudentWithPlacementDropdownOpen && (
           <>
-            <Link to="/create-studentwithPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-studentwithPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-studentwithPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-studentwithPlacement" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
@@ -218,7 +218,7 @@ const SideNav = () => {
         </li>
         {isMainFormDropdownOpen && (
           <>
-            <Link to="/create-regMainForm" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-regMainForm" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
             {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
@@ -233,10 +233,10 @@ const SideNav = () => {
         </li>
         {isConsultantDropdownOpen && (
           <>
-            <Link to="/create-consultant" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-consultant" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-             <Link to="/manage-consultant" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+             <Link to="manage-consultant" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link> 
           </>
@@ -248,7 +248,7 @@ const SideNav = () => {
         </li>
         {isexampleDropdownOpen && (
           <>
-            <Link to="/create-example" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-example" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
             {/* <Link to="/manage-triarightlogin" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
@@ -263,15 +263,16 @@ const SideNav = () => {
         </li>
         {isslotDropdownOpen && (
           <>
-            <Link to="/create-slot" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="create-slot" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Create</li>
             </Link>
-            <Link to="/manage-slot" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link to="manage-slot" className="link-list" style={{ textDecoration: 'none', color: 'black' }}>
               <li className="dropdown-item">Manage</li>
             </Link>
           </>
         )}
         </ul>
+      
     </div>
   );
 };

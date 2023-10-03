@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useNavigate, useParams } from "react-router-dom"
 
 
-const CreateTrainer = () => {
+const EditTrainer = () => {
   const [trainerData, setTrainerData] = useState({
     trainerName: "",
     personalEmail: "",
@@ -292,4 +292,4 @@ const CreateTrainer = () => {
   );
 };
 
-export default CreateTrainer;
+export default EditTrainer;

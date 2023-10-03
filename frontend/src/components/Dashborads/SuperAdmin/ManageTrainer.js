@@ -87,7 +87,7 @@ const deleteRecord=(trainerId)=>{
       <td>{user.panImage}</td>
       <td>{user.DateOfJoining}</td>
       <td>{user.qualification}</td>
-      {  (user.experience == 1)?
+      {  (user.experience === 1)?
       
         <>
       <td>Yes</td>

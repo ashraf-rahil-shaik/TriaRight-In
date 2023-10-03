@@ -48,6 +48,7 @@ const EditStudentWithoutPlacement = () => {
   });
 
   const {studentWithoutPlacementId} =useParams();
+  
   const Navigate = useNavigate();
  
 

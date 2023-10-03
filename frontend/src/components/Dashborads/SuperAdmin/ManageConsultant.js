@@ -82,7 +82,7 @@ const deleteRecord=(consultantId)=>{
       <td>{user.companyWebsite}</td>
       <td>{user.yearOfEstablishment}</td>
       <td>{user.subBusinessName}</td>
-      {  (user.doYouHaveGST == 1)?
+      {  (user.doYouHaveGST === 1)?
       
       <>
     <td>Yes</td>
@@ -99,7 +99,7 @@ const deleteRecord=(consultantId)=>{
     </>
     
   } 
-  {  (user.	doYouHavePan == 1)?
+  {  (user.doYouHavePan === 1)?
       
       <>
     <td>Yes</td>
@@ -128,7 +128,7 @@ const deleteRecord=(consultantId)=>{
       <td>{user.userName}</td>
 <td>{user.password}</td>
       <td>
-      {  (user.java == 1)?
+      {  (user.java === 1)?
       
       <>
     java,
@@ -136,7 +136,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    {  (user.python == 1)?
+    {  (user.python === 1)?
       
       <>
     python,
@@ -144,7 +144,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.webTechnology == 1)?
+    { (user.webTechnology === 1)?
       
       <>
     web Technology,
@@ -152,7 +152,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.cloudComputing == 1)?
+    { (user.cloudComputing === 1)?
       
       <>
     cloud Computing,
@@ -160,7 +160,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.dataScience == 1)?
+    { (user.dataScience === 1)?
       
       <>
     data Science,
@@ -168,7 +168,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.AIandML == 1)?
+    { (user.AIandML === 1)?
       
       <>
     artificial Intelligenc & Machine Learning,
@@ -176,7 +176,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.testingTools == 1)?
+    { (user.testingTools === 1)?
       
       <>
     testing Tools,
@@ -184,7 +184,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.deepLearning == 1)?
+    { (user.deepLearning === 1)?
       
       <>
     deep Learning,
@@ -192,7 +192,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.matLabECE == 1 || user.matLabEEE == 1)?
+    { (user.matLabECE === 1 || user.matLabEEE === 1)?
       
       <>
     MATLab,
@@ -200,7 +200,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.matLabECE == 1 && user.matLabEEE == 1)?
+    { (user.matLabECE === 1 && user.matLabEEE === 1)?
       
     <>
          MATLab,
@@ -208,7 +208,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.vlsiDesign == 1)?
+    { (user.vlsiDesign === 1)?
       
       <>
     VLSI Design,
@@ -216,7 +216,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.embeddedSystems == 1)?
+    { (user.embeddedSystems === 1)?
       
       <>
     embeddedSystems,
@@ -224,7 +224,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.visio == 1)?
+    { (user.visio === 1)?
       
       <>
     visio,
@@ -232,7 +232,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.tSim == 1)?
+    { (user.tSim === 1)?
       
       <>
     T-Sim,
@@ -240,7 +240,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.autoCad == 1)?
+    { (user.autoCad === 1)?
       
       <>
     AutoCad,
@@ -248,7 +248,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.sedPro == 1)?
+    { (user.sedPro === 1)?
       
       <>
     Sed Pro,
@@ -256,7 +256,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.Payrolls == 1)?
+    { (user.Payrolls === 1)?
       
       <>
     Payrolls,
@@ -264,7 +264,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.hr == 1)?
+    { (user.hr === 1)?
       
       <>
     Hr,
@@ -272,7 +272,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.usItRecruitment == 1)?
+    { (user.usItRecruitment === 1)?
       
       <>
     Us IT Recruitment,
@@ -280,7 +280,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.digitalMarketing == 1)?
+    { (user.digitalMarketing === 1)?
       
       <>
     digital Marketing,
@@ -288,7 +288,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.businessAnalysis == 1)?
+    { (user.businessAnalysis === 1)?
       
       <>
     business Analysis,
@@ -296,7 +296,7 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.medicalTransciption == 1)?
+    { (user.medicalTransciption === 1)?
       
       <>
     medical Transciption,
@@ -304,28 +304,28 @@ const deleteRecord=(consultantId)=>{
     :
     <></>
     }
-    { (user.medicalCoding == 1)?
+    { (user.medicalCoding === 1)?
       
       <>
     medical Coding,
     </>
     :
     <></>
-    }{ (user.tallyandGst== 1)?
+    }{ (user.tallyandGst=== 1)?
       
         <>
       tally and Gst,
       </>
       :
       <></>
-      }{ (user.incomeTax == 1)?
+      }{ (user.incomeTax === 1)?
       
         <>
       income Tax,
       </>
       :
       <></>
-      }{ (user.usTaxation == 1)?
+      }{ (user.usTaxation === 1)?
       
         <>
       us Taxation,

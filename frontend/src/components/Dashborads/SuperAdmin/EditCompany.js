@@ -39,7 +39,7 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import {useNavigate, useParams } from "react-router-dom"
 
-const CreateCompany = () => {
+const EditCompany = () => {
    const Navigate = useNavigate();
 
    const [companyData, setCompanyData] = useState({
@@ -434,4 +434,4 @@ const CreateCompany = () => {
   );
 };
 
-export default CreateCompany;
+export default EditCompany;

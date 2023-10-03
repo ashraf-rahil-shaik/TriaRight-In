@@ -51,7 +51,7 @@ export default function ManageCourse() {
             <div className="course-card" key={key}>
              <img
                 src={`http://localhost/TriaRight-In/backend/CoursesImages/${user.Images}`}
-                alt={`Course ${user.Images} Image`}
+                alt={`Course ${user.Images} `}
               />
               <div className="course-details">
                 <h2>{user.course}</h2>
